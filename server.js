@@ -63,16 +63,58 @@ app.post('/api/auth/login', async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Get user by email
-        const usersRef = db.ref('users');
-        const snapshot = await usersRef.orderByChild('email').equalTo(email).once('value');
-
-        if (!snapshot.exists()) {
-            return res.status(401).json({ error: "Invalid credentials" });
+        // 1. Verify credentials with Firebase Auth REST API
+        const apiKey = process.env.FIREBASE_API_KEY;
+        if (!apiKey) {
+            console.error('FIREBASE_API_KEY is missing in environment variables');
+            return res.status(500).json({ error: "Server configuration error" });
         }
 
-        const users = snapshot.val();
-        const user = Object.values(users)[0];
+        const authResponse = await fetch(
+            `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email,
+                    password,
+                    returnSecureToken: true
+                })
+            }
+        );
+
+        const authData = await authResponse.json();
+
+        if (!authResponse.ok) {
+            const errorCode = authData.error?.message;
+            let errorMessage = "Authentication failed: Operative credentials unrecognized";
+
+            if (errorCode === 'USER_DISABLED') {
+                errorMessage = "Access Denied: This operative account has been suspended";
+            } else if (errorCode === 'TOO_MANY_ATTEMPTS_TRY_LATER') {
+                errorMessage = "Security Lockout: Too many failed login attempts. Try again later";
+            } else if (errorCode === 'EMAIL_NOT_FOUND' || errorCode === 'INVALID_PASSWORD') {
+                errorMessage = "Authentication failed: Operative credentials unrecognized";
+            }
+
+            return res.status(401).json({ error: errorMessage });
+        }
+
+        // 2. Get user complementary data from Realtime Database
+        const uid = authData.localId;
+        const userSnapshot = await db.ref(`users/${uid}`).once('value');
+
+        if (!userSnapshot.exists()) {
+            // This shouldn't happen if auth succeeded, but good to handle
+            return res.status(404).json({ error: "User profile not found" });
+        }
+
+        const user = userSnapshot.val();
+
+        // Check if user is banned
+        if (user.isBanned) {
+            return res.status(403).json({ error: "Your account has been suspended" });
+        }
 
         res.json(user);
     } catch (error) {
@@ -283,7 +325,7 @@ app.post('/api/users', async (req, res) => {
         const newUser = {
             uid: "user_" + Date.now(),
             email,
-            password,
+            // Removed plaintext password storage
             role: "user",
             name: "",
             avatar: "",

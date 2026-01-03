@@ -1,7 +1,5 @@
 import admin from 'firebase-admin';
 import dotenv from 'dotenv';
-
-// Load environment variables
 dotenv.config();
 
 // Initialize Firebase Admin
