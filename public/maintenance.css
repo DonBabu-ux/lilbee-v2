@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+.maintenance-container {
+  padding: 20px;
+}
+
+.glass-card {
+  max-width: 500px;
+  padding: 40px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.glass-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.sub-text {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.divider {
+  width: 60px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.6);
+  margin: 25px auto;
+  border-radius: 5px;
+}
+
+.small-text {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}

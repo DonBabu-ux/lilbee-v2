@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lil-Bee Logics</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <header class="nav-wrapper">
+    <nav class="nav">
+      <div class="logo">Lil-Bee<span>Logics</span></div>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a class="nav-btn" href="signup.html">Get Started</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero card">
+    <div class="hero-content">
+      <h1>Reliable <span>Technology</span> Crafted for <span>Impact</span></h1>
+      <p>
+        At Lil-Bee Logics, we design secure, scalable, and modern digital solutions
+        that help businesses thrive.
+      </p>
+      <div class="hero-actions">
+        <a href="signup.html" class="cta-primary">Get Started</a>
+        <a href="#services" class="cta-secondary">Explore Services</a>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </section>
+
+  <section id="services" class="services card">
+    <h2>Our Core Services</h2>
+    <p class="section-intro">
+      We combine creativity, security, and performance to deliver solutions that exceed expectations.
+    </p>
+
+    <div class="services-grid">
+      <article class="service-card glass-card">
+        <h3>Web Development</h3>
+        <p>Modern, responsive websites and web applications built for speed and scalability.</p>
+      </article>
+
+      <article class="service-card glass-card">
+        <h3>Graphic Design</h3>
+        <p>Professional brand visuals, UI assets, and marketing designs that stand out.</p>
+      </article>
+
+      <article class="service-card glass-card">
+        <h3>Cybersecurity</h3>
+        <p>Security audits, protection strategies, and risk mitigation for digital assets.</p>
+      </article>
+
+      <article class="service-card glass-card">
+        <h3>Portfolios & Landing Pages</h3>
+        <p>High-conversion personal and business landing pages tailored to your goals.</p>
+      </article>
+
+      <article class="service-card glass-card">
+        <h3>Virtual Assistance</h3>
+        <p>Reliable administrative and technical support to keep your operations running smoothly.</p>
+      </article>
+
+      <article class="service-card glass-card">
+        <h3>LinkedIn Renting Services</h3>
+        <p>Earn legitimate income daily or weekly by renting your account.</p>
+        <p>Payments are based on the number of connections.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="about" class="about card glass-card">
+    <h2>About Lil-Bee Logics</h2>
+    <p>
+      Founded in 2025 by a dedicated technical team, Lil-Bee Logics was created to
+      solve real-world problems using technology.
+    </p>
+    <p>
+      Our mission is to deliver dependable, tech-driven solutions while maintaining
+      the highest standards of quality and integrity.
+    </p>
+  </section>
+
+  <section class="final-cta card glass-card">
+    <h2>Ready to Work With Us?</h2>
+    <p>Create an account today and gain access to premium digital services.</p>
+    <a href="signup.html" class="cta-primary">Create Account</a>
+  </section>
+
+  <div class="christmas-msg">
+    Continue enjoying our services ❤️ make merry responsibly.Our dear client
+  </div>
+
+  <div class="countdown" id="christmas-countdown">
+  </div>
+
+  <footer class="footer card glass-card" id="contact">
+    <div class="footer-content">
+      <div class="footer-left">
+        <p>© 2025 Lil-Bee Logics. All rights reserved.</p>
+      </div>
+
+      <div class="social-footer">
+        <a href="https://facebook.com/DonBabuUx" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook" />
+        </a>
+
+        <a href="https://wa.me/254711723406" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/whatsapp.svg" alt="WhatsApp" />
+        </a>
+
+        <a href="https://instagram.com/donthetechie" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram" />
+        </a>
+
+        <a href="https://github.com/DonBabu-ux" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub" />
+        </a>
+      </div>
+
+      <nav class="footer-links">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="help-feedback.html">Help & Feedback</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    function updateCountdown() {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      const christmas = new Date(`January 1, ${currentYear} 00:00:00`);
+      if (now > christmas) christmas.setFullYear(currentYear + 1);
+      const diff = christmas - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('christmas-countdown').textContent =
+        `🎄 ${days}d ${hours}h ${mins}m ${secs}s until New year 🎉!🎈`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Local Admin Seeder | Lil-Bee Logics</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .seed-box {
+            padding: 40px;
+            max-width: 400px;
+        }
+
+        #status {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #4caf50;
+        }
+
+        .error {
+            color: #f44336;
+        }
+
+        .admin-card {
+            background: rgba(255, 184, 107, 0.1);
+            border: 1px solid var(--accent);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body class="auth">
+    <div class="auth-container seed-box">
+        <h2>Local Admin Seeder</h2>
+        <p>This will create a standalone admin account in your browser's local storage.</p>
+
+        <div class="auth-bars"><span></span><span></span><span></span></div>
+
+        <div class="admin-card">
+            <p style="margin:0; font-size:12px; color:var(--accent);">Admin Credentials</p>
+            <p style="margin:5px 0 0; font-weight:bold;">Email: admin1@gmail.com</p>
+            <p style="margin:2px 0 0; font-weight:bold;">Password: password123</p>
+        </div>
+
+        <button id="seedBtn" style="width: 100%;">Seed Local Admin</button>
+        <div id="status">Ready</div>
+
+        <p style="margin-top:20px; font-size: 14px;">
+            <a href="login.html" style="color: var(--accent); text-decoration: none;">Go to Login Page</a>
+        </p>
+    </div>
+
+    <script type="module">
+        import { localDB } from "./local-db.js";
+
+        const seedBtn = document.getElementById("seedBtn");
+        const statusDiv = document.getElementById("status");
+
+        seedBtn.addEventListener("click", () => {
+            try {
+                const users = localDB.getUsers();
+                const adminEmail = "admin1@gmail.com";
+
+                // Check if admin already exists
+                let admin = users.find(u => u.email === adminEmail);
+
+                if (admin) {
+                    admin.role = "admin"; // Ensure they are admin
+                    localDB.saveUser(admin);
+                    statusDiv.innerText = "Admin account updated successfully!";
+                } else {
+                    const newAdmin = {
+                        uid: "admin_" + Date.now(),
+                        email: adminEmail,
+                        password: "password123",
+                        role: "admin",
+                        name: "System Administrator",
+                        avatar: "",
+                        joinedAt: Date.now()
+                    };
+                    localDB.saveUser(newAdmin);
+                    statusDiv.innerText = "Admin account created successfully!";
+                }
+
+                statusDiv.className = "success";
+                alert("Seed complete! You can now log in with admin1@gmail.com / password123");
+
+            } catch (err) {
+                statusDiv.innerText = "Error: " + err.message;
+                statusDiv.className = "error";
+            }
+        });
+    </script>
+</body>
+
+</html>
