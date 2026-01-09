@@ -2210,3 +2210,17 @@ th {
     grid-template-columns: 1fr;
   }
 }
+
+
+
+
+@media (max-width: 480px) {
+  .menu {
+    display: none;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+}
+
