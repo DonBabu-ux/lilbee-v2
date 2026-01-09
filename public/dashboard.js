@@ -340,3 +340,14 @@ if (fbBtn) {
 }
 
 
+
+const toggleBtn = document.getElementById("mobileMenuToggle");
+const menu = document.querySelector(".menu");
+
+if (toggleBtn && menu) {
+  toggleBtn.addEventListener("click", () => {
+    menu.classList.toggle("open");
+  });
+}
+
+
