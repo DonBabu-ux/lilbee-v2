@@ -443,3 +443,15 @@ window.deleteContent = async (type, id) => {
     else await localDB.deleteChat(id);
     alert("Deleted!");
 };
+
+
+
+
+const toggleBtn = document.getElementById("mobileMenuToggle");
+const menu = document.querySelector(".menu");
+
+if (toggleBtn && menu) {
+  toggleBtn.addEventListener("click", () => {
+    menu.classList.toggle("open");
+  });
+}
