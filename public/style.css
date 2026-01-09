@@ -1,20 +1,150 @@
-.christmas-msg {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background: rgba(255, 60, 60, 0.9);
-  color: #fff;
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
-  font-weight: bold;
-  z-index: 10000;
-  text-align: center;
-  font-size: 1rem;
-  text-shadow: 0 0 5px #ff3c3c;
-  box-shadow: 0 0 15px rgba(255, 60, 60, 0.5);
-  animation: glow 2s ease-in-out infinite alternate;
-  max-width: 300px;
+/* ===========================
+   RESPONSIVE ADMIN DASHBOARD
+   =========================== */
+
+/* Base mobile improvements */
+* {
+  box-sizing: border-box;
 }
+
+body {
+  overflow-x: hidden;
+}
+
+/* -------- TABLET & MOBILE -------- */
+@media (max-width: 900px) {
+
+  /* Layout */
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Sidebar becomes top bar */
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  /* Profile section */
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .profile-info h3 {
+    font-size: 14px;
+  }
+
+  /* Menu becomes horizontal */
+  .menu {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    margin-top: 16px;
+    padding-bottom: 8px;
+  }
+
+  .menu button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  /* Main area */
+  .main {
+    padding: 16px;
+  }
+
+  /* Sections */
+  section.glass-card {
+    padding: 16px;
+  }
+
+  /* User grid */
+  .user-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Service cards */
+  #adminServiceList {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Moderation layout */
+  .mod-main-layout {
+    display: flex !important;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Support layout stacks */
+  .support-grid-layout {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  /* Remove borders that break mobile */
+  .support-grid-layout > div {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* Chat area */
+  .chat-box {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  /* Inputs & buttons */
+  input, button {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  button {
+    padding: 12px;
+  }
+
+  /* Admin create user form */
+  .glass-card > div[style*="display:flex"] {
+    flex-direction: column;
+  }
+}
+
+/* -------- SMALL PHONES -------- */
+@media (max-width: 480px) {
+
+  h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 15px;
+  }
+
+  .profile-info {
+    display: none; /* cleaner mobile header */
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .menu button svg {
+    display: none; /* icon-only buttons become text */
+  }
+}
+
 
 @keyframes glow {
   0% {
