@@ -1,115 +1,133 @@
-import { db, auth } from './config/firebase.js';
-import fs from 'fs-extra';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { db, auth } from "./config/firebase.js";
+import fs from "fs-extra";
+import path from "path";
+import crypto from "crypto";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const DB_FILE = path.join(__dirname, 'db.json');
+const DB_FILE = path.join(__dirname, "db.json");
 
-console.log('🚀 Starting Firebase Realtime Database migration...\n');
+console.log("Starting Firebase Realtime Database migration...\n");
 
 async function migrateData() {
-    try {
-        // Read existing db.json
-        const data = await fs.readJson(DB_FILE);
-        console.log('📖 Loaded db.json');
-        console.log(`   - ${data.users?.length || 0} users`);
-        console.log(`   - ${data.posts?.length || 0} posts`);
-        console.log(`   - ${data.requests?.length || 0} requests`);
-        console.log(`   - ${data.chat?.length || 0} chat messages\n`);
+  try {
+    const data = await fs.readJson(DB_FILE);
 
-        // Migrate Users
-        console.log('👤 Migrating users...');
-        let userCount = 0;
-        const usersRef = db.ref('users');
+    console.log("Loaded db.json");
+    console.log(`- ${data.users?.length || 0} users`);
+    console.log(`- ${data.posts?.length || 0} posts`);
+    console.log(`- ${data.requests?.length || 0} requests`);
+    console.log(`- ${data.chat?.length || 0} chat messages\n`);
 
-        for (const user of data.users || []) {
-            try {
-                // Create Firebase Auth user if password exists
-                if (user.password && user.email) {
-                    try {
-                        await auth.createUser({
-                            uid: user.uid,
-                            email: user.email,
-                            password: user.password
-                        });
-                        console.log(`   ✅ Created auth user: ${user.email}`);
-                    } catch (authError) {
-                        console.log(`   ⚠️  Auth user exists: ${user.email}`);
-                    }
-                }
+    /* =======================
+       USERS
+       ======================= */
 
-                // Store user data in Realtime Database (without password)
-                const userData = { ...user };
-                delete userData.password;
+    console.log("Migrating users...");
+    const usersRef = db.ref("users");
+    let userCount = 0;
 
-                await usersRef.child(user.uid).set(userData);
-                userCount++;
-                console.log(`   ✅ Migrated user: ${user.email || user.uid}`);
-            } catch (error) {
-                console.error(`   ❌ Error migrating user ${user.uid}:`, error.message);
-            }
-        }
-        console.log(`✅ Migrated ${userCount} users\n`);
+    for (const user of data.users || []) {
+      if (!user.email) continue;
 
-        // Migrate Posts
-        console.log('📝 Migrating posts...');
-        let postCount = 0;
-        const postsRef = db.ref('posts');
+      try {
+        // Create Auth user with temporary password
+        const tempPassword = crypto.randomUUID();
 
-        for (const post of data.posts || []) {
-            try {
-                await postsRef.child(post.id).set(post);
-                postCount++;
-            } catch (error) {
-                console.error(`   ❌ Error migrating post ${post.id}:`, error.message);
-            }
-        }
-        console.log(`✅ Migrated ${postCount} posts\n`);
+        const authUser = await auth.createUser({
+          email: user.email,
+          password: tempPassword,
+          emailVerified: false
+        });
 
-        // Migrate Requests
-        console.log('📋 Migrating requests...');
-        let requestCount = 0;
-        const requestsRef = db.ref('requests');
+        // Send password reset email
+        await auth.generatePasswordResetLink(user.email);
 
-        for (const request of data.requests || []) {
-            try {
-                await requestsRef.child(request.id).set(request);
-                requestCount++;
-            } catch (error) {
-                console.error(`   ❌ Error migrating request ${request.id}:`, error.message);
-            }
-        }
-        console.log(`✅ Migrated ${requestCount} requests\n`);
+        // Store user data WITHOUT password, using AUTH UID
+        const cleanUser = {
+          uid: authUser.uid,
+          email: user.email,
+          name: user.name || "",
+          role: user.role || "user",
+          createdAt: Date.now(),
+          migrated: true
+        };
 
-        // Migrate Chat Messages
-        console.log('💬 Migrating chat messages...');
-        let chatCount = 0;
-        const chatRef = db.ref('chat');
+        await usersRef.child(authUser.uid).set(cleanUser);
+        userCount++;
 
-        for (const message of data.chat || []) {
-            try {
-                await chatRef.child(message.id).set(message);
-                chatCount++;
-            } catch (error) {
-                console.error(`   ❌ Error migrating chat ${message.id}:`, error.message);
-            }
-        }
-        console.log(`✅ Migrated ${chatCount} chat messages\n`);
-
-        console.log('🎉 Migration completed successfully!');
-        console.log('\n📊 Summary:');
-        console.log(`   - Users: ${userCount}/${data.users?.length || 0}`);
-        console.log(`   - Posts: ${postCount}/${data.posts?.length || 0}`);
-        console.log(`   - Requests: ${requestCount}/${data.requests?.length || 0}`);
-        console.log(`   - Chat: ${chatCount}/${data.chat?.length || 0}`);
-
-        process.exit(0);
-    } catch (error) {
-        console.error('❌ Migration failed:', error);
-        process.exit(1);
+        console.log(`Migrated user: ${user.email}`);
+      } catch (err) {
+        console.error(`Failed user: ${user.email}`, err.message);
+      }
     }
+
+    console.log(`Users migrated: ${userCount}\n`);
+
+    /* =======================
+       POSTS
+       ======================= */
+
+    console.log("Migrating posts...");
+    const postsRef = db.ref("posts");
+    let postCount = 0;
+
+    for (const post of data.posts || []) {
+      try {
+        await postsRef.child(post.id).set(post);
+        postCount++;
+      } catch (err) {
+        console.error(`Post error ${post.id}`, err.message);
+      }
+    }
+
+    console.log(`Posts migrated: ${postCount}\n`);
+
+    /* =======================
+       REQUESTS
+       ======================= */
+
+    console.log("Migrating requests...");
+    const requestsRef = db.ref("requests");
+    let requestCount = 0;
+
+    for (const request of data.requests || []) {
+      try {
+        await requestsRef.child(request.id).set(request);
+        requestCount++;
+      } catch (err) {
+        console.error(`Request error ${request.id}`, err.message);
+      }
+    }
+
+    console.log(`Requests migrated: ${requestCount}\n`);
+
+    /* =======================
+       CHAT
+       ======================= */
+
+    console.log("Migrating chat messages...");
+    const chatRef = db.ref("chat");
+    let chatCount = 0;
+
+    for (const message of data.chat || []) {
+      try {
+        await chatRef.child(message.id).set(message);
+        chatCount++;
+      } catch (err) {
+        console.error(`Chat error ${message.id}`, err.message);
+      }
+    }
+
+    console.log(`Chat messages migrated: ${chatCount}\n`);
+
+    console.log("Migration completed successfully");
+    process.exit(0);
+  } catch (error) {
+    console.error("Migration failed", error);
+    process.exit(1);
+  }
 }
 
 migrateData();
