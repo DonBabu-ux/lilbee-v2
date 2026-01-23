@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lil-Bee Logics | Premium Digital Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Light Theme (Default) */
+            --primary-yellow: #FFC107;
+            --primary-orange: #FF9800;
+            --secondary-blue: #1A237E;
+            --secondary-charcoal: #0F172A;
+            --accent-teal: #00BCD4;
+            --light-gray: #F8FAFC;
+            --white: #FFFFFF;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --bg-primary: #F8FAFC;
+            --bg-secondary: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --border-color: rgba(0, 0, 0, 0.1);
+            
+            /* Glassmorphism */
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            
+            /* Typography */
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            /* Spacing & Effects */
+            --section-padding: 6rem 1.5rem;
+            --card-padding: 2rem;
+            --border-radius: 20px;
+            --border-radius-sm: 12px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.12);
+            --shadow-glow: 0 0 30px rgba(255, 152, 0, 0.2);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+            --gradient-dark: linear-gradient(135deg, #1A237E 0%, #0F172A 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+        }
+
+        [data-theme="dark"] {
+            --primary-yellow: #FFD54F;
+            --primary-orange: #FFB74D;
+            --secondary-blue: #5C6BC0;
+            --secondary-charcoal: #121212;
+            --accent-teal: #26C6DA;
+            --light-gray: #121212;
+            --white: #1E1E1E;
+            --text-dark: #E0E0E0;
+            --text-light: #B0B0B0;
+            --bg-primary: #121212;
+            --bg-secondary: #1E1E1E;
+            --card-bg: #1E1E1E;
+            --border-color: rgba(255, 255, 255, 0.1);
+            
+            /* Glassmorphism Dark */
+            --glass-bg: rgba(30, 30, 30, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-color: var(--bg-primary);
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 160px;
+            right: 30px;
+            z-index: 1000;
+            background: var(--card-bg);
+            border-radius: var(--border-radius-sm);
+            padding: 0.5rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            color: var(--text-dark);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .lang-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+        }
+        
+        /* Enhanced Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 800;
+            font-size: 1.75rem;
+            color: var(--secondary-blue);
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon::before {
+            content: "🐝";
+            font-size: 1.5rem;
+            z-index: 2;
+        }
+        
+        .logo-icon::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(from 0deg, transparent 0%, rgba(26, 35, 126, 0.3) 30%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+        
+        .logo-text span:first-child {
+            color: var(--secondary-blue);
+            font-weight: 800;
+        }
+        
+        .logo-text span:last-child {
+            color: var(--primary-orange);
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Enhanced Navigation */
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-orange);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-btn {
+            padding: 0.75rem 1.75rem;
+            border-radius: var(--border-radius-sm);
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--secondary-blue);
+            cursor: pointer;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-menu .nav-links {
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 10rem 1.5rem 6rem;
+            background: var(--gradient-dark);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255, 152, 0, 0.1) 0%, transparent 70%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff 0%, var(--primary-yellow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .cta-primary {
+            padding: 1rem 2.5rem;
+            border-radius: var(--border-radius-sm);
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 152, 0, 0.3);
+        }
+        
+        .cta-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: var(--border-radius-sm);
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-5px);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-top: -4rem;
+            position: relative;
+            z-index: 100;
+            box-shadow: var(--shadow-hover);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-orange);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Masterclass Section */
+        .masterclass-section {
+            background: var(--gradient-dark);
+            color: white;
+            padding: 3rem 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 3rem auto;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .masterclass-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .countdown {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-yellow);
+            margin: 1rem 0;
+        }
+
+        .zoom-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #2D8CFF;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Technologies with Real Colors */
+        .tech-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .tech-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Language Specific Colors */
+        .html5 { border-color: #E34F26; }
+        .css3 { border-color: #1572B6; }
+        .javascript { border-color: #F7DF1E; }
+        .react { border-color: #61DAFB; }
+        .nodejs { border-color: #339933; }
+        .python { border-color: #3776AB; }
+        .php { border-color: #777BB4; }
+        .mysql { border-color: #4479A1; }
+        .mongodb { border-color: #47A248; }
+        .git { border-color: #F05032; }
+        
+        .tech-icon {
+            font-size: 2.5rem;
+        }
+
+        .html5 .tech-icon { color: #E34F26; }
+        .css3 .tech-icon { color: #1572B6; }
+        .javascript .tech-icon { color: #F7DF1E; }
+        .react .tech-icon { color: #61DAFB; }
+        .nodejs .tech-icon { color: #339933; }
+        .python .tech-icon { color: #3776AB; }
+        .php .tech-icon { color: #777BB4; }
+        .mysql .tech-icon { color: #4479A1; }
+        .mongodb .tech-icon { color: #47A248; }
+        .git .tech-icon { color: #F05032; }
+
+        /* View on Google Button */
+        .google-btn-container {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .google-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: white;
+            color: #4285F4;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(66, 133, 244, 0.3);
+            border: 2px solid #4285F4;
+            transition: var(--transition);
+        }
+
+        .google-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(66, 133, 244, 0.4);
+            background: #4285F4;
+            color: white;
+        }
+
+        /* Enhanced Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .portfolio-item {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .portfolio-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 35, 126, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-tag {
+            background: var(--light-gray);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-dark);
+        }
+
+        /* New Portfolio Items */
+        .portfolio-image.sparkle { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .portfolio-image.school { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .portfolio-image.wifi { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+
+        /* Services Grid with Glassmorphism */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .service-card-advanced {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .service-card-advanced:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            background: var(--glass-bg);
+        }
+        
+        .service-header {
+            padding: 1.5rem;
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        /* Enhanced Testimonial Carousel */
+        .testimonial-container {
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+
+        .testimonial-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-card {
+            min-width: 350px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            flex-shrink: 0;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Consultation Form */
+        .consultation-form {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            box-shadow: var(--shadow-hover);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            font-family: var(--font-body);
+            transition: var(--transition);
+            background: var(--bg-secondary);
+            color: var(--text-dark);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.1);
+        }
+
+        /* Pricing Calculator */
+        .pricing-calculator {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 600px;
+            box-shadow: var(--shadow);
+        }
+
+        .calculator-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .calculator-inputs select,
+        .calculator-inputs input {
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            background: var(--bg-secondary);
+            color: var(--text-dark);
+        }
+
+        .calculator-result {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: var(--border-radius-sm);
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-charcoal);
+            color: white;
+            padding: 5rem 1.5rem 2rem;
+            margin-top: 5rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-yellow);
+            padding-left: 0.5rem;
+        }
+
+        /* Bottom Contact Icons */
+        .bottom-contact-icons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            box-shadow: var(--shadow-hover);
+            transition: var(--transition);
+        }
+
+        .contact-icon.whatsapp {
+            background: #25D366;
+        }
+
+        .contact-icon.messenger {
+            background: #0084FF;
+        }
+
+        .contact-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Section Styles */
+        section {
+            padding: var(--section-padding);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Media Work Showcase */
+        .media-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .media-item {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .media-item video,
+        .media-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .media-caption {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.75rem;
+            }
+            
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                margin-top: -2rem;
+            }
+
+            .theme-toggle,
+            .lang-switcher {
+                position: fixed;
+                top: auto;
+                bottom: 120px;
+                right: 30px;
+            }
+
+            .lang-switcher {
+                bottom: 180px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+            }
+            
+            .stats-bar {
+                grid-template-columns: 1fr;
+                margin-top: 0;
+                border-radius: 0;
+            }
+            
+            .services-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .consultation-form {
+                padding: 2rem 1.5rem;
+            }
+
+            .google-btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.875rem;
+            }
+            
+            .service-price {
+                font-size: 1.75rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Language Switcher -->
+    <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="sw">SW</button>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-wrapper">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">
+                        <span>Lil-Bee</span>
+                        <span>LOGICS</span>
+                    </div>
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#technologies">Technologies</a></li>
+                    <li><a href="#media">Our Work</a></li>
+                    <li><a href="#consultation">Get Quote</a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#technologies">Technologies</a></li>
+            <li><a href="#media">Our Work</a></li>
+            <li><a href="#consultation">Get Quote</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero fade-in">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in" data-en="Smart Digital Solutions for Growing Businesses" data-sw="Suluhisho Dijitali Zenye Akili kwa Biashara Zinazokua">Smart Digital Solutions for Growing Businesses</h1>
+                <p class="fade-in delay-1" data-en="We build premium, custom-coded web solutions that turn visitors into customers. Fast, SEO-ready, and optimized for growth." data-sw="Tunajenga suluhisho za wavuti za hali ya juu ambazo hubadilisha wageni kuwa wateja. Haraka, tayari kwa SEO, na zimeboreshwa kwa ukuaji.">We build premium, custom-coded web solutions that turn visitors into customers. Fast, SEO-ready, and optimized for growth.</p>
+                <div class="hero-actions">
+                    <a href="#consultation" class="cta-primary fade-in delay-2">
+                        <i class="fas fa-calendar-check"></i> <span data-en="Book Free Consultation" data-sw="Tuma Ombi ya Mazungumzo Bure">Book Free Consultation</span>
+                    </a>
+                    <a href="#portfolio" class="cta-secondary fade-in delay-2">
+                        <i class="fas fa-eye"></i> <span data-en="View Our Work" data-sw="Angalia Kazi Yetu">View Our Work</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="container">
+        <div class="stats-bar fade-in delay-3">
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label" data-en="Projects Delivered" data-sw="Miradi Iliyokamilishwa">Projects Delivered</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">98%</span>
+                <span class="stat-label" data-en="Satisfaction Rate" data-sw="Kiwango cha Kuridhika">Satisfaction Rate</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">1-3</span>
+                <span class="stat-label" data-en="Days Delivery" data-sw="Siku za Kufikisha">Days Delivery</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label" data-en="Support" data-sw="Msaada">Support</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Masterclass Section -->
+    <section class="container">
+        <div class="masterclass-section fade-in">
+            <h2 data-en="FREE WEB DEVELOPMENT MASTERCLASS" data-sw="DARASA KUU LA MAENDELEO YA WAVUTI BURE">FREE WEB DEVELOPMENT MASTERCLASS</h2>
+            <p data-en="🔥 HTML & CSS Introduction for Techies | 30-Day Web Development Challenge" data-sw="🔥 Utangulizi wa HTML & CSS kwa Watekinolojia | Changamoto ya Siku 30 ya Maendeleo ya Wavuti">🔥 HTML & CSS Introduction for Techies | 30-Day Web Development Challenge</p>
+            <p data-en="📅 Every Monday | 9:30 PM – 10:00 PM EAT" data-sw="📅 Kila Jumatatu | 9:30 Usiku – 10:00 Usiku">📅 Every Monday | 9:30 PM – 10:00 PM EAT</p>
+            <div class="countdown" id="countdown">00:00:00</div>
+            <a href="https://us05web.zoom.us/j/3441647010?pwd=WlFqjgux6AU2fUGlZKofKji9cEaEbb.1" class="zoom-link" target="_blank">
+                <i class="fas fa-video"></i> <span data-en="Join Zoom Class" data-sw="Jiunge na Darasa la Zoom">Join Zoom Class</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Built With Modern Technologies" data-sw="Imejengwa Kwa Teknolojia za Kisasa">Built With Modern Technologies</h2>
+                <p class="section-subtitle" data-en="We use cutting-edge tools to build fast, secure, and scalable solutions" data-sw="Tunatumia zana za kisasa kuunda suluhisho za haraka, salama na zinazoweza kupanuka">We use cutting-edge tools to build fast, secure, and scalable solutions</p>
+            </div>
+            
+            <div class="tech-showcase">
+                <div class="tech-item html5 fade-in">
+                    <i class="fab fa-html5 tech-icon"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="tech-item css3 fade-in delay-1">
+                    <i class="fab fa-css3-alt tech-icon"></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="tech-item javascript fade-in delay-2">
+                    <i class="fab fa-js tech-icon"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="tech-item react fade-in">
+                    <i class="fab fa-react tech-icon"></i>
+                    <span>React.js</span>
+                </div>
+                <div class="tech-item nodejs fade-in delay-1">
+                    <i class="fab fa-node-js tech-icon"></i>
+                    <span>Node.js</span>
+                </div>
+                <div class="tech-item python fade-in delay-2">
+                    <i class="fab fa-python tech-icon"></i>
+                    <span>Python</span>
+                </div>
+                <div class="tech-item php fade-in">
+                    <i class="fab fa-php tech-icon"></i>
+                    <span>PHP</span>
+                </div>
+                <div class="tech-item mysql fade-in delay-1">
+                    <i class="fas fa-database tech-icon"></i>
+                    <span>MySQL</span>
+                </div>
+                <div class="tech-item mongodb fade-in delay-2">
+                    <i class="fas fa-leaf tech-icon"></i>
+                    <span>MongoDB</span>
+                </div>
+                <div class="tech-item git fade-in">
+                    <i class="fab fa-git-alt tech-icon"></i>
+                    <span>Git</span>
+                </div>
+            </div>
+
+            <!-- View on Google Button -->
+            <div class="google-btn-container fade-in delay-3">
+                <a href="https://www.google.com/search?q=Lil-Bee+Logics" class="google-btn" target="_blank">
+                    <i class="fab fa-google"></i>
+                    <span data-en="View on Google" data-sw="Angalia kwenye Google">View on Google</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Our Premium Services" data-sw="Huduma Zetu za Hali ya Juu">Our Premium Services</h2>
+                <p class="section-subtitle" data-en="Quality web solutions delivered quickly with transparent pricing" data-sw="Suluhisho bora za wavuti zinazofikishwa haraka na bei wazi">Quality web solutions delivered quickly with transparent pricing</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card-advanced fade-in">
+                    <div class="service-header">
+                        <h3 data-en="Landing Pages" data-sw="Kurasa za Kutua">Landing Pages</h3>
+                        <p data-en="Perfect for small businesses and startups" data-sw="Kamili kwa biashara ndogo na makampuni mapya">Perfect for small businesses and startups</p>
+                        <div class="service-price">From 3,000 KES</div>
+                    </div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-en="1-3 day delivery" data-sw="Ufikishaji wa siku 1-3">1-3 day delivery</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Mobile responsive design" data-sw="Muundo unaolingana na simu">Mobile responsive design</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="SEO optimized" data-sw="Imeboreshwa kwa SEO">SEO optimized</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Contact forms" data-sw="Fomu za mawasiliano">Contact forms</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Basic analytics" data-sw="Uchambuzi wa msingi">Basic analytics</span></li>
+                    </ul>
+                    <div class="service-actions">
+                        <a href="https://wa.me/254712345678?text=I'm interested in a Landing Page" class="cta-primary" style="flex: 1;">
+                            <i class="fab fa-whatsapp"></i> <span data-en="Order Now" data-sw="Agiza Sasa">Order Now</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card-advanced fade-in delay-1">
+                    <div class="service-header" style="background: linear-gradient(135deg, #2196F3, #1976D2);">
+                        <h3 data-en="Business Websites" data-sw="Wavuti za Biashara">Business Websites</h3>
+                        <p data-en="Multi-page websites with advanced features" data-sw="Wavuti zenye kurasa nyingi na huduma za hali ya juu">Multi-page websites with advanced features</p>
+                        <div class="service-price">From 10,000 KES</div>
+                    </div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-en="3-5 responsive pages" data-sw="Kurasa 3-5 zinazolingana">3-5 responsive pages</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Admin dashboard" data-sw="Dashibodi ya msimamizi">Admin dashboard</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Email integration" data-sw="Ujumuishaji wa barua pepe">Email integration</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Content management" data-sw="Usimamizi wa maudhui">Content management</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="SEO optimization" data-sw="Uboreshaji wa SEO">SEO optimization</span></li>
+                    </ul>
+                    <div class="service-actions">
+                        <a href="https://wa.me/254712345678?text=I'm interested in a Business Website" class="cta-primary" style="flex: 1;">
+                            <i class="fab fa-whatsapp"></i> <span data-en="Order Now" data-sw="Agiza Sasa">Order Now</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card-advanced fade-in delay-2">
+                    <div class="service-header" style="background: linear-gradient(135deg, #9C27B0, #7B1FA2);">
+                        <h3 data-en="Full Systems" data-sw="Mifumo Kamili">Full Systems</h3>
+                        <p data-en="Complete web applications with custom features" data-sw">Programu kamili za wavuti zilizo na huduma maalum</p>
+                        <div class="service-price">From 25,000 KES</div>
+                    </div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-en="User authentication" data-sw="Uthibitishaji wa mtumiaji">User authentication</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="MySQL database" data-sw="Hifadhidata ya MySQL">MySQL database</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="API integration" data-sw="Ujumuishaji wa API">API integration</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Payment gateways" data-sw="Milango ya malipo">Payment gateways</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Advanced reporting" data-sw="Ripoti za hali ya juu">Advanced reporting</span></li>
+                    </ul>
+                    <div class="service-actions">
+                        <a href="https://wa.me/254712345678?text=I'm interested in a Full System" class="cta-primary" style="flex: 1;">
+                            <i class="fab fa-whatsapp"></i> <span data-en="Order Now" data-sw="Agiza Sasa">Order Now</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" style="background: linear-gradient(135deg, var(--light-gray) 0%, #f1f5f9 100%);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Recent Projects" data-sw="Miradi ya Hivi Karibuni">Recent Projects</h2>
+                <p class="section-subtitle" data-en="Delivered in 1-3 days for Kenyan businesses" data-sw="Zilizofikishwa kwa siku 1-3 kwa biashara za Kenya">Delivered in 1-3 days for Kenyan businesses</p>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- Existing Projects -->
+                <div class="portfolio-item fade-in">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nairobi Restaurant System">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="cta-primary">Demo</a>
+                            <a href="#" class="cta-secondary">Code</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Nairobi Restaurant System</h3>
+                        <p style="color: var(--text-light); margin: 0.5rem 0;">Full-stack restaurant ordering system with M-Pesa integration</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">React</span>
+                            <span class="portfolio-tag">Node.js</span>
+                            <span class="portfolio-tag">M-Pesa</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- New: Sparkle App -->
+                <div class="portfolio-item fade-in delay-1">
+                    <div class="portfolio-image sparkle">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="cta-primary">Demo</a>
+                            <a href="#" class="cta-secondary">Code</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Sparkle Mobile App</h3>
+                        <p style="color: var(--text-light); margin: 0.5rem 0;">Beauty & wellness app with appointment booking and AR try-on features</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">React Native</span>
+                            <span class="portfolio-tag">Firebase</span>
+                            <span class="portfolio-tag">AR Kit</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- New: School Management -->
+                <div class="portfolio-item fade-in delay-2">
+                    <div class="portfolio-image school">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="cta-primary">Demo</a>
+                            <a href="#" class="cta-secondary">Code</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>School Management System</h3>
+                        <p style="color: var(--text-light); margin: 0.5rem 0;">Complete school administration portal with fees, exams, and parent portal</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Laravel</span>
+                            <span class="portfolio-tag">MySQL</span>
+                            <span class="portfolio-tag">SMS API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New: WiFi Payment Pages -->
+                <div class="portfolio-item fade-in">
+                    <div class="portfolio-image wifi">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="cta-primary">Demo</a>
+                            <a href="#" class="cta-secondary">Code</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>WiFi Payment Portal</h3>
+                        <p style="color: var(--text-light); margin: 0.5rem 0;">Custom WiFi hotspot payment pages with M-Pesa and card integration</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">PHP</span>
+                            <span class="portfolio-tag">MySQL</span>
+                            <span class="portfolio-tag">M-Pesa API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Showcase -->
+    <section id="media">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Work Certification" data-sw="Uthibitishaji wa Kazi">Work Certification</h2>
+                <p class="section-subtitle" data-en="See our work in action through images and videos" data-sw="Ona kazi yetu kwa vitendo kupitia picha na video">See our work in action through images and videos</p>
+            </div>
+            
+            <div class="media-showcase">
+                <div class="media-item fade-in">
+                    <video controls poster="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-programmer-working-on-a-laptop-5091-large.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-caption">
+                        <h4 data-en="Development Process" data-sw">Mchakato wa Uundaji</h4>
+                        <p data-en="See how we build responsive websites" data-sw="Ona jinsi tunavyojenga wavuti zinazolingana">See how we build responsive websites</p>
+                    </div>
+                </div>
+                
+                <div class="media-item fade-in delay-1">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Client Meeting">
+                    <div class="media-caption">
+                        <h4 data-en="Client Collaboration" data-sw="Ushirikiano na Wateja">Client Collaboration</h4>
+                        <p data-en="Working closely with clients for best results" data-sw="Kufanya kazi kwa karibu na wateja kwa matokeo bora">Working closely with clients for best results</p>
+                    </div>
+                </div>
+                
+                <div class="media-item fade-in delay-2">
+                    <video controls poster="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-businessman-using-a-laptop-5092-large.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-caption">
+                        <h4 data-en="Final Delivery" data-sw="Ufikishaji wa Mwisho">Final Delivery</h4>
+                        <p data-en="Handing over completed projects to clients" data-sw="Kukabidhi miradi iliyokamilika kwa wateja">Handing over completed projects to clients</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Calculator -->
+    <section id="calculator">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Price Calculator" data-sw="Kikokotoo cha Bei">Price Calculator</h2>
+                <p class="section-subtitle" data-en="Estimate your project cost instantly" data-sw="Kadiria gharama ya mradi wako mara moja">Estimate your project cost instantly</p>
+            </div>
+            
+            <div class="pricing-calculator fade-in">
+                <h3 data-en="Custom Quote Calculator" data-sw="Kikokotoo cha Bei Maalum">Custom Quote Calculator</h3>
+                <div class="calculator-inputs">
+                    <select id="serviceType">
+                        <option value="3000" data-en="Landing Page" data-sw="Kurasa ya Kutua">Landing Page</option>
+                        <option value="10000" data-en="Business Website" data-sw="Wavuti ya Biashara">Business Website</option>
+                        <option value="25000" data-en="Full System" data-sw="Mfumo Kamili">Full System</option>
+                        <option value="50000" data-en="E-commerce" data-sw="Biashara ya Mtandaoni">E-commerce</option>
+                        <option value="75000" data-en="Mobile App" data-sw="Programu ya Simu">Mobile App</option>
+                    </select>
+                    
+                    <select id="pages">
+                        <option value="0" data-en="Number of Pages" data-sw="Idadi ya Kurasa">Number of Pages</option>
+                        <option value="0">1</option>
+                        <option value="2000">2-3</option>
+                        <option value="5000">4-6</option>
+                        <option value="10000">7-10</option>
+                    </select>
+                    
+                    <select id="features">
+                        <option value="0" data-en="Additional Features" data-sw">Huduma Zaidi</option>
+                        <option value="3000" data-en="M-Pesa Integration" data-sw="Ujumuishaji wa M-Pesa">M-Pesa Integration</option>
+                        <option value="5000" data-en="Admin Dashboard" data-sw="Dashibodi ya Msimamizi">Admin Dashboard</option>
+                        <option value="7000" data-en="User Accounts" data-sw="Akaunti za Watumiaji">User Accounts</option>
+                        <option value="10000" data-en="Custom API" data-sw="API Maalum">Custom API</option>
+                    </select>
+                </div>
+                
+                <div class="calculator-result" id="calculatedPrice">
+                    3,000 KES
+                </div>
+                
+                <div style="text-align: center; margin-top: 1rem;">
+                    <button class="cta-primary" onclick="calculatePrice()">
+                        <i class="fas fa-calculator"></i> <span data-en="Calculate Price" data-sw="Kokotoa Bei">Calculate Price</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section style="background-color: var(--secondary-blue); color: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;" data-en="What Kenyan Businesses Say" data-sw="Wanasema Nini Biashara za Kenya">What Kenyan Businesses Say</h2>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);" data-en="Trusted by 50+ businesses across Kenya" data-sw="Imeaminika na biashara 50+ nchini Kenya">Trusted by 50+ businesses across Kenya</p>
+            </div>
+            
+            <div class="testimonial-container">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <div class="testimonial-card">
+                        <div style="color: #FFC107; margin-bottom: 1rem;">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"My restaurant website was delivered in just 2 days! The ordering system works perfectly on mobile and increased our sales by 30%."</p>
+                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: var(--light-gray); border-radius: 50%;"></div>
+                            <div>
+                                <h4 style="margin: 0;">Sarah Mwangi</h4>
+                                <p style="opacity: 0.8; margin: 0.25rem 0 0;">Owner, Nairobi Restaurant</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div style="color: #FFC107; margin-bottom: 1rem;">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"The school management system has saved us countless hours. Parents can now check fees and results online. Excellent work!"</p>
+                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: var(--light-gray); border-radius: 50%;"></div>
+                            <div>
+                                <h4 style="margin: 0;">James Kariuki</h4>
+                                <p style="opacity: 0.8; margin: 0.25rem 0 0;">Principal, Greenhill Academy</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div style="color: #FFC107; margin-bottom: 1rem;">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Sparkle app transformed my beauty salon. Bookings increased by 60% and the AR try-on feature is a game-changer for clients."</p>
+                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: var(--light-gray); border-radius: 50%;"></div>
+                            <div>
+                                <h4 style="margin: 0;">Lisa Wangari</h4>
+                                <p style="opacity: 0.8; margin: 0.25rem 0 0;">CEO, Glamour Beauty Spa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Section -->
+    <section id="consultation">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Get Your Project Started" data-sw="Anzisha Mradi Wako">Get Your Project Started</h2>
+                <p class="section-subtitle" data-en="Contact us for a free quote. We respond within 1 hour!" data-sw="Wasiliana nasi kwa bei bure. Tunajibu ndani ya saa 1!">Contact us for a free quote. We respond within 1 hour!</p>
+            </div>
+            
+            <div class="consultation-form fade-in">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h3 data-en="Request Free Quote" data-sw="Omba Bei Bure">Request Free Quote</h3>
+                    <p style="color: var(--text-light);" data-en="Fill out the form below and we'll get back to you within 1 hour" data-sw="Jaza fomu hapa chini na tutakujibu ndani ya saa 1">Fill out the form below and we'll get back to you within 1 hour</p>
+                </div>
+                
+                <form id="quoteForm" class="form-grid">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Phone/WhatsApp Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="" data-en="Select Service" data-sw="Chagua Huduma">Select Service</option>
+                            <option value="landing" data-en="Landing Page (3,000 KES+)" data-sw="Kurasa ya Kutua (KES 3,000+)">Landing Page (3,000 KES+)</option>
+                            <option value="business" data-en="Business Website (10,000 KES+)" data-sw="Wavuti ya Biashara (KES 10,000+)">Business Website (10,000 KES+)</option>
+                            <option value="system" data-en="Full System (25,000 KES+)" data-sw="Mfumo Kamili (KES 25,000+)">Full System (25,000 KES+)</option>
+                            <option value="other" data-en="Other Project" data-sw="Mradi Mwingine">Other Project</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <textarea placeholder="Tell us about your project..." rows="4" required></textarea>
+                    </div>
+                </form>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" form="quoteForm" class="cta-primary" style="padding: 1rem 3rem;">
+                        <i class="fas fa-paper-plane"></i> <span data-en="Get Free Quote" data-sw="Pata Bei Bure">Get Free Quote</span>
+                    </button>
+                    <p style="margin-top: 1rem; color: var(--text-light);" data-en="We'll respond with a detailed quote within 1 hour!" data-sw="Tutakujibu na bei kamili ndani ya saa 1!">We'll respond with a detailed quote within 1 hour!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <a href="#" class="logo" style="color: white; margin-bottom: 1.5rem; display: inline-flex;">
+                        <div class="logo-icon"></div>
+                        <div class="logo-text">
+                            <span>Lil-Bee</span>
+                            <span>LOGICS</span>
+                        </div>
+                    </a>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1.5rem;" data-en="Fast web solutions for Kenyan businesses. Websites delivered in 1-3 days with free fixes included." data-sw="Suluhisho za wavuti haraka kwa biashara za Kenya. Wavuti zinazofikishwa kwa siku 1-3 na urekebishaji bure.">
+                        Fast web solutions for Kenyan businesses. Websites delivered in 1-3 days with free fixes included.
+                    </p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-en="Quick Links" data-sw="Viungo Vya Haraka">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-en="Home" data-sw="Nyumbani">Home</a></li>
+                        <li><a href="#services" data-en="Services" data-sw="Huduma">Services</a></li>
+                        <li><a href="#portfolio" data-en="Portfolio" data-sw="Portfolio">Portfolio</a></li>
+                        <li><a href="#technologies" data-en="Technologies" data-sw="Teknolojia">Technologies</a></li>
+                        <li><a href="#consultation" data-en="Get Quote" data-sw="Pata Bei">Get Quote</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-en="Services" data-sw="Huduma">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-en="Landing Pages" data-sw="Kurasa za Kutua">Landing Pages</a></li>
+                        <li><a href="#" data-en="Business Websites" data-sw="Wavuti za Biashara">Business Websites</a></li>
+                        <li><a href="#" data-en="Full Systems" data-sw="Mifumo Kamili">Full Systems</a></li>
+                        <li><a href="#" data-en="E-commerce Stores" data-sw="Maduka ya Mtandaoni">E-commerce Stores</a></li>
+                        <li><a href="#" data-en="Mobile Apps" data-sw="Programu za Simu">Mobile Apps</a></li>
+                        <li><a href="#" data-en="Maintenance" data-sw="Matengenezo">Maintenance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-en="Contact Info" data-sw="Maelezo ya Mawasiliano">Contact Info</h3>
+                    <ul class="footer-links">
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+254712345678">+254 712 345 678</a>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/254712345678" data-en="WhatsApp" data-sw="WhatsApp">WhatsApp</a>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:hello@lilbeelogics.co.ke">hello@lilbeelogics.co.ke</a>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span data-en="Nairobi, Kenya" data-sw="Nairobi, Kenya">Nairobi, Kenya</span>
+                        </li>
+                    </ul>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <h4 data-en="Get Free Web Tips" data-sw="Pata Vidokezo vya Wavuti Bure">Get Free Web Tips</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address">
+                            <button type="submit" data-en="Subscribe" data-sw="Jiandikishe">Subscribe</button>
+                        </form>
+                        <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.5); margin-top: 0.5rem;">
+                            <span data-en="No spam. Unsubscribe anytime." data-sw="Hakuna spam. Jiondoe wakati wowote.">No spam. Unsubscribe anytime.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Lil-Bee Logics. <span data-en="All rights reserved." data-sw="Haki zote zimehifadhiwa.">All rights reserved.</span> | <span data-en="Websites delivered in 1-3 days with free fixes included." data-sw="Wavuti zinazofikishwa kwa siku 1-3 na urekebishaji bure.">Websites delivered in 1-3 days with free fixes included.</span></p>
+                <p style="margin-top: 0.5rem;">
+                    <a href="#" style="color: rgba(255, 255, 255, 0.7); margin-right: 1rem;" data-en="Privacy Policy" data-sw="Sera ya Faragha">Privacy Policy</a>
+                    <a href="#" style="color: rgba(255, 255, 255, 0.7);" data-en="Terms of Service" data-sw="Masharti ya Huduma">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Contact Icons -->
+    <div class="bottom-contact-icons">
+        <a href="https://wa.me/254712345678" class="contact-icon whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://m.me/lilbeelogics" class="contact-icon messenger" target="_blank">
+            <i class="fab fa-facebook-messenger"></i>
+        </a>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+        // Language Switcher
+        const langButtons = document.querySelectorAll('.lang-btn');
+        let currentLang = 'en';
+
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.lang;
+                currentLang = lang;
+                
+                // Update active button
+                langButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Update all translatable elements
+                document.querySelectorAll('[data-en]').forEach(el => {
+                    const text = el.getAttribute(`data-${lang}`);
+                    if (text) {
+                        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                            el.placeholder = text;
+                        } else {
+                            el.textContent = text;
+                        }
+                    }
+                });
+                
+                localStorage.setItem('language', lang);
+            });
+        });
+
+        // Load saved language
+        const savedLang = localStorage.getItem('language') || 'en';
+        document.querySelector(`.lang-btn[data-lang="${savedLang}"]`)?.click();
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Testimonial Carousel
+        const testimonialTrack = document.getElementById('testimonialTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        const slideWidth = 350 + 32; // card width + gap
+
+        nextBtn.addEventListener('click', () => {
+            currentSlide = Math.min(currentSlide + 1, 2);
+            testimonialTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentSlide = Math.max(currentSlide - 1, 0);
+            testimonialTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        });
+
+        // Auto-rotate testimonials
+        setInterval(() => {
+            currentSlide = currentSlide >= 2 ? 0 : currentSlide + 1;
+            testimonialTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        }, 5000);
+
+        // Form Submission
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message
+            alert(currentLang === 'en' 
+                ? 'Thank you! We\'ll send you a quote within 1 hour.' 
+                : 'Asante! Tutakutumia bei ndani ya saa 1.');
+            
+            // Reset form
+            this.reset();
+            
+            // In a real application, you would send data to a server here
+            // fetch('/api/quote', { method: 'POST', body: JSON.stringify(data) })
+        });
+
+        // Pricing Calculator
+        function calculatePrice() {
+            const servicePrice = parseInt(document.getElementById('serviceType').value) || 0;
+            const pagesPrice = parseInt(document.getElementById('pages').value) || 0;
+            const featuresPrice = parseInt(document.getElementById('features').value) || 0;
+            
+            const total = servicePrice + pagesPrice + featuresPrice;
+            
+            document.getElementById('calculatedPrice').textContent = 
+                total.toLocaleString('en-KE', { style: 'currency', currency: 'KES' });
+        }
+
+        // Initialize calculator
+        calculatePrice();
+
+        // Countdown Timer for Masterclass
+        function updateCountdown() {
+            const now = new Date();
+            const nextMonday = new Date();
+            
+            // Get next Monday 9:30 PM
+            nextMonday.setDate(now.getDate() + ((1 + 7 - now.getDay()) % 7));
+            nextMonday.setHours(21, 30, 0, 0);
+            
+            // If it's past Monday 9:30 PM, get next Monday
+            if (now > nextMonday) {
+                nextMonday.setDate(nextMonday.getDate() + 7);
+            }
+            
+            const diff = nextMonday - now;
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all elements
+        document.querySelectorAll('section, .stats-bar, .tech-item, .service-card-advanced, .portfolio-item, .media-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Update copyright year
+        document.querySelector('.copyright p').innerHTML = document.querySelector('.copyright p').innerHTML.replace('2024', new Date().getFullYear());
+    </script>
+</body>
+</html>
