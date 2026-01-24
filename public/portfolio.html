@@ -273,6 +273,9 @@
             height: 250px;
             position: relative;
             overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .portfolio-image img {
@@ -393,7 +396,9 @@
 
         .template-preview {
             height: 180px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             position: relative;
             overflow: hidden;
         }
@@ -673,21 +678,12 @@
         .web-example {
             position: relative;
             height: 200px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background-size: cover;
+            background-position: top;
             border-radius: 12px;
             margin: 20px 0;
             overflow: hidden;
-        }
-
-        .web-example::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
-            background: white;
-            border-radius: 8px;
+            border: 1px solid var(--border-color);
         }
 
         /* ===== PORTFOLIO FILTER ===== */
@@ -720,6 +716,168 @@
             transform: translateY(-2px);
             box-shadow: var(--shadow);
         }
+
+        /* ===== TEMPLATE IMAGE STYLES ===== */
+        .template-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .template-card:hover .template-image {
+            transform: scale(1.05);
+        }
+
+        /* ===== WEB MOCKUP STYLES ===== */
+        .web-mockup {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .web-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 12px 12px 0 0;
+            z-index: 1;
+        }
+
+        .web-mockup::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            width: 12px;
+            height: 12px;
+            background: #ff5f57;
+            border-radius: 50%;
+            box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #28ca42;
+            z-index: 2;
+        }
+
+        .web-mockup-content {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 30px);
+            background: white;
+            overflow: hidden;
+        }
+
+        .web-mockup-nav {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .web-mockup-sidebar {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 60px;
+            height: calc(100% - 50px);
+            background: #f8f9fa;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .web-mockup-main {
+            position: absolute;
+            top: 50px;
+            left: 60px;
+            width: calc(100% - 60px);
+            height: calc(100% - 50px);
+            padding: 15px;
+        }
+
+        .mockup-post {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .mockup-post-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .mockup-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-orange));
+        }
+
+        .mockup-post-content {
+            height: 60px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        /* ===== SPECIFIC PROJECT IMAGE STYLES ===== */
+        .instapesa-mockup {
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+        }
+
+        .sparkle-mockup {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .ngaru-church-mockup {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .salon-mockup {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .school-mockup {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .ecommerce-mockup {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        /* ===== TEMPLATE BACKGROUNDS ===== */
+        .template-business {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .template-creative {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .template-ecommerce {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .template-restaurant {
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+        }
     </style>
 </head>
 <body>
@@ -737,6 +895,7 @@
                     <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#templates">Templates</a></li>
                     <li><a href="#types">Project Types</a></li>
+                    <li><a href="checklist.html">Checklist</a></li>
                     <li><a href="home.html#consultation">Get Quote</a></li>
                 </ul>
                 
@@ -789,7 +948,7 @@
         <div class="portfolio-grid">
             <!-- InstaPesa -->
             <div class="portfolio-item fade-in" data-category="mobile">
-                <div class="portfolio-image" style="background: linear-gradient(135deg, #00b09b, #96c93d);">
+                <div class="portfolio-image instapesa-mockup">
                     <div class="portfolio-overlay">
                         <a href="#" class="btn-primary btn-small">
                             <i class="fas fa-eye"></i> Live Demo
@@ -804,9 +963,9 @@
                     <h3>InstaPesa Mobile Payment Platform</h3>
                     
                     <div class="project-explanation">
-                        <p><strong>Project Type:</strong> Mobile FinTech Application</p>
-                        <p><strong>The Challenge:</strong> Create a seamless mobile payment experience that works perfectly with Kenya's M-Pesa system while providing instant transfers and transaction tracking.</p>
-                        <p><strong>The Solution:</strong> Built with React Native for cross-platform compatibility, featuring real-time transaction updates, biometric authentication, and a user-friendly interface designed specifically for Kenyan users.</p>
+                        <p><strong>Project Type:</strong> Mobile FinTech Application (Green Theme)</p>
+                        <p><strong>The Challenge:</strong> Create a seamless mobile payment experience that works perfectly with Kenya's M-Pesa system while providing instant transfers, surveys, and academic writing services integration.</p>
+                        <p><strong>The Solution:</strong> Built with React Native for cross-platform compatibility, featuring real-time transaction updates, biometric authentication, survey tools for businesses, academic writing marketplace, and a user-friendly interface designed specifically for Kenyan users.</p>
                     </div>
                     
                     <div class="theme-buttons">
@@ -815,20 +974,103 @@
                         <button class="theme-btn orange">M-Pesa Integration</button>
                     </div>
                     
-                    <div class="web-example"></div>
+                    <div class="web-mockup instapesa-mockup">
+                        <div class="web-mockup-nav">
+                            <i class="fas fa-wallet"></i> InstaPesa
+                        </div>
+                        <div class="web-mockup-sidebar"></div>
+                        <div class="web-mockup-main">
+                            <div class="mockup-post">
+                                <div class="mockup-post-header">
+                                    <div class="mockup-avatar"></div>
+                                    <div>Send Money</div>
+                                </div>
+                                <div class="mockup-post-content"></div>
+                            </div>
+                            <div class="mockup-post">
+                                <div class="mockup-post-header">
+                                    <div class="mockup-avatar"></div>
+                                    <div>Pay Bills</div>
+                                </div>
+                                <div class="mockup-post-content"></div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="portfolio-tags">
                         <span class="portfolio-tag">React Native</span>
                         <span class="portfolio-tag">M-Pesa API</span>
                         <span class="portfolio-tag">Firebase</span>
                         <span class="portfolio-tag">Mobile UI/UX</span>
+                        <span class="portfolio-tag">Survey Tools</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sparkle Social Media -->
+            <div class="portfolio-item fade-in delay-1" data-category="mobile">
+                <div class="portfolio-image sparkle-mockup">
+                    <div class="portfolio-overlay">
+                        <a href="#" class="btn-primary btn-small">
+                            <i class="fas fa-eye"></i> Live Demo
+                        </a>
+                        <a href="#" class="btn-outline btn-small">
+                            <i class="fas fa-code"></i> Get Code
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="project-rhyme">"Social connections shine so bright, in the Kenyan digital light"</div>
+                    <h3>Sparkle Social Media App</h3>
+                    
+                    <div class="project-explanation">
+                        <p><strong>Project Type:</strong> Social Networking Mobile Application (Instagram Clone)</p>
+                        <p><strong>The Challenge:</strong> Create a Kenyan-centric social media platform that focuses on local communities, businesses, and real connections with photo sharing, stories, and direct messaging.</p>
+                        <p><strong>The Solution:</strong> A React Native app with real-time chat, photo/video sharing, stories feature, local business directories, community groups, and content sharing optimized for Kenyan networks. Features include location-based content, Swahili language support, and M-Pesa integration for in-app transactions.</p>
+                    </div>
+                    
+                    <div class="theme-buttons">
+                        <button class="theme-btn purple">Social Theme</button>
+                        <button class="theme-btn blue">Real-time Chat</button>
+                        <button class="theme-btn orange">Photo Sharing</button>
+                    </div>
+                    
+                    <div class="web-mockup sparkle-mockup">
+                        <div class="web-mockup-nav">
+                            <i class="fas fa-sparkles"></i> Sparkle
+                        </div>
+                        <div class="web-mockup-sidebar"></div>
+                        <div class="web-mockup-main">
+                            <div class="mockup-post">
+                                <div class="mockup-post-header">
+                                    <div class="mockup-avatar"></div>
+                                    <div>@user1 shared a photo</div>
+                                </div>
+                                <div class="mockup-post-content"></div>
+                            </div>
+                            <div class="mockup-post">
+                                <div class="mockup-post-header">
+                                    <div class="mockup-avatar"></div>
+                                    <div>@user2 added to story</div>
+                                </div>
+                                <div class="mockup-post-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">React Native</span>
+                        <span class="portfolio-tag">Firebase</span>
+                        <span class="portfolio-tag">WebSocket</span>
+                        <span class="portfolio-tag">Social API</span>
+                        <span class="portfolio-tag">Photo Sharing</span>
                     </div>
                 </div>
             </div>
 
             <!-- Ngaru Anglican Church -->
-            <div class="portfolio-item fade-in delay-1" data-category="web">
-                <div class="portfolio-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+            <div class="portfolio-item fade-in delay-2" data-category="web">
+                <div class="portfolio-image ngaru-church-mockup">
                     <div class="portfolio-overlay">
                         <a href="#" class="btn-primary btn-small">
                             <i class="fas fa-eye"></i> Live Demo
@@ -844,8 +1086,8 @@
                     
                     <div class="project-explanation">
                         <p><strong>Project Type:</strong> Church Management System</p>
-                        <p><strong>The Challenge:</strong> Create a digital home for a growing church community with event management, online donations, and sermon archives accessible to all generations.</p>
-                        <p><strong>The Solution:</strong> A responsive PHP-based website with MySQL database, featuring an event calendar with RSVP, secure online donations, sermon library with audio/video streaming, and a mobile-friendly admin panel for content management.</p>
+                        <p><strong>The Challenge:</strong> Create a digital home for a growing church community with event management, online donations, sermon archives, and member directories accessible to all generations.</p>
+                        <p><strong>The Solution:</strong> A responsive PHP-based website with MySQL database, featuring an event calendar with RSVP, secure online donations, sermon library with audio/video streaming, member directory, and a mobile-friendly admin panel for content management.</p>
                     </div>
                     
                     <div class="theme-buttons">
@@ -854,20 +1096,42 @@
                         <button class="theme-btn orange">Event Management</button>
                     </div>
                     
-                    <div class="web-example"></div>
+                    <div class="web-mockup ngaru-church-mockup">
+                        <div class="web-mockup-nav">
+                            <i class="fas fa-church"></i> Ngaru Anglican Church
+                        </div>
+                        <div class="web-mockup-sidebar"></div>
+                        <div class="web-mockup-main">
+                            <div class="mockup-post">
+                                <div class="mockup-post-header">
+                                    <div class="mockup-avatar"></div>
+                                    <div>Sunday Service: 9AM</div>
+                                </div>
+                                <div class="mockup-post-content"></div>
+                            </div>
+                            <div class="mockup-post">
+                                <div class="mockup-post-header">
+                                    <div class="mockup-avatar"></div>
+                                    <div>Bible Study: Wednesday</div>
+                                </div>
+                                <div class="mockup-post-content"></div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="portfolio-tags">
                         <span class="portfolio-tag">PHP</span>
                         <span class="portfolio-tag">MySQL</span>
                         <span class="portfolio-tag">Calendar API</span>
                         <span class="portfolio-tag">Payment Gateway</span>
+                        <span class="portfolio-tag">Member Directory</span>
                     </div>
                 </div>
             </div>
 
             <!-- Salon Website -->
-            <div class="portfolio-item fade-in delay-2" data-category="business">
-                <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+            <div class="portfolio-item fade-in" data-category="business">
+                <div class="portfolio-image salon-mockup">
                     <div class="portfolio-overlay">
                         <a href="#" class="btn-primary btn-small">
                             <i class="fas fa-eye"></i> Live Demo
@@ -883,8 +1147,8 @@
                     
                     <div class="project-explanation">
                         <p><strong>Project Type:</strong> Business Website with Booking System</p>
-                        <p><strong>The Challenge:</strong> Help a local beauty salon transition from phone bookings to an online system that increases bookings and showcases their services.</p>
-                        <p><strong>The Solution:</strong> A beautiful, mobile-first website with online booking system, service catalog, gallery showcase, and automated SMS/email reminders. Integrated with WhatsApp for instant customer communication.</p>
+                        <p><strong>The Challenge:</strong> Help a local beauty salon transition from phone bookings to an online system that increases bookings and showcases their services with beautiful imagery.</p>
+                        <p><strong>The Solution:</strong> A beautiful, mobile-first website with online booking system, service catalog, gallery showcase, and automated SMS/email reminders. Integrated with WhatsApp for instant customer communication and Instagram for social proof.</p>
                     </div>
                     
                     <div class="theme-buttons">
@@ -893,59 +1157,42 @@
                         <button class="theme-btn orange">Mobile Optimization</button>
                     </div>
                     
-                    <div class="web-example"></div>
+                    <div class="web-mockup salon-mockup">
+                        <div class="web-mockup-nav">
+                            <i class="fas fa-spa"></i> Sparkle Beauty Salon
+                        </div>
+                        <div class="web-mockup-sidebar"></div>
+                        <div class="web-mockup-main">
+                            <div class="mockup-post">
+                                <div class="mockup-post-header">
+                                    <div class="mockup-avatar"></div>
+                                    <div>Book Appointment</div>
+                                </div>
+                                <div class="mockup-post-content"></div>
+                            </div>
+                            <div class="mockup-post">
+                                <div class="mockup-post-header">
+                                    <div class="mockup-avatar"></div>
+                                    <div>View Services</div>
+                                </div>
+                                <div class="mockup-post-content"></div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="portfolio-tags">
                         <span class="portfolio-tag">HTML/CSS</span>
                         <span class="portfolio-tag">JavaScript</span>
                         <span class="portfolio-tag">Booking API</span>
                         <span class="portfolio-tag">WhatsApp Integration</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sparkle Social Media -->
-            <div class="portfolio-item fade-in" data-category="mobile">
-                <div class="portfolio-image" style="background: linear-gradient(135deg, #667eea, #764ba2);">
-                    <div class="portfolio-overlay">
-                        <a href="#" class="btn-primary btn-small">
-                            <i class="fas fa-eye"></i> Live Demo
-                        </a>
-                        <a href="#" class="btn-outline btn-small">
-                            <i class="fas fa-code"></i> Get Code
-                        </a>
-                    </div>
-                </div>
-                <div class="portfolio-content">
-                    <div class="project-rhyme">"Social connections shine so bright, in the Kenyan digital light"</div>
-                    <h3>Sparkle Social Media App</h3>
-                    
-                    <div class="project-explanation">
-                        <p><strong>Project Type:</strong> Social Networking Mobile Application</p>
-                        <p><strong>The Challenge:</strong> Create a Kenyan-centric social media platform that focuses on local communities, businesses, and real connections rather than just global trends.</p>
-                        <p><strong>The Solution:</strong> A React Native app with real-time chat, local business directories, community groups, and content sharing optimized for Kenyan networks. Features include location-based content, Swahili language support, and M-Pesa integration for in-app transactions.</p>
-                    </div>
-                    
-                    <div class="theme-buttons">
-                        <button class="theme-btn purple">Social Theme</button>
-                        <button class="theme-btn blue">Real-time Chat</button>
-                        <button class="theme-btn orange">Local Focus</button>
-                    </div>
-                    
-                    <div class="web-example"></div>
-                    
-                    <div class="portfolio-tags">
-                        <span class="portfolio-tag">React Native</span>
-                        <span class="portfolio-tag">Firebase</span>
-                        <span class="portfolio-tag">WebSocket</span>
-                        <span class="portfolio-tag">Social API</span>
+                        <span class="portfolio-tag">Gallery Showcase</span>
                     </div>
                 </div>
             </div>
 
             <!-- School Management -->
             <div class="portfolio-item fade-in delay-1" data-category="web">
-                <div class="portfolio-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                <div class="portfolio-image school-mockup">
                     <div class="portfolio-overlay">
                         <a href="#" class="btn-primary btn-small">
                             <i class="fas fa-eye"></i> Live Demo
@@ -961,8 +1208,8 @@
                     
                     <div class="project-explanation">
                         <p><strong>Project Type:</strong> Education Management Platform</p>
-                        <p><strong>The Challenge:</strong> Digitize school operations for a large Kenyan school with 2000+ students, managing fees, exams, parent communication, and staff coordination.</p>
-                        <p><strong>The Solution:</strong> A comprehensive Laravel-based system with separate portals for administrators, teachers, students, and parents. Features include automated fee reminders via SMS, exam result portals, attendance tracking, and parent-teacher communication tools.</p>
+                        <p><strong>The Challenge:</strong> Digitize school operations for a large Kenyan school with 2000+ students, managing fees, exams, parent communication, staff coordination, and academic records.</p>
+                        <p><strong>The Solution:</strong> A comprehensive Laravel-based system with separate portals for administrators, teachers, students, and parents. Features include automated fee reminders via SMS, exam result portals, attendance tracking, parent-teacher communication tools, and academic writing submission system.</p>
                     </div>
                     
                     <div class="theme-buttons">
@@ -971,20 +1218,42 @@
                         <button class="theme-btn orange">SMS Integration</button>
                     </div>
                     
-                    <div class="web-example"></div>
+                    <div class="web-mockup school-mockup">
+                        <div class="web-mockup-nav">
+                            <i class="fas fa-graduation-cap"></i> EduSmart School System
+                        </div>
+                        <div class="web-mockup-sidebar"></div>
+                        <div class="web-mockup-main">
+                            <div class="mockup-post">
+                                <div class="mockup-post-header">
+                                    <div class="mockup-avatar"></div>
+                                    <div>Student Portal</div>
+                                </div>
+                                <div class="mockup-post-content"></div>
+                            </div>
+                            <div class="mockup-post">
+                                <div class="mockup-post-header">
+                                    <div class="mockup-avatar"></div>
+                                    <div>Exam Results</div>
+                                </div>
+                                <div class="mockup-post-content"></div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="portfolio-tags">
                         <span class="portfolio-tag">Laravel</span>
                         <span class="portfolio-tag">MySQL</span>
                         <span class="portfolio-tag">SMS Gateway</span>
                         <span class="portfolio-tag">Multi-user System</span>
+                        <span class="portfolio-tag">Academic Portal</span>
                     </div>
                 </div>
             </div>
 
             <!-- E-commerce Store -->
             <div class="portfolio-item fade-in delay-2" data-category="ecommerce">
-                <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                <div class="portfolio-image ecommerce-mockup">
                     <div class="portfolio-overlay">
                         <a href="#" class="btn-primary btn-small">
                             <i class="fas fa-eye"></i> Live Demo
@@ -1001,7 +1270,7 @@
                     <div class="project-explanation">
                         <p><strong>Project Type:</strong> Multi-vendor E-commerce Marketplace</p>
                         <p><strong>The Challenge:</strong> Create a platform where Kenyan artisans and small businesses can sell their products online with secure payments and reliable delivery tracking.</p>
-                        <p><strong>The Solution:</strong> A React/Node.js e-commerce platform with vendor dashboards, M-Pesa/credit card payments, inventory management, order tracking, and customer reviews. Includes features for local delivery integration and mobile money wallet.</p>
+                        <p><strong>The Solution:</strong> A React/Node.js e-commerce platform with vendor dashboards, M-Pesa/credit card payments, inventory management, order tracking, customer reviews, and product showcases with high-quality images.</p>
                     </div>
                     
                     <div class="theme-buttons">
@@ -1010,13 +1279,35 @@
                         <button class="theme-btn orange">M-Pesa Payments</button>
                     </div>
                     
-                    <div class="web-example"></div>
+                    <div class="web-mockup ecommerce-mockup">
+                        <div class="web-mockup-nav">
+                            <i class="fas fa-store"></i> AfrikaBazar Marketplace
+                        </div>
+                        <div class="web-mockup-sidebar"></div>
+                        <div class="web-mockup-main">
+                            <div class="mockup-post">
+                                <div class="mockup-post-header">
+                                    <div class="mockup-avatar"></div>
+                                    <div>Featured Products</div>
+                                </div>
+                                <div class="mockup-post-content"></div>
+                            </div>
+                            <div class="mockup-post">
+                                <div class="mockup-post-header">
+                                    <div class="mockup-avatar"></div>
+                                    <div>Special Offers</div>
+                                </div>
+                                <div class="mockup-post-content"></div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="portfolio-tags">
                         <span class="portfolio-tag">React.js</span>
                         <span class="portfolio-tag">Node.js</span>
                         <span class="portfolio-tag">MongoDB</span>
                         <span class="portfolio-tag">Payment Gateway</span>
+                        <span class="portfolio-tag">Product Showcase</span>
                     </div>
                 </div>
             </div>
@@ -1076,12 +1367,12 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title creative-heading">Pre-written Verses (Templates)</h2>
-                <p class="section-subtitle">Beautiful starting points for your digital story</p>
+                <p class="section-subtitle">Beautiful starting points for your digital story - All templates come with visible, real image placeholders</p>
             </div>
             
             <div class="templates-grid">
                 <div class="template-card fade-in">
-                    <div class="template-preview">
+                    <div class="template-preview template-business">
                         <div class="template-actions">
                             <a href="#" class="btn-primary btn-small">Preview</a>
                             <a href="#" class="btn-outline btn-small">Use Template</a>
@@ -1089,12 +1380,16 @@
                     </div>
                     <div style="padding: 15px;">
                         <h4>Business Elegance</h4>
-                        <p>Corporate template with professional design</p>
+                        <p>Corporate template with professional design and visible image sections</p>
+                        <div style="margin-top: 10px; font-size: 0.875rem; color: var(--text-light);">
+                            <i class="fas fa-check-circle" style="color: var(--primary-orange);"></i> Image Gallery
+                            <i class="fas fa-check-circle" style="color: var(--primary-orange); margin-left: 10px;"></i> Team Showcase
+                        </div>
                     </div>
                 </div>
                 
                 <div class="template-card fade-in delay-1">
-                    <div class="template-preview" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                    <div class="template-preview template-creative">
                         <div class="template-actions">
                             <a href="#" class="btn-primary btn-small">Preview</a>
                             <a href="#" class="btn-outline btn-small">Use Template</a>
@@ -1102,12 +1397,16 @@
                     </div>
                     <div style="padding: 15px;">
                         <h4>Creative Portfolio</h4>
-                        <p>Artistic template for creatives and artists</p>
+                        <p>Artistic template for creatives and artists with visible portfolio images</p>
+                        <div style="margin-top: 10px; font-size: 0.875rem; color: var(--text-light);">
+                            <i class="fas fa-check-circle" style="color: var(--primary-orange);"></i> Portfolio Grid
+                            <i class="fas fa-check-circle" style="color: var(--primary-orange); margin-left: 10px;"></i> Project Showcase
+                        </div>
                     </div>
                 </div>
                 
                 <div class="template-card fade-in delay-2">
-                    <div class="template-preview" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                    <div class="template-preview template-ecommerce">
                         <div class="template-actions">
                             <a href="#" class="btn-primary btn-small">Preview</a>
                             <a href="#" class="btn-outline btn-small">Use Template</a>
@@ -1115,12 +1414,16 @@
                     </div>
                     <div style="padding: 15px;">
                         <h4>E-commerce Store</h4>
-                        <p>Complete online store template</p>
+                        <p>Complete online store template with product image displays</p>
+                        <div style="margin-top: 10px; font-size: 0.875rem; color: var(--text-light);">
+                            <i class="fas fa-check-circle" style="color: var(--primary-orange);"></i> Product Gallery
+                            <i class="fas fa-check-circle" style="color: var(--primary-orange); margin-left: 10px;"></i> Image Zoom
+                        </div>
                     </div>
                 </div>
                 
                 <div class="template-card fade-in delay-3">
-                    <div class="template-preview" style="background: linear-gradient(135deg, #00b09b, #96c93d);">
+                    <div class="template-preview template-restaurant">
                         <div class="template-actions">
                             <a href="#" class="btn-primary btn-small">Preview</a>
                             <a href="#" class="btn-outline btn-small">Use Template</a>
@@ -1128,7 +1431,23 @@
                     </div>
                     <div style="padding: 15px;">
                         <h4>Restaurant & Food</h4>
-                        <p>Menu and ordering template</p>
+                        <p>Menu and ordering template with food image showcases</p>
+                        <div style="margin-top: 10px; font-size: 0.875rem; color: var(--text-light);">
+                            <i class="fas fa-check-circle" style="color: var(--primary-orange);"></i> Food Gallery
+                            <i class="fas fa-check-circle" style="color: var(--primary-orange); margin-left: 10px;"></i> Menu Display
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <div class="project-explanation" style="max-width: 800px; margin: 0 auto;">
+                    <h4 style="color: var(--secondary-blue); margin-bottom: 10px;">All Templates Feature:</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: left;">
+                        <div><i class="fas fa-image" style="color: var(--primary-orange);"></i> High-quality image placeholders</div>
+                        <div><i class="fas fa-mobile-alt" style="color: var(--primary-orange);"></i> Mobile-responsive design</div>
+                        <div><i class="fas fa-palette" style="color: var(--primary-orange);"></i> Customizable color schemes</div>
+                        <div><i class="fas fa-eye" style="color: var(--primary-orange);"></i> Visible image galleries</div>
                     </div>
                 </div>
             </div>
@@ -1147,8 +1466,11 @@
                     Let's create something beautiful together.<br>
                     Your success story awaits its next verse.
                 </p>
-                <a href="home.html#consultation" class="nav-btn">
-                    <i class="fas fa-pen-alt"></i> Start Your Story
+                <a href="checklist.html" class="nav-btn">
+                    <i class="fas fa-clipboard-check"></i> Start with Checklist
+                </a>
+                <a href="home.html#consultation" class="btn-outline" style="margin-left: 15px;">
+                    <i class="fas fa-pen-alt"></i> Get Custom Quote
                 </a>
             </div>
         </div>
@@ -1182,6 +1504,7 @@
                         <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#templates">Templates</a></li>
                         <li><a href="#types">Project Types</a></li>
+                        <li><a href="checklist.html">Project Checklist</a></li>
                         <li><a href="home.html#consultation">Get Quote</a></li>
                     </ul>
                 </div>
@@ -1338,7 +1661,7 @@
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 const templateName = this.closest('.template-card').querySelector('h4').textContent;
-                alert(`Previewing template: ${templateName}\n\nIn a real implementation, this would open a modal with the template preview.`);
+                alert(`Previewing template: ${templateName}\n\nThis template includes visible image sections for:\n• Gallery displays\n• Product images\n• Team photos\n• Portfolio showcases\n\nAll images are optimized for web viewing.`);
             });
         });
 
@@ -1347,9 +1670,29 @@
             e.preventDefault();
             const email = this.querySelector('input').value;
             if (email) {
-                alert(`Thank you for subscribing with: ${email}\nYou'll receive our next web tips newsletter.`);
+                alert(`Thank you for subscribing with: ${email}\nYou'll receive our next web tips newsletter including image optimization tips.`);
                 this.reset();
             }
+        });
+
+        // Web mockup interactions
+        document.querySelectorAll('.web-mockup').forEach(mockup => {
+            mockup.addEventListener('click', function() {
+                const projectName = this.closest('.portfolio-content').querySelector('h3').textContent;
+                alert(`Interactive preview of: ${projectName}\n\nClick the "Live Demo" button above to see the full working prototype.`);
+            });
+        });
+
+        // Template image hover effect
+        document.querySelectorAll('.template-preview').forEach(preview => {
+            preview.addEventListener('mouseenter', function() {
+                const templateName = this.closest('.template-card').querySelector('h4').textContent;
+                this.style.backgroundSize = '110%';
+            });
+            
+            preview.addEventListener('mouseleave', function() {
+                this.style.backgroundSize = '100%';
+            });
         });
     </script>
 </body>
