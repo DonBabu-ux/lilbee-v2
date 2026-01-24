@@ -1,0 +1,2238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Hosting Services | LilBee Logics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== ROOT VARIABLES ===== */
+        :root {
+            --primary-yellow: #FFC107;
+            --primary-orange: #FF9800;
+            --secondary-blue: #1A237E;
+            --secondary-charcoal: #0F172A;
+            --accent-teal: #00BCD4;
+            --accent-purple: #8A2BE2;
+            --light-gray: #F8FAFC;
+            --white: #FFFFFF;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --bg-primary: #F8FAFC;
+            --bg-secondary: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --border-color: rgba(0, 0, 0, 0.1);
+            
+            --hosting-green: #10B981;
+            --hosting-blue: #3B82F6;
+            --hosting-purple: #8B5CF6;
+            --hosting-red: #EF4444;
+            
+            /* Typography */
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            /* Spacing & Effects */
+            --section-padding: 6rem 1.5rem;
+            --card-padding: 2rem;
+            --border-radius: 20px;
+            --border-radius-sm: 12px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.12);
+            --shadow-glow: 0 0 30px rgba(255, 152, 0, 0.2);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+            --gradient-dark: linear-gradient(135deg, #1A237E 0%, #0F172A 100%);
+            --gradient-whatsapp: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            --gradient-hosting: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+        }
+
+        [data-theme="dark"] {
+            --primary-yellow: #FFD54F;
+            --primary-orange: #FFB74D;
+            --secondary-blue: #5C6BC0;
+            --secondary-charcoal: #121212;
+            --accent-teal: #26C6DA;
+            --accent-purple: #9C4DFF;
+            --light-gray: #121212;
+            --white: #1E1E1E;
+            --text-dark: #E0E0E0;
+            --text-light: #B0B0B0;
+            --bg-primary: #121212;
+            --bg-secondary: #1E1E1E;
+            --card-bg: #1E1E1E;
+            --border-color: rgba(255, 255, 255, 0.1);
+            
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-color: var(--bg-primary);
+            overflow-x: hidden;
+            transition: var(--transition);
+            padding-top: 80px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        section {
+            padding: var(--section-padding);
+        }
+        
+        /* ===== UTILITY CLASSES ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ===== TOP CONTROLS ===== */
+        .top-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1100;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 1101;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* ===== LOGO ===== */
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 800;
+            font-size: 1.75rem;
+            color: var(--secondary-blue);
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon::before {
+            content: "🐝";
+            font-size: 1.5rem;
+            z-index: 2;
+        }
+        
+        .logo-icon::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(from 0deg, transparent 0%, rgba(26, 35, 126, 0.3) 30%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+        
+        .logo-text span:first-child {
+            color: var(--secondary-blue);
+            font-weight: 800;
+        }
+        
+        .logo-text span:last-child {
+            color: var(--primary-orange);
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ===== NAVIGATION ===== */
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            height: 80px;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+            height: 80px;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-btn {
+            padding: 0.75rem 1.75rem;
+            border-radius: var(--border-radius-sm);
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .auth-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .login-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .login-link:hover {
+            color: var(--primary-orange);
+        }
+        
+        /* ===== HAMBURGER MENU ===== */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--secondary-blue);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: var(--transition);
+            z-index: 1101;
+        }
+        
+        .mobile-menu-btn:hover {
+            background: var(--light-gray);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-primary);
+            backdrop-filter: blur(20px);
+            padding: 100px 2rem 2rem;
+            transform: translateX(-100%);
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .mobile-links li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: block;
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .mobile-links li a:hover {
+            color: var(--primary-orange);
+            padding-left: 1rem;
+            border-color: var(--primary-orange);
+        }
+        
+        .mobile-auth {
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .mobile-auth a {
+            display: block;
+            text-align: center;
+            padding: 1rem;
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+        
+        .mobile-auth .login-link {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--border-color);
+        }
+        
+        .mobile-auth .nav-btn {
+            text-align: center;
+        }
+        
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            z-index: 1102;
+        }
+        
+        /* ===== HERO SECTION ===== */
+        .hosting-hero {
+            padding: 8rem 1.5rem 6rem;
+            background: var(--gradient-hosting);
+            position: relative;
+            overflow: hidden;
+            margin-top: -80px;
+        }
+        
+        .hosting-hero::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+            z-index: 1;
+        }
+        
+        .hosting-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            color: white;
+        }
+        
+        .hosting-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff 0%, #93C5FD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hosting-hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .cta-primary {
+            padding: 1rem 2.5rem;
+            border-radius: var(--border-radius-sm);
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 152, 0, 0.3);
+        }
+        
+        .cta-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: var(--border-radius-sm);
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-5px);
+        }
+        
+        /* ===== FEATURES SHOWCASE ===== */
+        .features-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--hosting-blue);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-hosting);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        /* ===== HOSTING PLANS ===== */
+        .hosting-plans {
+            background: var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 1200px;
+        }
+        
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .plan-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .plan-header {
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .plan-basic .plan-header { background: linear-gradient(135deg, #10B981, #059669); }
+        .plan-pro .plan-header { background: linear-gradient(135deg, #3B82F6, #2563EB); }
+        .plan-business .plan-header { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
+        .plan-enterprise .plan-header { background: linear-gradient(135deg, #1E293B, #0F172A); }
+        
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 1rem 0;
+        }
+        
+        .plan-period {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .plan-features {
+            padding: 2rem;
+            list-style: none;
+        }
+        
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .plan-features li i {
+            color: var(--hosting-green);
+        }
+        
+        .plan-actions {
+            padding: 1rem 2rem 2rem;
+            text-align: center;
+        }
+        
+        .plan-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        /* ===== COMPARISON TABLE ===== */
+        .comparison-table {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin: 3rem auto;
+            max-width: 1000px;
+        }
+        
+        .comparison-header {
+            background: var(--gradient-hosting);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: var(--light-gray);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+        
+        .checkmark {
+            color: var(--hosting-green);
+        }
+        
+        .xmark {
+            color: var(--hosting-red);
+        }
+        
+        /* ===== DOMAIN SEARCH ===== */
+        .domain-search {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 800px;
+            box-shadow: var(--shadow);
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+        
+        .domain-extensions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .domain-extension {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            background: var(--light-gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .domain-extension:hover {
+            background: var(--hosting-blue);
+            color: white;
+            border-color: var(--hosting-blue);
+        }
+        
+        /* ===== FAQS ===== */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-sm);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+        
+        .faq-toggle {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+        
+        /* ===== TESTIMONIALS ===== */
+        .testimonial-container {
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+        
+        .testimonial-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.5s ease;
+        }
+        
+        .testimonial-card {
+            min-width: 350px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            flex-shrink: 0;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .testimonial-card:hover {
+            border-color: var(--hosting-blue);
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-hosting);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .carousel-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* ===== MIGRATION FORM ===== */
+        .migration-form {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            box-shadow: var(--shadow-hover);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            font-family: var(--font-body);
+            transition: var(--transition);
+            background: var(--bg-secondary);
+            color: var(--text-dark);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--hosting-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--secondary-charcoal);
+            color: white;
+            padding: 5rem 1.5rem 2rem;
+            margin-top: 5rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-yellow);
+            padding-left: 0.5rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius-sm);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .newsletter-form button {
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+        
+        /* ===== FLOATING BUTTONS ===== */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+        
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            box-shadow: var(--shadow-hover);
+            transition: var(--transition);
+        }
+        
+        .floating-btn.whatsapp {
+            background: var(--gradient-whatsapp);
+        }
+        
+        .floating-btn.home {
+            background: var(--gradient-primary);
+        }
+        
+        .floating-btn.checklist {
+            background: linear-gradient(135deg, #10B981, #059669);
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .hosting-hero h1 {
+                font-size: 2.75rem;
+            }
+            
+            .top-controls {
+                top: 15px;
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .nav-wrapper {
+                height: 70px;
+            }
+            
+            .nav {
+                height: 70px;
+            }
+            
+            .hosting-hero {
+                padding: 7rem 1.5rem 4rem;
+                margin-top: -70px;
+            }
+            
+            .hosting-hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            .hosting-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .auth-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .top-controls {
+                right: 70px;
+            }
+            
+            .theme-toggle {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .hosting-plans {
+                padding: 2rem 1.5rem;
+            }
+            
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .domain-search {
+                padding: 2rem 1.5rem;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .testimonial-card {
+                min-width: 300px;
+            }
+            
+            .mobile-menu {
+                top: 70px;
+            }
+            
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hosting-hero h1 {
+                font-size: 1.875rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .plan-price {
+                font-size: 2.5rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .top-controls {
+                right: 60px;
+                gap: 5px;
+            }
+            
+            .theme-toggle {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .mobile-menu {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Controls -->
+    <div class="top-controls">
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-wrapper">
+        <div class="container">
+            <nav class="nav">
+                <a href="home.html" class="logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">
+                        <span>Lil-Bee</span>
+                        <span>LOGICS</span>
+                    </div>
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#plans">Plans</a></li>
+                    <li><a href="#comparison">Comparison</a></li>
+                    <li><a href="#faqs">FAQs</a></li>
+                    <li><a href="#migration">Migration</a></li>
+                </ul>
+                
+                <div class="auth-links">
+                    <a href="login.html" class="login-link">Client Login</a>
+                    <a href="#plans" class="nav-btn">Get Hosting</a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mobile-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#plans">Plans</a></li>
+            <li><a href="#comparison">Comparison</a></li>
+            <li><a href="#faqs">FAQs</a></li>
+            <li><a href="#migration">Migration</a></li>
+        </ul>
+        <div class="mobile-auth">
+            <a href="login.html" class="login-link">Client Login</a>
+            <a href="#plans" class="nav-btn">Get Hosting</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hosting-hero fade-in">
+        <div class="container">
+            <div class="hosting-content">
+                <h1 class="fade-in">Premium Website Hosting in Kenya</h1>
+                <p class="fade-in delay-1">
+                    Fast, reliable, and secure web hosting solutions optimized for Kenyan businesses. 
+                    99.9% uptime guarantee, 24/7 support, and lightning-fast loading speeds.
+                </p>
+                <div class="hero-actions">
+                    <a href="#plans" class="cta-primary fade-in delay-2">
+                        <i class="fas fa-rocket"></i> View Hosting Plans
+                    </a>
+                    <a href="https://wa.me/254117234064?text=Hi! I'm interested in your hosting services. Can you help me choose a plan?" class="cta-secondary fade-in delay-2" target="_blank">
+                        <i class="fas fa-question-circle"></i> Get Free Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Our Hosting?</h2>
+                <p class="section-subtitle">Premium features at affordable Kenyan prices</p>
+            </div>
+            
+            <div class="features-showcase">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>SSD-powered servers with optimized caching for instant page loads</p>
+                </div>
+                
+                <div class="feature-card fade-in delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Reliable</h3>
+                    <p>Free SSL certificates, daily backups, and DDoS protection included</p>
+                </div>
+                
+                <div class="feature-card fade-in delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Kenyan-based support team available via WhatsApp, phone, and email</p>
+                </div>
+                
+                <div class="feature-card fade-in delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>99.9% Uptime</h3>
+                    <p>Guaranteed reliability with automatic failover and monitoring</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hosting Plans -->
+    <section id="plans" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Hosting Plans & Pricing</h2>
+                <p class="section-subtitle">Choose the perfect plan for your website. All plans include free setup!</p>
+            </div>
+            
+            <div class="hosting-plans fade-in">
+                <div class="plans-grid">
+                    <!-- Basic Plan -->
+                    <div class="plan-card plan-basic">
+                        <div class="plan-header">
+                            <h3>Basic Hosting</h3>
+                            <p>Perfect for personal blogs & small websites</p>
+                            <div class="plan-price">500<span class="plan-period">/month</span></div>
+                            <p>KES</p>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 1 Website</li>
+                            <li><i class="fas fa-check"></i> 5 GB SSD Storage</li>
+                            <li><i class="fas fa-check"></i> 10 GB Bandwidth</li>
+                            <li><i class="fas fa-check"></i> Free SSL Certificate</li>
+                            <li><i class="fas fa-check"></i> 5 Email Accounts</li>
+                            <li><i class="fas fa-check"></i> Basic Support</li>
+                        </ul>
+                        <div class="plan-actions">
+                            <a href="https://wa.me/254117234064?text=Hi! I'm interested in your Basic Hosting plan (500 KES/month). Please help me get started." class="cta-primary" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Order Now
+                            </a>
+                        </div>
+                        <div class="plan-badge">Most Popular</div>
+                    </div>
+                    
+                    <!-- Pro Plan -->
+                    <div class="plan-card plan-pro">
+                        <div class="plan-header">
+                            <h3>Pro Hosting</h3>
+                            <p>Ideal for business websites & online stores</p>
+                            <div class="plan-price">1,200<span class="plan-period">/month</span></div>
+                            <p>KES</p>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 5 Websites</li>
+                            <li><i class="fas fa-check"></i> 20 GB SSD Storage</li>
+                            <li><i class="fas fa-check"></i> 50 GB Bandwidth</li>
+                            <li><i class="fas fa-check"></i> Free SSL Certificate</li>
+                            <li><i class="fas fa-check"></i> 20 Email Accounts</li>
+                            <li><i class="fas fa-check"></i> Priority Support</li>
+                            <li><i class="fas fa-check"></i> Daily Backups</li>
+                        </ul>
+                        <div class="plan-actions">
+                            <a href="https://wa.me/254117234064?text=Hi! I'm interested in your Pro Hosting plan (1,200 KES/month). Please help me get started." class="cta-primary" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Order Now
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Business Plan -->
+                    <div class="plan-card plan-business">
+                        <div class="plan-header">
+                            <h3>Business Hosting</h3>
+                            <p>For growing businesses & multiple sites</p>
+                            <div class="plan-price">2,500<span class="plan-period">/month</span></div>
+                            <p>KES</p>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Unlimited Websites</li>
+                            <li><i class="fas fa-check"></i> 50 GB SSD Storage</li>
+                            <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
+                            <li><i class="fas fa-check"></i> Free SSL Certificate</li>
+                            <li><i class="fas fa-check"></i> Unlimited Email Accounts</li>
+                            <li><i class="fas fa-check"></i> 24/7 Priority Support</li>
+                            <li><i class="fas fa-check"></i> Daily Backups & Restore</li>
+                            <li><i class="fas fa-check"></i> Free CDN Included</li>
+                        </ul>
+                        <div class="plan-actions">
+                            <a href="https://wa.me/254117234064?text=Hi! I'm interested in your Business Hosting plan (2,500 KES/month). Please help me get started." class="cta-primary" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Order Now
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Enterprise Plan -->
+                    <div class="plan-card plan-enterprise">
+                        <div class="plan-header">
+                            <h3>Enterprise Hosting</h3>
+                            <p>High-traffic sites & custom requirements</p>
+                            <div class="plan-price">5,000<span class="plan-period">/month</span></div>
+                            <p>KES</p>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Custom Server Setup</li>
+                            <li><i class="fas fa-check"></i> 100 GB SSD Storage</li>
+                            <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
+                            <li><i class="fas fa-check"></i> Dedicated IP Address</li>
+                            <li><i class="fas fa-check"></i> Unlimited Email Accounts</li>
+                            <li><i class="fas fa-check"></i> 24/7 VIP Support</li>
+                            <li><i class="fas fa-check"></i> Hourly Backups</li>
+                            <li><i class="fas fa-check"></i> Advanced Security Suite</li>
+                            <li><i class="fas fa-check"></i> Custom Firewall Rules</li>
+                        </ul>
+                        <div class="plan-actions">
+                            <a href="https://wa.me/254117234064?text=Hi! I'm interested in your Enterprise Hosting plan (5,000 KES/month). Please help me get started." class="cta-primary" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Contact Sales
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Domain Search -->
+    <section id="domains">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Find Your Perfect Domain Name</h2>
+                <p class="section-subtitle">Search for available domain names and register instantly</p>
+            </div>
+            
+            <div class="domain-search fade-in">
+                <h3 style="text-align: center; margin-bottom: 1rem;">Search Domain Availability</h3>
+                <div class="search-box">
+                    <input type="text" id="domainSearch" placeholder="Enter your desired domain name">
+                    <select id="domainExtension">
+                        <option value=".co.ke">.co.ke</option>
+                        <option value=".com">.com</option>
+                        <option value=".org">.org</option>
+                        <option value=".net">.net</option>
+                        <option value=".info">.info</option>
+                        <option value=".me.ke">.me.ke</option>
+                      <option value=".ac.ke">.ac.ke</option>
+                    </select>
+                    <button class="cta-primary" onclick="searchDomain()">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+                
+                <div id="domainResult" style="text-align: center; margin: 1rem 0; padding: 1rem; background: var(--light-gray); border-radius: var(--border-radius-sm); display: none;">
+                    <!-- Domain search results will appear here -->
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <h4>Popular Domain Extensions</h4>
+                    <div class="domain-extensions">
+                        <div class="domain-extension" onclick="selectExtension('.co.ke')">.co.ke (800 KES/yr)</div>
+                        <div class="domain-extension" onclick="selectExtension('.com')">.com (1,500 KES/yr)</div>
+                        <div class="domain-extension" onclick="selectExtension('.org')">.org (1,800 KES/yr)</div>
+                        <div class="domain-extension" onclick="selectExtension('.me.ke')">.me.ke (600 KES/yr)</div>
+                        <div class="domain-extension" onclick="selectExtension('.info')">.info (1,200 KES/yr)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section id="comparison" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Plan Comparison</h2>
+                <p class="section-subtitle">Compare features across all hosting plans</p>
+            </div>
+            
+            <div class="comparison-table fade-in">
+                <div class="comparison-header">
+                    <h3>Feature Comparison</h3>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Basic</th>
+                            <th>Pro</th>
+                            <th>Business</th>
+                            <th>Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Websites</td>
+                            <td>1</td>
+                            <td>5</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>SSD Storage</td>
+                            <td>5 GB</td>
+                            <td>20 GB</td>
+                            <td>50 GB</td>
+                            <td>100 GB</td>
+                        </tr>
+                        <tr>
+                            <td>Bandwidth</td>
+                            <td>10 GB</td>
+                            <td>50 GB</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Email Accounts</td>
+                            <td>5</td>
+                            <td>20</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Free SSL</td>
+                            <td><i class="fas fa-check checkmark"></i></td>
+                            <td><i class="fas fa-check checkmark"></i></td>
+                            <td><i class="fas fa-check checkmark"></i></td>
+                            <td><i class="fas fa-check checkmark"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Daily Backups</td>
+                            <td><i class="fas fa-times xmark"></i></td>
+                            <td><i class="fas fa-check checkmark"></i></td>
+                            <td><i class="fas fa-check checkmark"></i></td>
+                            <td><i class="fas fa-check checkmark"></i></td>
+                        </tr>
+                        <tr>
+                            <td>24/7 Support</td>
+                            <td>Business Hours</td>
+                            <td><i class="fas fa-check checkmark"></i></td>
+                            <td><i class="fas fa-check checkmark"></i></td>
+                            <td>VIP Support</td>
+                        </tr>
+                        <tr>
+                            <td>CDN Included</td>
+                            <td><i class="fas fa-times xmark"></i></td>
+                            <td><i class="fas fa-times xmark"></i></td>
+                            <td><i class="fas fa-check checkmark"></i></td>
+                            <td><i class="fas fa-check checkmark"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Dedicated IP</td>
+                            <td><i class="fas fa-times xmark"></i></td>
+                            <td><i class="fas fa-times xmark"></i></td>
+                            <td><i class="fas fa-times xmark"></i></td>
+                            <td><i class="fas fa-check checkmark"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Monthly Price</td>
+                            <td>500 KES</td>
+                            <td>1,200 KES</td>
+                            <td>2,500 KES</td>
+                            <td>5,000 KES</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Hosting Clients Say</h2>
+                <p class="section-subtitle">Trusted by 100+ Kenyan businesses for reliable hosting</p>
+            </div>
+            
+            <div class="testimonial-container">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div style="color: var(--primary-yellow); margin-bottom: 1rem;">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Switched to LilBee hosting 6 months ago and my website loading speed improved by 300%! Their Kenyan support team is always available on WhatsApp."</p>
+                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: var(--light-gray); border-radius: 50%;"></div>
+                            <div>
+                                <h4 style="margin: 0;">David Ochieng</h4>
+                                <p style="opacity: 0.8; margin: 0.25rem 0 0;">E-commerce Store Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div style="color: var(--primary-yellow); margin-bottom: 1rem;">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"The free migration service was seamless. My church website was moved in under 2 hours with zero downtime. Highly recommended!"</p>
+                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: var(--light-gray); border-radius: 50%;"></div>
+                            <div>
+                                <h4 style="margin: 0;">Sarah Kamau</h4>
+                                <p style="opacity: 0.8; margin: 0.25rem 0 0;">Church Website Admin</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div style="color: var(--primary-yellow); margin-bottom: 1rem;">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"As a small business owner, I appreciate the affordable pricing and local support. My salon booking site has been running smoothly for 1 year now."</p>
+                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: var(--light-gray); border-radius: 50%;"></div>
+                            <div>
+                                <h4 style="margin: 0;">Grace Mwende</h4>
+                                <p style="opacity: 0.8; margin: 0.25rem 0 0;">Beauty Salon Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Find answers to common hosting questions</p>
+            </div>
+            
+            <div class="faq-container">
+                <!-- FAQ 1 -->
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>Do you offer free website migration?</span>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer free website migration for all hosting plans. Our team will handle the entire migration process, ensuring zero downtime and seamless transition from your current host.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="faq-item fade-in delay-1">
+                    <div class="faq-question">
+                        <span>What is your uptime guarantee?</span>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We guarantee 99.9% uptime for all hosting plans. Our servers are monitored 24/7, and we use redundant systems to ensure maximum reliability.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="faq-item fade-in delay-2">
+                    <div class="faq-question">
+                        <span>How do I contact support?</span>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer 24/7 support via WhatsApp (+254 117 234 064), phone, and email. For Business and Enterprise plans, we provide dedicated WhatsApp support with guaranteed 30-minute response times.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>Do you offer Kenyan domain names (.co.ke)?</span>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer all Kenyan domain extensions including .co.ke (800 KES/year), .me.ke (600 KES/year), .or.ke, and .ac.ke. We handle all registration paperwork with KENIC.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="faq-item fade-in delay-1">
+                    <div class="faq-question">
+                        <span>What payment methods do you accept?</span>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept M-Pesa, bank transfers, credit/debit cards, and PayPal. Monthly, quarterly, and annual payment options are available with discounts for longer commitments.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 6 -->
+                <div class="faq-item fade-in delay-2">
+                    <div class="faq-question">
+                        <span>Can I upgrade my plan later?</span>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can upgrade anytime at no extra cost. We'll prorate the difference and migrate your account seamlessly. Downgrades are also possible with 30 days notice.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Website Migration Form -->
+    <section id="migration" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Free Website Migration</h2>
+                <p class="section-subtitle">Let us handle your website transfer. Zero downtime guaranteed!</p>
+            </div>
+            
+            <div class="migration-form fade-in">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h3>Request Free Migration</h3>
+                    <p style="color: var(--text-light);">Fill out the form below and we'll migrate your website within 24 hours</p>
+                </div>
+                
+                <form id="migrationForm" class="form-grid">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="WhatsApp Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Current Website URL</option>
+                            <option value="wordpress">WordPress Site</option>
+                            <option value="static">Static HTML Site</option>
+                            <option value="other">Other Platform</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Select Hosting Plan</option>
+                            <option value="basic">Basic (500 KES/month)</option>
+                            <option value="pro">Pro (1,200 KES/month)</option>
+                            <option value="business">Business (2,500 KES/month)</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <textarea placeholder="Any special requirements or notes..." rows="3"></textarea>
+                    </div>
+                </form>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" form="migrationForm" class="cta-primary" style="padding: 1rem 3rem;">
+                        <i class="fas fa-truck-moving"></i> Request Free Migration
+                    </button>
+                    <p style="margin-top: 1rem; color: var(--text-light);">We'll contact you within 1 hour to confirm migration details!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <a href="home.html" class="logo" style="color: white; margin-bottom: 1.5rem; display: inline-flex;">
+                        <div class="logo-icon"></div>
+                        <div class="logo-text">
+                            <span>Lil-Bee</span>
+                            <span>LOGICS</span>
+                        </div>
+                    </a>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1.5rem;">
+                        Premium web hosting solutions for Kenyan businesses. Fast, reliable, and locally supported.
+                    </p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Hosting Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#plans">Web Hosting</a></li>
+                        <li><a href="#domains">Domain Registration</a></li>
+                        <li><a href="#migration">Website Migration</a></li>
+                        <li><a href="home.html#portfolio">Website Development</a></li>
+                        <li><a href="checklist.html">Pricing Calculator</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Client Login</a></li>
+                        <li><a href="#faqs">FAQs</a></li>
+                        <li><a href="https://wa.me/254117234064">WhatsApp Support</a></li>
+                        <li><a href="#migration">Migration Help</a></li>
+                        <li><a href="#">Knowledge Base</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact & Newsletter -->
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+254117234064">+254 117 234 064</a>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/254117234064">24/7 WhatsApp Support</a>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:support@lilbeelogics.co.ke">support@lilbeelogics.co.ke</a>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Nairobi, Kenya</span>
+                        </li>
+                    </ul>
+                    
+                    <!-- Newsletter -->
+                    <div style="margin-top: 1.5rem;">
+                        <h4>Hosting Tips & Updates</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address">
+                            <button type="submit">Subscribe</button>
+                        </form>
+                        <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.5); margin-top: 0.5rem;">
+                            Get hosting tips and special offers
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="copyright">
+                <p>&copy; <span id="currentYear">2024</span> Lil-Bee Logics. All rights reserved.</p>
+                <p style="margin-top: 0.5rem;">
+                    <a href="#" style="color: rgba(255, 255, 255, 0.7); margin-right: 1rem;">Privacy Policy</a>
+                    <a href="#" style="color: rgba(255, 255, 255, 0.7); margin-right: 1rem;">Terms of Service</a>
+                    <a href="#" style="color: rgba(255, 255, 255, 0.7);">Refund Policy</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="checklist.html" class="floating-btn checklist" title="Pricing Checklist">
+            <i class="fas fa-clipboard-check"></i>
+        </a>
+        <a href="home.html" class="floating-btn home" title="Back to Home">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="https://wa.me/254117234064?text=Hi! I need help with hosting. Can you assist me?" class="floating-btn whatsapp" target="_blank" title="Hosting Support">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+        // ===== MOBILE MENU =====
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+        // Toggle menu when hamburger is clicked
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close menu when X button is clicked
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target) && 
+                mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close menu with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ===== SMOOTH SCROLLING =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ===== TESTIMONIAL CAROUSEL =====
+        const testimonialTrack = document.getElementById('testimonialTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        const slideWidth = 350 + 32; // card width + gap
+
+        nextBtn.addEventListener('click', () => {
+            currentSlide = Math.min(currentSlide + 1, 2);
+            testimonialTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentSlide = Math.max(currentSlide - 1, 0);
+            testimonialTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        });
+
+        // Auto-rotate testimonials
+        setInterval(() => {
+            currentSlide = currentSlide >= 2 ? 0 : currentSlide + 1;
+            testimonialTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        }, 5000);
+
+        // ===== DOMAIN SEARCH =====
+        function selectExtension(extension) {
+            document.getElementById('domainExtension').value = extension;
+        }
+
+        function searchDomain() {
+            const domain = document.getElementById('domainSearch').value;
+            const extension = document.getElementById('domainExtension').value;
+            
+            if (!domain) {
+                alert('Please enter a domain name to search');
+                return;
+            }
+            
+            const fullDomain = domain + extension;
+            const resultDiv = document.getElementById('domainResult');
+            
+            // Simulate domain check (in real implementation, this would be an API call)
+            const isAvailable = Math.random() > 0.5;
+            
+            if (isAvailable) {
+                resultDiv.innerHTML = `
+                    <div style="color: var(--hosting-green);">
+                        
+            <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                        <h3 style="margin: 0.5rem 0;">${fullDomain} is available!</h3>
+                        <p>This domain is available for registration</p>
+                        <a href="https://wa.me/254117234064?text=Hi! I want to register the domain: ${fullDomain}. Please help me complete the registration." 
+                           class="cta-primary" 
+                           target="_blank"
+                           style="margin-top: 1rem; display: inline-block;">
+                            <i class="fab fa-whatsapp"></i> Register Now
+                        </a>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div style="color: var(--hosting-red);">
+                        <i class="fas fa-times-circle" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                        <h3 style="margin: 0.5rem 0;">${fullDomain} is not available</h3>
+                        <p>This domain is already registered. Try a different name or extension.</p>
+                        <div style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap;">
+                            <button class="cta-secondary" onclick="searchDomain()" style="padding: 0.5rem 1rem;">
+                                <i class="fas fa-redo"></i> Try Again
+                            </button>
+                            <a href="https://wa.me/254117234064?text=Hi! I tried to register ${fullDomain} but it's taken. Can you suggest alternatives?" 
+                               class="cta-primary" 
+                               target="_blank"
+                               style="padding: 0.5rem 1rem;">
+                                <i class="fas fa-lightbulb"></i> Get Suggestions
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            resultDiv.style.display = 'block';
+            
+            // Smooth scroll to results
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Allow Enter key to trigger domain search
+        document.getElementById('domainSearch').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchDomain();
+            }
+        });
+
+        // ===== FAQ TOGGLE =====
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked FAQ if it wasn't already active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // ===== FORM SUBMISSION =====
+        document.getElementById('migrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = this.querySelector('input[type="text"]').value;
+            const phone = this.querySelector('input[type="tel"]').value;
+            
+            // Construct WhatsApp message
+            const whatsappMessage = `Hi! I've submitted a migration request:\n\n` +
+                                   `Name: ${name}\n` +
+                                   `Phone: ${phone}\n\n` +
+                                   `Please contact me to arrange the migration.`;
+            
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappURL = `https://wa.me/254117234064?text=${encodedMessage}`;
+            
+            // Show confirmation
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Request Sent!';
+            submitBtn.style.background = 'var(--hosting-green)';
+            
+            // Open WhatsApp after 1 second
+            setTimeout(() => {
+                window.open(whatsappURL, '_blank');
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                }, 3000);
+            }, 1000);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== CURRENT YEAR =====
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // ===== NAVBAR SCROLL EFFECT =====
+        let lastScrollTop = 0;
+        const navWrapper = document.querySelector('.nav-wrapper');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Hide/show navbar on scroll
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                navWrapper.style.transform = 'translateY(-100%)';
+            } else {
+                navWrapper.style.transform = 'translateY(0)';
+            }
+            
+            // Add shadow when scrolled
+            if (scrollTop > 10) {
+                navWrapper.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+            } else {
+                navWrapper.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // ===== DOMAIN EXTENSION HIGHLIGHT =====
+        document.querySelectorAll('.domain-extension').forEach(extension => {
+            extension.addEventListener('click', function() {
+                // Remove active class from all extensions
+                document.querySelectorAll('.domain-extension').forEach(el => {
+                    el.style.background = '';
+                    el.style.color = '';
+                    el.style.borderColor = '';
+                });
+                
+                // Add active class to clicked extension
+                this.style.background = 'var(--hosting-blue)';
+                this.style.color = 'white';
+                this.style.borderColor = 'var(--hosting-blue)';
+            });
+        });
+
+        // ===== PLAN CARD HOVER EFFECTS =====
+        document.querySelectorAll('.plan-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const planType = this.classList[1]; // basic, pro, business, or enterprise
+                const allCards = document.querySelectorAll('.plan-card');
+                
+                // Slightly dim other cards
+                allCards.forEach(c => {
+                    if (c !== this) {
+                        c.style.opacity = '0.8';
+                        c.style.transform = 'scale(0.98)';
+                    }
+                });
+                
+                // Highlight this card
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                // Reset all cards
+                document.querySelectorAll('.plan-card').forEach(c => {
+                    c.style.opacity = '';
+                    c.style.transform = '';
+                    c.style.zIndex = '';
+                });
+            });
+        });
+
+        // ===== LAZY LOAD IMAGES (for future image integration) =====
+        if ('loading' in HTMLImageElement.prototype) {
+            // Browser supports lazy loading natively
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.src = img.dataset.src;
+            });
+        } else {
+            // Fallback for browsers without native lazy loading
+            // You could implement IntersectionObserver here if needed
+        }
+
+        // ===== FLOATING BUTTONS HOVER EFFECTS =====
+        document.querySelectorAll('.floating-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'floating-tooltip';
+                tooltip.textContent = this.getAttribute('title');
+                tooltip.style.position = 'absolute';
+                tooltip.style.right = '70px';
+                tooltip.style.background = 'var(--secondary-charcoal)';
+                tooltip.style.color = 'white';
+                tooltip.style.padding = '0.5rem 1rem';
+                tooltip.style.borderRadius = '8px';
+                tooltip.style.fontSize = '0.875rem';
+                tooltip.style.whiteSpace = 'nowrap';
+                tooltip.style.zIndex = '1001';
+                
+                this.appendChild(tooltip);
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                const tooltip = this.querySelector('.floating-tooltip');
+                if (tooltip) {
+                    tooltip.remove();
+                }
+            });
+        });
+
+        // ===== SMOOTH PAGE LOAD =====
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.3s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+            
+            // Trigger initial fade-in animations
+            document.querySelectorAll('.fade-in').forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.animationDelay = `${index * 0.1}s`;
+                }, 100);
+            });
+        });
+
+        // ===== KEYBOARD SHORTCUTS =====
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + / to focus search
+            if ((e.ctrlKey || e.metaKey) && e.key === '/') {
+                e.preventDefault();
+                document.getElementById('domainSearch').focus();
+            }
+            
+            // Escape to close modals/focused elements
+            if (e.key === 'Escape') {
+                document.activeElement.blur();
+            }
+        });
+
+        console.log('LilBee Hosting page initialized successfully! 🚀');
+    </script>
+</body>
+</html>
