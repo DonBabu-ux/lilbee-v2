@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio | LilBee Logics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== ROOT VARIABLES ===== */
+        :root {
+            --primary-yellow: #FFC107;
+            --primary-orange: #FF9800;
+            --secondary-blue: #1A237E;
+            --accent-purple: #8A2BE2;
+            --accent-teal: #00BCD4;
+            --light-gray: #F8FAFC;
+            --white: #FFFFFF;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-creative: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.12);
+            --shadow-glow: 0 0 30px rgba(255, 152, 0, 0.2);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ===== BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-color: var(--light-gray);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        .creative-heading {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .rhyme-text {
+            font-family: var(--font-creative);
+            font-style: italic;
+            position: relative;
+            display: inline-block;
+        }
+
+        .rhyme-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-yellow), var(--accent-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .rhyme-text:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: var(--font-creative);
+            font-weight: 800;
+            font-size: 1.75rem;
+            color: var(--secondary-blue);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-orange));
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: "🐝";
+            font-size: 1.5rem;
+            z-index: 2;
+        }
+
+        .logo-icon::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(from 0deg, transparent 0%, rgba(26, 35, 126, 0.3) 30%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-yellow), var(--primary-orange));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn {
+            padding: 0.75rem 1.75rem;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-orange));
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, #0F172A 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: 
+                radial-gradient(circle at 20% 50%, var(--primary-yellow) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--accent-purple) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, var(--accent-teal) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2.5rem;
+        }
+
+        .rhyme-highlight {
+            background: linear-gradient(90deg, var(--primary-yellow), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-style: italic;
+        }
+
+        /* ===== PORTFOLIO GRID ===== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .portfolio-item {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .portfolio-image {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.9), rgba(138, 43, 226, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-content {
+            padding: 25px;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-tag {
+            background: var(--light-gray);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* ===== PROJECT TYPES SECTION ===== */
+        .project-types {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--white) 0%, #f1f5f9 100%);
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .type-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .type-card:hover {
+            border-color: var(--primary-orange);
+            transform: translateY(-5px);
+        }
+
+        .type-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: white;
+        }
+
+        /* ===== TEMPLATES SECTION ===== */
+        .templates-section {
+            padding: 80px 0;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .template-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .template-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .template-preview {
+            height: 180px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-actions {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .template-card:hover .template-actions {
+            opacity: 1;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary {
+            padding: 12px 28px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-orange));
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-outline {
+            padding: 12px 28px;
+            border-radius: 12px;
+            background: transparent;
+            color: var(--secondary-blue);
+            border: 2px solid var(--secondary-blue);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary-blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.875rem;
+            border-radius: 8px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--secondary-blue);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-yellow);
+            padding-left: 5px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-form button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-orange));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+
+        /* ===== SECTION STYLES ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--secondary-blue);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: var(--secondary-blue);
+                cursor: pointer;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        /* ===== CUSTOM STYLES ===== */
+        .project-rhyme {
+            font-family: var(--font-heading);
+            font-style: italic;
+            color: var(--accent-purple);
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .project-explanation {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-orange);
+            margin: 15px 0;
+        }
+
+        .theme-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .theme-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 2px solid;
+            font-weight: 600;
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-btn.purple {
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .theme-btn.blue {
+            border-color: var(--secondary-blue);
+            color: var(--secondary-blue);
+        }
+
+        .theme-btn.orange {
+            border-color: var(--primary-orange);
+            color: var(--primary-orange);
+        }
+
+        .theme-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .web-example {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .web-example::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        /* ===== PORTFOLIO FILTER ===== */
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            background: transparent;
+            color: var(--text-dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-orange));
+            color: white;
+            border-color: transparent;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-wrapper">
+        <div class="container">
+            <nav class="nav">
+                <a href="home.html" class="logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">LilBee Logics</div>
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#templates">Templates</a></li>
+                    <li><a href="#types">Project Types</a></li>
+                    <li><a href="home.html#consultation">Get Quote</a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title creative-heading">
+                    Where <span class="rhyme-highlight">Code Meets Creativity</span>,
+                    <br>Where <span class="rhyme-highlight">Vision Becomes Reality</span>
+                </h1>
+                <p class="hero-subtitle">
+                    A poetic collection of digital masterpieces,<br>
+                    Each line of code tells a unique story,<br>
+                    Each design solves a business mystery.
+                </p>
+                <a href="#portfolio" class="nav-btn">
+                    <i class="fas fa-arrow-down"></i> Explore Our Stories
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Filter -->
+    <div class="container">
+        <div class="portfolio-filter">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="web">Web Apps</button>
+            <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+            <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+            <button class="filter-btn" data-filter="business">Business Sites</button>
+        </div>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <section id="portfolio" class="container">
+        <div class="section-header">
+            <h2 class="section-title creative-heading">Our Digital Masterpieces</h2>
+            <p class="section-subtitle">Each project is a verse in our digital poetry collection</p>
+        </div>
+        
+        <div class="portfolio-grid">
+            <!-- InstaPesa -->
+            <div class="portfolio-item fade-in" data-category="mobile">
+                <div class="portfolio-image" style="background: linear-gradient(135deg, #00b09b, #96c93d);">
+                    <div class="portfolio-overlay">
+                        <a href="#" class="btn-primary btn-small">
+                            <i class="fas fa-eye"></i> Live Demo
+                        </a>
+                        <a href="#" class="btn-outline btn-small">
+                            <i class="fas fa-code"></i> Get Code
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="project-rhyme">"Money moves with digital grace, at a Kenyan pace"</div>
+                    <h3>InstaPesa Mobile Payment Platform</h3>
+                    
+                    <div class="project-explanation">
+                        <p><strong>Project Type:</strong> Mobile FinTech Application</p>
+                        <p><strong>The Challenge:</strong> Create a seamless mobile payment experience that works perfectly with Kenya's M-Pesa system while providing instant transfers and transaction tracking.</p>
+                        <p><strong>The Solution:</strong> Built with React Native for cross-platform compatibility, featuring real-time transaction updates, biometric authentication, and a user-friendly interface designed specifically for Kenyan users.</p>
+                    </div>
+                    
+                    <div class="theme-buttons">
+                        <button class="theme-btn purple">FinTech Theme</button>
+                        <button class="theme-btn blue">Mobile First</button>
+                        <button class="theme-btn orange">M-Pesa Integration</button>
+                    </div>
+                    
+                    <div class="web-example"></div>
+                    
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">React Native</span>
+                        <span class="portfolio-tag">M-Pesa API</span>
+                        <span class="portfolio-tag">Firebase</span>
+                        <span class="portfolio-tag">Mobile UI/UX</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ngaru Anglican Church -->
+            <div class="portfolio-item fade-in delay-1" data-category="web">
+                <div class="portfolio-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                    <div class="portfolio-overlay">
+                        <a href="#" class="btn-primary btn-small">
+                            <i class="fas fa-eye"></i> Live Demo
+                        </a>
+                        <a href="#" class="btn-outline btn-small">
+                            <i class="fas fa-code"></i> Get Code
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="project-rhyme">"Connecting faith across the land, with technology in hand"</div>
+                    <h3>Ngaru Anglican Church Website</h3>
+                    
+                    <div class="project-explanation">
+                        <p><strong>Project Type:</strong> Church Management System</p>
+                        <p><strong>The Challenge:</strong> Create a digital home for a growing church community with event management, online donations, and sermon archives accessible to all generations.</p>
+                        <p><strong>The Solution:</strong> A responsive PHP-based website with MySQL database, featuring an event calendar with RSVP, secure online donations, sermon library with audio/video streaming, and a mobile-friendly admin panel for content management.</p>
+                    </div>
+                    
+                    <div class="theme-buttons">
+                        <button class="theme-btn purple">Community Theme</button>
+                        <button class="theme-btn blue">Responsive Design</button>
+                        <button class="theme-btn orange">Event Management</button>
+                    </div>
+                    
+                    <div class="web-example"></div>
+                    
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">PHP</span>
+                        <span class="portfolio-tag">MySQL</span>
+                        <span class="portfolio-tag">Calendar API</span>
+                        <span class="portfolio-tag">Payment Gateway</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Salon Website -->
+            <div class="portfolio-item fade-in delay-2" data-category="business">
+                <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                    <div class="portfolio-overlay">
+                        <a href="#" class="btn-primary btn-small">
+                            <i class="fas fa-eye"></i> Live Demo
+                        </a>
+                        <a href="#" class="btn-outline btn-small">
+                            <i class="fas fa-code"></i> Get Code
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="project-rhyme">"Beauty appointments made with ease, businesses grow with grace and breeze"</div>
+                    <h3>Sparkle Beauty Salon Website</h3>
+                    
+                    <div class="project-explanation">
+                        <p><strong>Project Type:</strong> Business Website with Booking System</p>
+                        <p><strong>The Challenge:</strong> Help a local beauty salon transition from phone bookings to an online system that increases bookings and showcases their services.</p>
+                        <p><strong>The Solution:</strong> A beautiful, mobile-first website with online booking system, service catalog, gallery showcase, and automated SMS/email reminders. Integrated with WhatsApp for instant customer communication.</p>
+                    </div>
+                    
+                    <div class="theme-buttons">
+                        <button class="theme-btn purple">Beauty Theme</button>
+                        <button class="theme-btn blue">Booking System</button>
+                        <button class="theme-btn orange">Mobile Optimization</button>
+                    </div>
+                    
+                    <div class="web-example"></div>
+                    
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">HTML/CSS</span>
+                        <span class="portfolio-tag">JavaScript</span>
+                        <span class="portfolio-tag">Booking API</span>
+                        <span class="portfolio-tag">WhatsApp Integration</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sparkle Social Media -->
+            <div class="portfolio-item fade-in" data-category="mobile">
+                <div class="portfolio-image" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                    <div class="portfolio-overlay">
+                        <a href="#" class="btn-primary btn-small">
+                            <i class="fas fa-eye"></i> Live Demo
+                        </a>
+                        <a href="#" class="btn-outline btn-small">
+                            <i class="fas fa-code"></i> Get Code
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="project-rhyme">"Social connections shine so bright, in the Kenyan digital light"</div>
+                    <h3>Sparkle Social Media App</h3>
+                    
+                    <div class="project-explanation">
+                        <p><strong>Project Type:</strong> Social Networking Mobile Application</p>
+                        <p><strong>The Challenge:</strong> Create a Kenyan-centric social media platform that focuses on local communities, businesses, and real connections rather than just global trends.</p>
+                        <p><strong>The Solution:</strong> A React Native app with real-time chat, local business directories, community groups, and content sharing optimized for Kenyan networks. Features include location-based content, Swahili language support, and M-Pesa integration for in-app transactions.</p>
+                    </div>
+                    
+                    <div class="theme-buttons">
+                        <button class="theme-btn purple">Social Theme</button>
+                        <button class="theme-btn blue">Real-time Chat</button>
+                        <button class="theme-btn orange">Local Focus</button>
+                    </div>
+                    
+                    <div class="web-example"></div>
+                    
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">React Native</span>
+                        <span class="portfolio-tag">Firebase</span>
+                        <span class="portfolio-tag">WebSocket</span>
+                        <span class="portfolio-tag">Social API</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- School Management -->
+            <div class="portfolio-item fade-in delay-1" data-category="web">
+                <div class="portfolio-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                    <div class="portfolio-overlay">
+                        <a href="#" class="btn-primary btn-small">
+                            <i class="fas fa-eye"></i> Live Demo
+                        </a>
+                        <a href="#" class="btn-outline btn-small">
+                            <i class="fas fa-code"></i> Get Code
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="project-rhyme">"Education made digital and neat, making school management a treat"</div>
+                    <h3>EduSmart School Management System</h3>
+                    
+                    <div class="project-explanation">
+                        <p><strong>Project Type:</strong> Education Management Platform</p>
+                        <p><strong>The Challenge:</strong> Digitize school operations for a large Kenyan school with 2000+ students, managing fees, exams, parent communication, and staff coordination.</p>
+                        <p><strong>The Solution:</strong> A comprehensive Laravel-based system with separate portals for administrators, teachers, students, and parents. Features include automated fee reminders via SMS, exam result portals, attendance tracking, and parent-teacher communication tools.</p>
+                    </div>
+                    
+                    <div class="theme-buttons">
+                        <button class="theme-btn purple">Education Theme</button>
+                        <button class="theme-btn blue">Multi-portal System</button>
+                        <button class="theme-btn orange">SMS Integration</button>
+                    </div>
+                    
+                    <div class="web-example"></div>
+                    
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">Laravel</span>
+                        <span class="portfolio-tag">MySQL</span>
+                        <span class="portfolio-tag">SMS Gateway</span>
+                        <span class="portfolio-tag">Multi-user System</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-commerce Store -->
+            <div class="portfolio-item fade-in delay-2" data-category="ecommerce">
+                <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                    <div class="portfolio-overlay">
+                        <a href="#" class="btn-primary btn-small">
+                            <i class="fas fa-eye"></i> Live Demo
+                        </a>
+                        <a href="#" class="btn-outline btn-small">
+                            <i class="fas fa-code"></i> Get Code
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="project-rhyme">"Products dance on screens so fine, Kenyan shopping redefined"</div>
+                    <h3>AfrikaBazar E-commerce Platform</h3>
+                    
+                    <div class="project-explanation">
+                        <p><strong>Project Type:</strong> Multi-vendor E-commerce Marketplace</p>
+                        <p><strong>The Challenge:</strong> Create a platform where Kenyan artisans and small businesses can sell their products online with secure payments and reliable delivery tracking.</p>
+                        <p><strong>The Solution:</strong> A React/Node.js e-commerce platform with vendor dashboards, M-Pesa/credit card payments, inventory management, order tracking, and customer reviews. Includes features for local delivery integration and mobile money wallet.</p>
+                    </div>
+                    
+                    <div class="theme-buttons">
+                        <button class="theme-btn purple">Marketplace Theme</button>
+                        <button class="theme-btn blue">Multi-vendor</button>
+                        <button class="theme-btn orange">M-Pesa Payments</button>
+                    </div>
+                    
+                    <div class="web-example"></div>
+                    
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">React.js</span>
+                        <span class="portfolio-tag">Node.js</span>
+                        <span class="portfolio-tag">MongoDB</span>
+                        <span class="portfolio-tag">Payment Gateway</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Types Section -->
+    <section id="types" class="project-types">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title creative-heading">Types of Digital Poetry We Write</h2>
+                <p class="section-subtitle">Each project type has its own rhythm and rhyme</p>
+            </div>
+            
+            <div class="types-grid">
+                <div class="type-card fade-in">
+                    <div class="type-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Applications</h3>
+                    <p class="project-rhyme">"Apps that dance on screens so bright"</p>
+                    <p>Native and cross-platform mobile solutions for iOS and Android, built with React Native and Flutter.</p>
+                </div>
+                
+                <div class="type-card fade-in delay-1">
+                    <div class="type-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Web Applications</h3>
+                    <p class="project-rhyme">"Websites that work day and night"</p>
+                    <p>Responsive web apps with modern frameworks like React, Vue.js, and Node.js backends.</p>
+                </div>
+                
+                <div class="type-card fade-in delay-2">
+                    <div class="type-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>E-commerce Stores</h3>
+                    <p class="project-rhyme">"Stores that make shopping a delight"</p>
+                    <p>Online stores with secure payment gateways, inventory management, and customer portals.</p>
+                </div>
+                
+                <div class="type-card fade-in delay-3">
+                    <div class="type-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Business Websites</h3>
+                    <p class="project-rhyme">"Business sites that shine so right"</p>
+                    <p>Professional websites for businesses, with CMS, booking systems, and lead generation tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Section -->
+    <section id="templates" class="templates-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title creative-heading">Pre-written Verses (Templates)</h2>
+                <p class="section-subtitle">Beautiful starting points for your digital story</p>
+            </div>
+            
+            <div class="templates-grid">
+                <div class="template-card fade-in">
+                    <div class="template-preview">
+                        <div class="template-actions">
+                            <a href="#" class="btn-primary btn-small">Preview</a>
+                            <a href="#" class="btn-outline btn-small">Use Template</a>
+                        </div>
+                    </div>
+                    <div style="padding: 15px;">
+                        <h4>Business Elegance</h4>
+                        <p>Corporate template with professional design</p>
+                    </div>
+                </div>
+                
+                <div class="template-card fade-in delay-1">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <div class="template-actions">
+                            <a href="#" class="btn-primary btn-small">Preview</a>
+                            <a href="#" class="btn-outline btn-small">Use Template</a>
+                        </div>
+                    </div>
+                    <div style="padding: 15px;">
+                        <h4>Creative Portfolio</h4>
+                        <p>Artistic template for creatives and artists</p>
+                    </div>
+                </div>
+                
+                <div class="template-card fade-in delay-2">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <div class="template-actions">
+                            <a href="#" class="btn-primary btn-small">Preview</a>
+                            <a href="#" class="btn-outline btn-small">Use Template</a>
+                        </div>
+                    </div>
+                    <div style="padding: 15px;">
+                        <h4>E-commerce Store</h4>
+                        <p>Complete online store template</p>
+                    </div>
+                </div>
+                
+                <div class="template-card fade-in delay-3">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #00b09b, #96c93d);">
+                        <div class="template-actions">
+                            <a href="#" class="btn-primary btn-small">Preview</a>
+                            <a href="#" class="btn-outline btn-small">Use Template</a>
+                        </div>
+                    </div>
+                    <div style="padding: 15px;">
+                        <h4>Restaurant & Food</h4>
+                        <p>Menu and ordering template</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="hero" style="padding: 100px 0; margin-top: 60px;">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="creative-heading" style="font-size: 2.5rem;">
+                    Ready for your digital poem to be written?
+                </h2>
+                <p class="hero-subtitle" style="margin-bottom: 30px;">
+                    Let's create something beautiful together.<br>
+                    Your success story awaits its next verse.
+                </p>
+                <a href="home.html#consultation" class="nav-btn">
+                    <i class="fas fa-pen-alt"></i> Start Your Story
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <a href="home.html" class="logo" style="color: white; margin-bottom: 20px; display: inline-flex;">
+                        <div class="logo-icon"></div>
+                        <div class="logo-text">LilBee Logics</div>
+                    </a>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 20px;">
+                        Fast web solutions for Kenyan businesses.<br>
+                        Websites delivered in 1-3 days with free fixes included.
+                    </p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#templates">Templates</a></li>
+                        <li><a href="#types">Project Types</a></li>
+                        <li><a href="home.html#consultation">Get Quote</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Get Free Web Tips</h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 15px;">
+                        Subscribe to our newsletter for web tips and exclusive offers.
+                    </p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.5); margin-top: 10px;">
+                        No spam. Unsubscribe anytime.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+254712345678">+254 712 345 678</a>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/254712345678">WhatsApp: +254 712 345 678</a>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:hello@lilbeelogics.co.ke">hello@lilbeelogics.co.ke</a>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Nairobi, Kenya</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2024 LilBee Logics. All rights reserved. | Websites delivered in 1-3 days with free fixes included.</p>
+                <p style="margin-top: 10px;">
+                    <a href="#" style="color: rgba(255, 255, 255, 0.7); margin-right: 15px;">Privacy Policy</a>
+                    <a href="#" style="color: rgba(255, 255, 255, 0.7);">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Portfolio Filter
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                const portfolioItems = document.querySelectorAll('.portfolio-item');
+                
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 400);
+                    }
+                });
+            });
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            mobileMenuBtn.innerHTML = navLinks.style.display === 'flex' 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.style.display = 'none';
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+
+        // Update year in copyright
+        document.querySelector('.copyright p').innerHTML = document.querySelector('.copyright p').innerHTML.replace('2024', new Date().getFullYear());
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all elements
+        document.querySelectorAll('.portfolio-item, .type-card, .template-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Theme buttons interaction
+        document.querySelectorAll('.theme-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active state from all buttons in same group
+                const parent = this.closest('.portfolio-content');
+                parent.querySelectorAll('.theme-btn').forEach(btn => {
+                    btn.style.background = 'transparent';
+                    btn.style.color = '';
+                });
+                
+                // Add active state to clicked button
+                if (this.classList.contains('purple')) {
+                    this.style.background = 'var(--accent-purple)';
+                    this.style.color = 'white';
+                } else if (this.classList.contains('blue')) {
+                    this.style.background = 'var(--secondary-blue)';
+                    this.style.color = 'white';
+                } else if (this.classList.contains('orange')) {
+                    this.style.background = 'var(--primary-orange)';
+                    this.style.color = 'white';
+                }
+            });
+        });
+
+        // Template preview
+        document.querySelectorAll('.template-actions .btn-primary').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const templateName = this.closest('.template-card').querySelector('h4').textContent;
+                alert(`Previewing template: ${templateName}\n\nIn a real implementation, this would open a modal with the template preview.`);
+            });
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            if (email) {
+                alert(`Thank you for subscribing with: ${email}\nYou'll receive our next web tips newsletter.`);
+                this.reset();
+            }
+        });
+    </script>
+</body>
+</html>
