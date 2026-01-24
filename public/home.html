@@ -49,6 +49,7 @@
             --gradient-dark: linear-gradient(135deg, #1A237E 0%, #0F172A 100%);
             --gradient-purple: linear-gradient(135deg, #8A2BE2 0%, #4B0082 100%);
             --gradient-whatsapp: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
         }
 
         [data-theme="dark"] {
@@ -372,6 +373,7 @@
             justify-content: center;
             border-radius: 8px;
             transition: var(--transition);
+            z-index: 1101;
         }
         
         .mobile-menu-btn:hover {
@@ -380,23 +382,22 @@
         
         .mobile-menu {
             position: fixed;
-            top: 80px;
+            top: 0;
             left: 0;
             width: 100%;
-            background: var(--card-bg);
+            height: 100vh;
+            background: var(--bg-primary);
             backdrop-filter: blur(20px);
-            padding: 2rem;
-            transform: translateY(-100%);
-            opacity: 0;
+            padding: 100px 2rem 2rem;
+            transform: translateX(-100%);
             transition: var(--transition);
-            z-index: 999;
+            z-index: 1000;
             box-shadow: var(--shadow);
-            border-top: 1px solid var(--border-color);
+            overflow-y: auto;
         }
         
         .mobile-menu.active {
-            transform: translateY(0);
-            opacity: 1;
+            transform: translateX(0);
         }
         
         .mobile-links {
@@ -410,22 +411,23 @@
         .mobile-links li a {
             text-decoration: none;
             color: var(--text-dark);
-            font-weight: 500;
-            font-size: 1.1rem;
+            font-weight: 600;
+            font-size: 1.2rem;
             display: block;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--border-color);
             transition: var(--transition);
         }
         
         .mobile-links li a:hover {
             color: var(--primary-orange);
             padding-left: 1rem;
+            border-color: var(--primary-orange);
         }
         
         .mobile-auth {
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-color);
             display: flex;
             flex-direction: column;
             gap: 1rem;
@@ -439,6 +441,7 @@
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
+            font-size: 1.1rem;
         }
         
         .mobile-auth .login-link {
@@ -451,188 +454,214 @@
             text-align: center;
         }
         
-        /* ===== ROBOT AVATAR ===== */
-        .robot-container {
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            z-index: 1102;
+        }
+        
+        /* ===== JARVIS-STYLE ROBOT AVATAR ===== */
+        .jarvis-container {
             position: fixed;
-            bottom: 130px;
+            bottom: 30px;
             left: 30px;
             z-index: 1002;
             display: flex;
             flex-direction: column;
             align-items: center;
-            pointer-events: none;
         }
         
-        .robot-avatar {
-            width: 70px;
+        .jarvis-avatar {
+            width: 100px;
             height: 100px;
             position: relative;
             cursor: pointer;
             pointer-events: auto;
             transform-origin: center bottom;
+            animation: float 3s ease-in-out infinite;
         }
         
-        .robot-head {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #FFC107, #FF9800);
+        .jarvis-face {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #0F172A, #1E293B);
             border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--primary-yellow);
+        }
+        
+        .jarvis-face::before {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 10px;
+            top: 20%;
+            left: 25%;
+            width: 50%;
+            height: 50%;
+            background: linear-gradient(135deg, #00BCD4, #2196F3);
+            border-radius: 50%;
+            opacity: 0.3;
+            filter: blur(20px);
+        }
+        
+        .jarvis-visor {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.1), rgba(33, 150, 243, 0.2));
+            border-radius: 50%;
+            border: 2px solid rgba(255, 193, 7, 0.5);
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .jarvis-eyes {
+            position: absolute;
+            top: 35px;
+            left: 25px;
+            right: 25px;
+            height: 20px;
+            display: flex;
+            justify-content: space-around;
             z-index: 3;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            animation: robotHeadBob 3s ease-in-out infinite;
         }
         
-        .robot-eye {
-            width: 10px;
-            height: 10px;
-            background: white;
+        .jarvis-eye {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #00BCD4, #2196F3);
             border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 20px rgba(33, 150, 243, 0.5);
+            animation: eyeGlow 2s infinite alternate;
+        }
+        
+        .jarvis-eye::before {
+            content: '';
             position: absolute;
-            top: 15px;
-        }
-        
-        .robot-eye.left {
-            left: 12px;
-            animation: blink 3s infinite;
-        }
-        
-        .robot-eye.right {
-            right: 12px;
-            animation: blink 3s infinite 0.1s;
-        }
-        
-        .robot-mouth {
-            width: 25px;
+            top: 5px;
+            left: 5px;
+            width: 8px;
             height: 8px;
             background: white;
-            border-radius: 10px;
-            position: absolute;
-            bottom: 10px;
-            left: 12.5px;
-            animation: smile 2s infinite;
+            border-radius: 50%;
         }
         
-        .robot-body {
-            width: 60px;
-            height: 50px;
-            background: linear-gradient(135deg, #1A237E, #0F172A);
-            border-radius: 20px;
+        .jarvis-mouth {
             position: absolute;
-            top: 40px;
-            left: 5px;
-            z-index: 2;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            bottom: 25px;
+            left: 30px;
+            right: 30px;
+            height: 10px;
+            background: linear-gradient(135deg, #FF4081, #F50057);
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(245, 0, 87, 0.5);
+            animation: speak 0.3s infinite alternate;
         }
         
-        .robot-arm {
-            width: 40px;
-            height: 12px;
-            background: linear-gradient(135deg, #1A237E, #0F172A);
-            border-radius: 6px;
+        .jarvis-halo {
             position: absolute;
-            top: 45px;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 3px solid rgba(255, 193, 7, 0.3);
+            border-radius: 50%;
+            animation: haloSpin 20s linear infinite;
+            pointer-events: none;
         }
         
-        .robot-arm.left-arm {
+        .jarvis-halo::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: var(--primary-yellow);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--primary-yellow);
+        }
+        
+        .jarvis-glow {
+            position: absolute;
+            top: -30px;
             left: -30px;
-            transform-origin: right center;
-            animation: waveLeft 2s infinite;
-        }
-        
-        .robot-arm.right-arm {
             right: -30px;
-            transform-origin: left center;
-            animation: waveRight 2s infinite 0.5s;
-        }
-        
-        .robot-leg {
-            width: 15px;
-            height: 30px;
-            background: linear-gradient(135deg, #1A237E, #0F172A);
-            border-radius: 8px;
-            position: absolute;
             bottom: -30px;
+            background: radial-gradient(circle, rgba(255, 193, 7, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: glowPulse 2s ease-in-out infinite;
         }
         
-        .robot-leg.left-leg {
-            left: 15px;
-            animation: jumpLeft 1s infinite;
-        }
-        
-        .robot-leg.right-leg {
-            right: 15px;
-            animation: jumpRight 1s infinite 0.5s;
-        }
-        
-        .robot-message {
+        .jarvis-message {
             position: absolute;
             bottom: 120px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--gradient-primary);
-            color: white;
-            padding: 0.75rem 1.5rem;
+            background: var(--gradient-gold);
+            color: var(--secondary-charcoal);
+            padding: 1rem 2rem;
             border-radius: var(--border-radius-sm);
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 1rem;
             white-space: nowrap;
             opacity: 0;
             visibility: hidden;
             transition: var(--transition);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-hover);
             z-index: 1003;
+            min-width: 200px;
+            text-align: center;
         }
         
-        .robot-message.show {
+        .jarvis-message.show {
             opacity: 1;
             visibility: visible;
-            animation: messagePop 4s forwards;
+            animation: jarvisMessage 4s forwards;
         }
         
-        @keyframes robotHeadBob {
+        @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0); }
-            25% { transform: translateY(-5px) rotate(2deg); }
-            75% { transform: translateY(-3px) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
         }
         
-        @keyframes waveLeft {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(-45deg); }
+        @keyframes eyeGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(33, 150, 243, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(33, 150, 243, 0.8); }
         }
         
-        @keyframes waveRight {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(45deg); }
+        @keyframes speak {
+            0% { height: 10px; }
+            100% { height: 15px; }
         }
         
-        @keyframes jumpLeft {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes haloSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
-        @keyframes jumpRight {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
         
-        @keyframes blink {
-            0%, 90%, 100% { height: 10px; }
-            95% { height: 2px; }
-        }
-        
-        @keyframes smile {
-            0%, 100% { width: 25px; }
-            50% { width: 30px; }
-        }
-        
-        @keyframes messagePop {
-            0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+        @keyframes jarvisMessage {
+            0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
             10% { opacity: 1; transform: translateX(-50%) translateY(0); }
             90% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(-10px); visibility: hidden; }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); visibility: hidden; }
         }
         
         /* ===== CONFETTI CANVAS ===== */
@@ -1494,33 +1523,43 @@
                 min-width: 300px;
             }
             
-            .mobile-menu {
-                top: 70px;
-            }
-            
-            .robot-container {
+            .jarvis-container {
                 bottom: 120px;
                 left: 20px;
             }
             
-            .robot-avatar {
-                width: 60px;
-                height: 85px;
+            .jarvis-avatar {
+                width: 80px;
+                height: 80px;
             }
             
-            .robot-head {
-                width: 40px;
-                height: 40px;
+            .jarvis-face {
+                width: 80px;
+                height: 80px;
             }
             
-            .robot-body {
-                width: 50px;
-                height: 45px;
+            .jarvis-eyes {
+                top: 25px;
+                left: 20px;
+                right: 20px;
             }
             
-            .robot-arm {
-                width: 35px;
-                height: 10px;
+            .jarvis-eye {
+                width: 15px;
+                height: 15px;
+            }
+            
+            .jarvis-mouth {
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+            }
+            
+            .jarvis-message {
+                bottom: 100px;
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+                min-width: 180px;
             }
             
             .floating-buttons {
@@ -1574,46 +1613,52 @@
                 display: none;
             }
             
-            .mobile-menu {
-                padding: 1.5rem;
-            }
-            
-            .robot-container {
-                bottom: 110px;
+            .jarvis-container {
+                bottom: 100px;
                 left: 15px;
             }
             
-            .robot-avatar {
-                width: 50px;
-                height: 70px;
+            .jarvis-avatar {
+                width: 60px;
+                height: 60px;
             }
             
-            .robot-head {
-                width: 35px;
-                height: 35px;
-                left: 7.5px;
+            .jarvis-face {
+                width: 60px;
+                height: 60px;
             }
             
-            .robot-body {
-                width: 40px;
-                height: 35px;
-                left: 5px;
+            .jarvis-eyes {
+                top: 20px;
+                left: 15px;
+                right: 15px;
+                height: 15px;
             }
             
-            .robot-arm {
-                width: 30px;
+            .jarvis-eye {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .jarvis-mouth {
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
                 height: 8px;
             }
             
-            .robot-leg {
-                width: 12px;
-                height: 25px;
+            .jarvis-halo {
+                top: -5px;
+                left: -5px;
+                right: -5px;
+                bottom: -5px;
             }
             
-            .robot-message {
-                font-size: 0.8rem;
+            .jarvis-message {
+                bottom: 80px;
                 padding: 0.5rem 1rem;
-                bottom: 100px;
+                font-size: 0.8rem;
+                min-width: 160px;
             }
         }
         
@@ -1635,8 +1680,9 @@
                 font-size: 2rem;
             }
             
-            .robot-container {
-                display: none;
+            .jarvis-container {
+                bottom: 80px;
+                left: 10px;
             }
         }
     </style>
@@ -1668,7 +1714,7 @@
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
                     <li><a href="#technologies">Technologies</a></li>
                     <li><a href="#media">Our Work</a></li>
                     <li><a href="#consultation">Get Quote</a></li>
@@ -1689,10 +1735,13 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">
+            <i class="fas fa-times"></i>
+        </button>
         <ul class="mobile-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="#technologies">Technologies</a></li>
             <li><a href="#media">Our Work</a></li>
             <li><a href="#consultation">Get Quote</a></li>
@@ -1704,22 +1753,21 @@
         </div>
     </div>
 
-    <!-- Robot Avatar -->
-    <div class="robot-container">
-        <div class="robot-avatar" id="robotAvatar">
-            <div class="robot-head">
-                <div class="robot-eye left"></div>
-                <div class="robot-eye right"></div>
-                <div class="robot-mouth"></div>
+    <!-- JARVIS Robot Avatar -->
+    <div class="jarvis-container">
+        <div class="jarvis-avatar" id="jarvisAvatar">
+            <div class="jarvis-face">
+                <div class="jarvis-visor"></div>
+                <div class="jarvis-eyes">
+                    <div class="jarvis-eye"></div>
+                    <div class="jarvis-eye"></div>
+                </div>
+                <div class="jarvis-mouth"></div>
             </div>
-            <div class="robot-body">
-                <div class="robot-arm left-arm"></div>
-                <div class="robot-arm right-arm"></div>
-                <div class="robot-leg left-leg"></div>
-                <div class="robot-leg right-leg"></div>
-            </div>
+            <div class="jarvis-halo"></div>
+            <div class="jarvis-glow"></div>
         </div>
-        <div class="robot-message" id="robotMessage">
+        <div class="jarvis-message" id="jarvisMessage">
             Welcome to LilBee Logics!
         </div>
     </div>
@@ -2461,7 +2509,7 @@
                     <ul class="footer-links">
                         <li><a href="#home" data-en="Home" data-sw="Nyumbani">Home</a></li>
                         <li><a href="#services" data-en="Services" data-sw="Huduma">Services</a></li>
-                        <li><a href="#portfolio" data-en="Portfolio" data-sw="Portfolio">Portfolio</a></li>
+                        <li><a href="portfolio.html" data-en="Portfolio" data-sw="Portfolio">Portfolio</a></li>
                         <li><a href="#technologies" data-en="Technologies" data-sw="Teknolojia">Technologies</a></li>
                         <li><a href="#consultation" data-en="Get Quote" data-sw="Pata Bei">Get Quote</a></li>
                     </ul>
@@ -2631,58 +2679,131 @@
         const savedLang = localStorage.getItem('language') || 'en';
         document.querySelector(`.lang-btn[data-lang="${savedLang}"]`)?.click();
 
-        // ===== MOBILE MENU =====
+        // ===== MOBILE MENU FIX =====
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
 
+        // Toggle menu when hamburger is clicked
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-            
-            // Prevent body scrolling when menu is open
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
 
-        // Close mobile menu when clicking a link
+        // Close menu when X button is clicked
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close menu when clicking a link
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                 document.body.style.overflow = '';
             });
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && mobileMenu.classList.contains('active')) {
+            if (!mobileMenu.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target) && 
+                mobileMenu.classList.contains('active')) {
                 mobileMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                 document.body.style.overflow = '';
             }
         });
 
-        // ===== ROBOT AVATAR =====
-        const robotAvatar = document.getElementById('robotAvatar');
-        const robotMessage = document.getElementById('robotMessage');
+        // Close menu with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ===== JARVIS ROBOT AVATAR =====
+        const jarvisAvatar = document.getElementById('jarvisAvatar');
+        const jarvisMessage = document.getElementById('jarvisMessage');
         const confettiCanvas = document.getElementById('confettiCanvas');
         let confettiActive = false;
+        let messageQueue = [];
+        let isJarvisSpeaking = false;
+
+        // JARVIS messages for different interactions
+        const jarvisMessages = [
+            "Welcome to LilBee Logics! I'm JARVIS, your AI assistant.",
+            "Need help? I can guide you through our services.",
+            "Fast websites in 1-3 days guaranteed!",
+            "Click any section to learn more about our work.",
+            "Special offer: Book a consultation today!"
+        ];
 
         // Show welcome message on page load
         window.addEventListener('load', () => {
             setTimeout(() => {
-                robotMessage.classList.add('show');
+                showJarvisMessage(jarvisMessages[0]);
                 triggerConfetti();
-            }, 1000);
+            }, 2000);
         });
 
-        // Click robot to show message
-        robotAvatar.addEventListener('click', () => {
-            if (!robotMessage.classList.contains('show')) {
-                robotMessage.classList.add('show');
-                triggerConfetti();
+        // Click JARVIS to show messages
+        jarvisAvatar.addEventListener('click', () => {
+            const randomMessage = jarvisMessages[Math.floor(Math.random() * jarvisMessages.length)];
+            showJarvisMessage(randomMessage);
+            triggerConfetti();
+        });
+
+        // Show JARVIS message with queue system
+        function showJarvisMessage(message) {
+            messageQueue.push(message);
+            
+            if (!isJarvisSpeaking) {
+                processMessageQueue();
             }
+        }
+
+        function processMessageQueue() {
+            if (messageQueue.length === 0) {
+                isJarvisSpeaking = false;
+                return;
+            }
+            
+            isJarvisSpeaking = true;
+            const message = messageQueue.shift();
+            jarvisMessage.textContent = message;
+            jarvisMessage.classList.add('show');
+            
+            // Animate mouth while speaking
+            const mouth = jarvisAvatar.querySelector('.jarvis-mouth');
+            mouth.style.animation = 'speak 0.3s infinite alternate';
+            
+            setTimeout(() => {
+                jarvisMessage.classList.remove('show');
+                mouth.style.animation = '';
+                
+                // Wait before showing next message
+                setTimeout(() => {
+                    processMessageQueue();
+                }, 1000);
+            }, 4000);
+        }
+
+        // JARVIS responds to section clicks
+        document.querySelectorAll('section, .service-card-advanced, .portfolio-item, .faq-question').forEach(element => {
+            element.addEventListener('click', () => {
+                if (isJarvisSpeaking) return;
+                
+                const responses = [
+                    "Great choice! This is one of our specialties.",
+                    "Excellent! We have extensive experience with this.",
+                    "Perfect! This service is ideal for growing businesses.",
+                    "Smart choice! We've delivered many successful projects like this."
+                ];
+                
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                showJarvisMessage(randomResponse);
+            });
         });
 
         // Confetti function
@@ -2697,7 +2818,7 @@
             canvas.style.display = 'block';
             
             const confettiPieces = [];
-            const colors = ['#FFC107', '#FF9800', '#1A237E', '#8A2BE2', '#25D366', '#FF4081'];
+            const colors = ['#FFC107', '#FF9800', '#1A237E', '#00BCD4', '#2196F3', '#FF4081'];
             
             // Create confetti pieces
             for (let i = 0; i < 150; i++) {
@@ -2773,7 +2894,6 @@
                     // Close mobile menu if open
                     if (mobileMenu.classList.contains('active')) {
                         mobileMenu.classList.remove('active');
-                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                         document.body.style.overflow = '';
                     }
                     
@@ -2814,8 +2934,8 @@
             
             // Get form data
             const formData = new FormData(this);
-            const name = formData.get('name') || 'Not provided';
-            const phone = formData.get('phone') || 'Not provided';
+            const name = this.querySelector('input[type="text"]').value || 'Not provided';
+            const phone = this.querySelector('input[type="tel"]').value || 'Not provided';
             const service = this.querySelector('select').value;
             
             // Create WhatsApp message
@@ -2824,9 +2944,9 @@
             
             // Show success message and redirect to WhatsApp
             if(currentLang === 'en') {
-                alert('Thank you! We\'re redirecting you to WhatsApp to continue the conversation.');
+                showJarvisMessage("Excellent! I'm connecting you with our team on WhatsApp now!");
             } else {
-                alert('Asante! Tunakuelekeza kwenye WhatsApp kuendelea na mazungumzo.');
+                showJarvisMessage("Nzuri! Ninakuunganisha na timu yetu kwenye WhatsApp sasa!");
             }
             
             // Open WhatsApp
@@ -2846,6 +2966,9 @@
             
             document.getElementById('calculatedPrice').textContent = 
                 total.toLocaleString('en-KE', { style: 'currency', currency: 'KES' });
+            
+            // JARVIS response
+            showJarvisMessage(`Your estimated cost is ${total.toLocaleString()} KES. Great value!`);
         }
 
         // Initialize calculator
@@ -2884,6 +3007,10 @@
             question.addEventListener('click', () => {
                 const faqItem = question.parentElement;
                 faqItem.classList.toggle('active');
+                
+                // JARVIS response for FAQ clicks
+                const questionText = question.querySelector('span').textContent;
+                showJarvisMessage(`Answering your question about: "${questionText.substring(0, 30)}..."`);
             });
         });
 
@@ -2897,6 +3024,15 @@
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
                     entry.target.classList.add('fade-in');
+                    
+                    // JARVIS comments on section visibility
+                    if (entry.target.id === 'services') {
+                        showJarvisMessage("Check out our premium services! Each one delivers exceptional value.");
+                    } else if (entry.target.id === 'portfolio') {
+                        showJarvisMessage("Our recent work showcases what we can do for your business!");
+                    } else if (entry.target.id === 'technologies') {
+                        showJarvisMessage("We use cutting-edge technologies for fast, secure solutions.");
+                    }
                 }
             });
         }, observerOptions);
@@ -2934,6 +3070,28 @@
             if (whatsappBtn) {
                 whatsappBtn.href = 'https://wa.me/254117234064?text=Hi! I\'m interested in your web services. Can you provide me with more information?';
             }
+        });
+
+        // ===== JARVIS EYE FOLLOWING =====
+        document.addEventListener('mousemove', (e) => {
+            const eyes = document.querySelectorAll('.jarvis-eye');
+            const avatar = document.querySelector('.jarvis-avatar');
+            const avatarRect = avatar.getBoundingClientRect();
+            
+            const avatarCenterX = avatarRect.left + avatarRect.width / 2;
+            const avatarCenterY = avatarRect.top + avatarRect.height / 2;
+            
+            const angle = Math.atan2(e.clientY - avatarCenterY, e.clientX - avatarCenterX);
+            
+            eyes.forEach(eye => {
+                const pupil = eye.querySelector('.jarvis-eye::before') || eye;
+                const maxMove = 3;
+                
+                const moveX = Math.cos(angle) * maxMove;
+                const moveY = Math.sin(angle) * maxMove;
+                
+                eye.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
         });
     </script>
 </body>
