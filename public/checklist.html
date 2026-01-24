@@ -14,6 +14,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
@@ -34,14 +35,166 @@
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 15px;
+            padding: 0;
             font-size: 14px;
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
             width: 100%;
+            padding: 15px;
+        }
+
+        /* Top Navigation */
+        .top-navigation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary-orange);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--secondary-blue);
+            text-decoration: none;
+        }
+
+        .nav-brand-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        .hamburger-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--secondary-blue);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: flex;
+            }
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            width: 100%;
+            background: white;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: var(--shadow);
+            padding: 1rem;
+            display: none;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            display: block;
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .mobile-menu-links li a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 1rem;
+            display: block;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-links li a:hover {
+            background: var(--light-gray);
+            color: var(--primary-orange);
+        }
+
+        .desktop-nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-orange);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Adjust body padding for fixed nav */
+        body {
+            padding-top: 56px;
         }
 
         /* Header */
@@ -52,6 +205,7 @@
             margin-bottom: 20px;
             box-shadow: var(--shadow);
             border-left: 5px solid var(--primary-orange);
+            margin-top: 15px;
         }
 
         .header-top {
@@ -160,6 +314,49 @@
             font-size: 16px;
         }
 
+        /* Mobile button styles */
+        @media (max-width: 480px) {
+            .btn {
+                padding: 12px;
+                min-width: auto;
+                flex: 1;
+            }
+            
+            .btn span {
+                display: none;
+            }
+            
+            .btn i {
+                font-size: 18px;
+                margin: 0;
+            }
+            
+            .action-buttons {
+                gap: 8px;
+            }
+            
+            .btn::after {
+                content: attr(title);
+                position: absolute;
+                top: -35px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 5px 10px;
+                border-radius: 4px;
+                font-size: 12px;
+                white-space: nowrap;
+                opacity: 0;
+                transition: opacity 0.3s;
+                pointer-events: none;
+            }
+            
+            .btn:hover::after {
+                opacity: 1;
+            }
+        }
+
         /* Contact Info */
         .contact-info {
             display: grid;
@@ -261,12 +458,14 @@
         }
 
         .form-control {
-            padding: 10px 12px;
+            padding: 12px;
             border: 2px solid var(--border-color);
             border-radius: 8px;
             font-size: 14px;
             transition: all 0.3s ease;
             width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .form-control:focus {
@@ -387,6 +586,12 @@
             box-shadow: var(--shadow-hover);
         }
 
+        @media (max-width: 768px) {
+            .section-card:hover {
+                transform: none;
+            }
+        }
+
         .section-header {
             display: flex;
             flex-direction: column;
@@ -444,6 +649,7 @@
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
+            touch-action: manipulation;
         }
 
         @media (min-width: 480px) {
@@ -497,8 +703,8 @@
         }
 
         .custom-checkbox {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border: 2px solid var(--border-color);
             border-radius: 4px;
             display: flex;
@@ -507,6 +713,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             flex-shrink: 0;
+            font-size: 14px;
         }
 
         .custom-checkbox.selected {
@@ -527,9 +734,12 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border-color);
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            touch-action: manipulation;
         }
 
         @media (min-width: 480px) {
@@ -558,6 +768,37 @@
 
         .feature-item.selected {
             background: #e8f5e8;
+            border-color: var(--success-green);
+        }
+
+        /* Mobile Section Navigation */
+        .mobile-section-nav {
+            display: none;
+            position: sticky;
+            top: 56px;
+            z-index: 99;
+            background: white;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-section-nav {
+                display: block;
+            }
+        }
+
+        .section-dropdown {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-weight: 600;
+            background: white;
+            font-size: 14px;
+            cursor: pointer;
         }
 
         /* Summary Section */
@@ -567,9 +808,6 @@
             padding: 20px;
             margin-top: 20px;
             box-shadow: var(--shadow);
-            position: sticky;
-            bottom: 15px;
-            z-index: 100;
         }
 
         .summary-header {
@@ -664,6 +902,7 @@
             transition: all 0.3s ease;
             justify-content: center;
             font-size: 14px;
+            text-align: center;
         }
 
         .share-btn.whatsapp {
@@ -684,6 +923,12 @@
         .share-btn:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-hover);
+        }
+
+        @media (max-width: 768px) {
+            .share-btn:hover {
+                transform: none;
+            }
         }
 
         /* Footer */
@@ -746,42 +991,6 @@
             line-height: 1;
         }
 
-        /* Responsive Design */
-        @media (max-width: 767px) {
-            .btn span {
-                display: none;
-            }
-            
-            .btn i {
-                margin-right: 0;
-            }
-            
-            .btn {
-                min-width: 40px;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                justify-content: center;
-            }
-            
-            .btn::after {
-                content: attr(title);
-                position: absolute;
-                top: -30px;
-                background: #333;
-                color: white;
-                padding: 5px 10px;
-                border-radius: 4px;
-                font-size: 12px;
-                white-space: nowrap;
-                display: none;
-            }
-            
-            .btn:hover::after {
-                display: block;
-            }
-        }
-
         /* Animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -792,25 +1001,45 @@
             animation: fadeIn 0.5s ease forwards;
         }
 
-        /* Print Styles */
+        /* Print Styles for PDF */
         @media print {
             body {
                 background: white;
                 padding: 0;
+                margin: 0;
+                font-size: 12px;
             }
 
+            .top-navigation,
             .action-buttons,
             .sharing-options,
             .checklist-footer,
             .btn,
-            .summary-section {
+            .mobile-section-nav,
+            .mobile-menu,
+            .hamburger-menu {
                 display: none !important;
+            }
+
+            .container {
+                padding: 0;
+                margin: 0;
+                max-width: 100%;
             }
 
             .section-card {
                 break-inside: avoid;
                 border: 1px solid #ddd;
                 box-shadow: none;
+                margin-bottom: 10px;
+                page-break-inside: avoid;
+            }
+
+            .checklist-header,
+            .client-info,
+            .summary-section {
+                box-shadow: none;
+                border: 1px solid #ddd;
             }
         }
 
@@ -850,67 +1079,148 @@
         .mb-3 { margin-bottom: 15px; }
 
         /* Touch-friendly improvements */
-        .option-item,
-        .feature-item,
-        .btn,
-        .share-btn {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        @media (hover: none) {
-            .option-item:hover,
-            .feature-item:hover,
-            .btn:hover,
-            .share-btn:hover {
-                transform: none;
-            }
-        }
-
-        /* Mobile menu for sections */
-        .mobile-section-nav {
-            display: none;
-        }
-
-        @media (max-width: 767px) {
-            .mobile-section-nav {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background: white;
-                border-radius: 12px;
-                padding: 15px;
-                margin-bottom: 15px;
-                position: sticky;
-                top: 0;
-                z-index: 99;
-                box-shadow: var(--shadow);
+        @media (hover: none) and (pointer: coarse) {
+            .option-item,
+            .feature-item,
+            .btn,
+            .share-btn {
+                min-height: 44px;
             }
             
-            .section-dropdown {
-                flex: 1;
-                padding: 10px;
-                border: 2px solid var(--border-color);
-                border-radius: 8px;
-                font-weight: 600;
-                background: white;
+            .custom-checkbox {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .form-control {
+                font-size: 16px;
+                padding: 14px;
+            }
+        }
+
+        /* Loading overlay for PDF generation */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-orange);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Enhanced mobile styles */
+        @media (max-width: 360px) {
+            .contact-item {
+                font-size: 12px;
+                padding: 6px;
+            }
+            
+            .section-title {
+                font-size: 14px;
+            }
+            
+            .option-name,
+            .feature-name span {
+                font-size: 13px;
+            }
+            
+            .option-price {
+                font-size: 12px;
+            }
+        }
+
+        /* iPad and tablet optimizations */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .sections-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .form-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
     </style>
 </head>
 <body>
+    <!-- Top Navigation -->
+    <div class="top-navigation">
+        <a href="home.html" class="nav-brand">
+            <div class="nav-brand-icon">
+                <i class="fas fa-bee"></i>
+            </div>
+            <span>LilBee Logics</span>
+        </a>
+        
+        <button class="hamburger-menu" id="hamburgerMenu">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="desktop-nav">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="#portfolio" class="nav-link">Portfolio</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="checklist.html" style="background: var(--primary-orange); color: white;">Checklist</a></li>
+        </ul>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div>Generating PDF...</div>
+    </div>
+
     <div class="container">
         <!-- Mobile Section Navigation -->
         <div class="mobile-section-nav">
-            <select class="section-dropdown" onchange="scrollToSection(this.value)">
+            <select class="section-dropdown" onchange="scrollToSection(this.value)" id="sectionDropdown">
                 <option value="">Jump to Section...</option>
-                <option value="client-info">Client Info</option>
-                <option value="section1">Project Type</option>
-                <option value="section2">Database & Backend</option>
-                <option value="section3">Hosting & Deployment</option>
-                <option value="section4">Design & Branding</option>
-                <option value="section5">Functional Features</option>
-                <option value="section6">Timeline & Support</option>
-                <option value="summary">Summary</option>
+                <option value="client-info">📋 Client Info</option>
+                <option value="section1">🏗️ Project Type</option>
+                <option value="section2">🗄️ Database & Backend</option>
+                <option value="section3">🌐 Hosting & Deployment</option>
+                <option value="section4">🎨 Design & Branding</option>
+                <option value="section5">⚙️ Functional Features</option>
+                <option value="section6">⏰ Timeline & Support</option>
+                <option value="summary">💰 Summary</option>
             </select>
         </div>
 
@@ -919,22 +1229,22 @@
             <div class="header-top">
                 <div class="logo">
                     <div class="logo-icon">
-                        <i class="fas fa-bee"></i>
+                        <i class="fas fa-clipboard-check"></i>
                     </div>
-                    <span>LilBee Logics - Project Checklist</span>
+                    <span>Project Checklist & Quote Generator</span>
                 </div>
                 <div class="action-buttons">
                     <button class="btn btn-primary" onclick="saveAsPDF()" title="Save as PDF">
                         <i class="fas fa-file-pdf"></i>
-                        <span class="hide-on-mobile">Save as PDF</span>
+                        <span>Save PDF</span>
                     </button>
                     <button class="btn btn-success" onclick="saveChecklist()" title="Save Draft">
                         <i class="fas fa-save"></i>
-                        <span class="hide-on-mobile">Save Draft</span>
+                        <span>Save</span>
                     </button>
-                    <button class="btn btn-danger" onclick="resetChecklist()" title="Reset">
+                    <button class="btn btn-danger" onclick="resetChecklist()" title="Reset All">
                         <i class="fas fa-redo"></i>
-                        <span class="hide-on-mobile">Reset</span>
+                        <span>Reset</span>
                     </button>
                 </div>
             </div>
@@ -942,15 +1252,15 @@
             <div class="contact-info">
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
-                    <span class="text-truncate">hello@lilbeelogics.co.ke</span>
+                    <span class="text-truncate">lilbeelogics@gmail.com</span>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>
-                    <span>+254 712 345 678</span>
+                    <span>+254 117 234 064</span>
                 </div>
                 <div class="contact-item">
                     <i class="fab fa-whatsapp"></i>
-                    <span>WhatsApp: +254 712 345 678</span>
+                    <span>WhatsApp: +254 117 234 064</span>
                 </div>
             </div>
         </div>
@@ -1412,32 +1722,90 @@
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
+            // Setup mobile menu
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburgerMenu.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                hamburgerMenu.innerHTML = mobileMenu.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileMenu.contains(e.target) && !hamburgerMenu.contains(e.target) && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    hamburgerMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    hamburgerMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Load saved checklist
             loadSavedChecklist();
             updateTotalPrice();
             
             // Set default date to tomorrow
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
-            document.getElementById('projectDeadline').min = tomorrow.toISOString().split('T')[0];
+            const deadlineInput = document.getElementById('projectDeadline');
+            if (deadlineInput) {
+                deadlineInput.min = tomorrow.toISOString().split('T')[0];
+            }
             
-            // Add mobile-specific improvements
-            if (window.innerWidth <= 767) {
-                // Hide text on buttons for mobile
+            // Update button text for mobile
+            updateMobileButtons();
+            
+            // Setup section dropdown
+            const sectionDropdown = document.getElementById('sectionDropdown');
+            if (sectionDropdown) {
+                sectionDropdown.addEventListener('change', function() {
+                    if (this.value) {
+                        scrollToSection(this.value);
+                        this.value = ''; // Reset dropdown
+                    }
+                });
+            }
+            
+            // Add touch event listeners for better mobile support
+            document.querySelectorAll('.option-item, .feature-item').forEach(item => {
+                item.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                item.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+
+        // Update mobile button display
+        function updateMobileButtons() {
+            if (window.innerWidth <= 480) {
                 document.querySelectorAll('.btn span').forEach(span => {
                     span.style.display = 'none';
                 });
-                
-                // Add tooltip functionality
-                document.querySelectorAll('.btn').forEach(btn => {
-                    btn.addEventListener('click', function(e) {
-                        // Prevent default if it's a save button
-                        if (this.classList.contains('btn-success')) {
-                            e.preventDefault();
-                            saveChecklist();
-                        }
-                    });
+                document.querySelectorAll('.btn i').forEach(icon => {
+                    icon.style.margin = '0';
+                });
+            } else {
+                document.querySelectorAll('.btn span').forEach(span => {
+                    span.style.display = 'inline';
                 });
             }
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            updateMobileButtons();
         });
 
         // Scroll to section
@@ -1445,7 +1813,24 @@
             if (!sectionId) return;
             const element = document.getElementById(sectionId);
             if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobileMenu');
+                const hamburgerMenu = document.getElementById('hamburgerMenu');
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    hamburgerMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+                
+                element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Add visual feedback
+                element.style.boxShadow = '0 0 0 3px rgba(255, 152, 0, 0.3)';
+                setTimeout(() => {
+                    element.style.boxShadow = '';
+                }, 1500);
             }
         }
 
@@ -1472,18 +1857,23 @@
             if (wasSelected) {
                 // Deselecting
                 checklistData.selectedOptions[category] = null;
-                priceElement.textContent = '0 KES';
+                if (priceElement) {
+                    priceElement.textContent = '0 KES';
+                }
             } else {
                 // Selecting
                 checklistData.selectedOptions[category] = {
                     name: element.querySelector('.option-name').textContent,
                     price: price
                 };
-                priceElement.textContent = price.toLocaleString() + ' KES';
+                if (priceElement) {
+                    priceElement.textContent = price.toLocaleString() + ' KES';
+                }
             }
             
             updateTotalPrice();
             compareBudgets();
+            saveChecklist();
         }
 
         // Toggle feature selection
@@ -1506,6 +1896,7 @@
             
             updateTotalPrice();
             compareBudgets();
+            saveChecklist();
         }
 
         // Update total price
@@ -1548,11 +1939,17 @@
             // Update UI
             checklistData.totalPrice = basePackagePrice + featuresPrice + hostingPrice + timelinePrice;
             
-            document.getElementById('basePackagePrice').textContent = basePackagePrice.toLocaleString() + ' KES';
-            document.getElementById('featuresPrice').textContent = featuresPrice.toLocaleString() + ' KES';
-            document.getElementById('hostingPrice').textContent = hostingPrice.toLocaleString() + ' KES';
-            document.getElementById('timelinePrice').textContent = timelinePrice.toLocaleString() + ' KES';
-            document.getElementById('totalPrice').textContent = checklistData.totalPrice.toLocaleString() + ' KES';
+            const basePackageElement = document.getElementById('basePackagePrice');
+            const featuresPriceElement = document.getElementById('featuresPrice');
+            const hostingPriceElement = document.getElementById('hostingPrice');
+            const timelinePriceElement = document.getElementById('timelinePrice');
+            const totalPriceElement = document.getElementById('totalPrice');
+            
+            if (basePackageElement) basePackageElement.textContent = basePackagePrice.toLocaleString() + ' KES';
+            if (featuresPriceElement) featuresPriceElement.textContent = featuresPrice.toLocaleString() + ' KES';
+            if (hostingPriceElement) hostingPriceElement.textContent = hostingPrice.toLocaleString() + ' KES';
+            if (timelinePriceElement) timelinePriceElement.textContent = timelinePrice.toLocaleString() + ' KES';
+            if (totalPriceElement) totalPriceElement.textContent = checklistData.totalPrice.toLocaleString() + ' KES';
             
             // Update individual section prices
             const sections = [
@@ -1565,22 +1962,38 @@
             ];
             
             sections.forEach(section => {
-                document.getElementById(section.id).textContent = section.value.toLocaleString() + ' KES';
+                const element = document.getElementById(section.id);
+                if (element) {
+                    element.textContent = section.value.toLocaleString() + ' KES';
+                }
             });
             
             // Update display
-            document.getElementById('displayEstimatedCost').textContent = checklistData.totalPrice.toLocaleString() + ' KES';
+            const displayElement = document.getElementById('displayEstimatedCost');
+            if (displayElement) {
+                displayElement.textContent = checklistData.totalPrice.toLocaleString() + ' KES';
+            }
         }
 
         // Compare budgets
         function compareBudgets() {
-            const clientBudget = parseInt(document.getElementById('clientBudget').value) || 0;
+            const clientBudgetInput = document.getElementById('clientBudget');
+            const clientBudget = parseInt(clientBudgetInput ? clientBudgetInput.value : 0) || 0;
             const estimatedCost = checklistData.totalPrice;
             
-            document.getElementById('displayClientBudget').textContent = clientBudget.toLocaleString() + ' KES';
-            document.getElementById('displayEstimatedCost').textContent = estimatedCost.toLocaleString() + ' KES';
-            
+            const displayClientElement = document.getElementById('displayClientBudget');
+            const displayEstimatedElement = document.getElementById('displayEstimatedCost');
             const statusElement = document.getElementById('budgetStatus');
+            
+            if (displayClientElement) {
+                displayClientElement.textContent = clientBudget.toLocaleString() + ' KES';
+            }
+            
+            if (displayEstimatedElement) {
+                displayEstimatedElement.textContent = estimatedCost.toLocaleString() + ' KES';
+            }
+            
+            if (!statusElement) return;
             
             if (clientBudget === 0) {
                 statusElement.textContent = 'Enter budget to compare';
@@ -1612,23 +2025,57 @@
         // Save checklist
         function saveChecklist() {
             // Save form data
-            checklistData.clientName = document.getElementById('clientName').value;
-            checklistData.projectName = document.getElementById('projectName').value;
-            checklistData.phoneNumber = document.getElementById('phoneNumber').value;
-            checklistData.email = document.getElementById('emailAddress').value;
-            checklistData.deadline = document.getElementById('projectDeadline').value;
-            checklistData.clientBudget = parseInt(document.getElementById('clientBudget').value) || 0;
+            checklistData.clientName = document.getElementById('clientName')?.value || '';
+            checklistData.projectName = document.getElementById('projectName')?.value || '';
+            checklistData.phoneNumber = document.getElementById('phoneNumber')?.value || '';
+            checklistData.email = document.getElementById('emailAddress')?.value || '';
+            checklistData.deadline = document.getElementById('projectDeadline')?.value || '';
+            checklistData.clientBudget = parseInt(document.getElementById('clientBudget')?.value || 0);
             
             // Save to localStorage
-            localStorage.setItem('lilbeeChecklist', JSON.stringify(checklistData));
-            
-            // Show success modal
-            document.getElementById('successModal').style.display = 'flex';
-            
-            // Show mobile notification
-            if (window.innerWidth <= 767) {
-                alert('Checklist saved!');
+            try {
+                localStorage.setItem('lilbeeChecklist', JSON.stringify(checklistData));
+                
+                // Show success notification for mobile
+                if (window.innerWidth <= 768) {
+                    showMobileNotification('Checklist saved!');
+                }
+            } catch (e) {
+                console.error('Error saving checklist:', e);
             }
+        }
+
+        // Show mobile notification
+        function showMobileNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--success-green);
+                color: white;
+                padding: 12px 24px;
+                border-radius: 8px;
+                font-weight: 600;
+                z-index: 10000;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                animation: slideUp 0.3s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideDown 0.3s ease';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
         }
 
         // Load saved checklist
@@ -1639,12 +2086,19 @@
                     checklistData = JSON.parse(savedData);
                     
                     // Load form data
-                    document.getElementById('clientName').value = checklistData.clientName;
-                    document.getElementById('projectName').value = checklistData.projectName;
-                    document.getElementById('phoneNumber').value = checklistData.phoneNumber;
-                    document.getElementById('emailAddress').value = checklistData.email;
-                    document.getElementById('projectDeadline').value = checklistData.deadline;
-                    document.getElementById('clientBudget').value = checklistData.clientBudget;
+                    const clientNameInput = document.getElementById('clientName');
+                    const projectNameInput = document.getElementById('projectName');
+                    const phoneNumberInput = document.getElementById('phoneNumber');
+                    const emailInput = document.getElementById('emailAddress');
+                    const deadlineInput = document.getElementById('projectDeadline');
+                    const budgetInput = document.getElementById('clientBudget');
+                    
+                    if (clientNameInput) clientNameInput.value = checklistData.clientName;
+                    if (projectNameInput) projectNameInput.value = checklistData.projectName;
+                    if (phoneNumberInput) phoneNumberInput.value = checklistData.phoneNumber;
+                    if (emailInput) emailInput.value = checklistData.email;
+                    if (deadlineInput) deadlineInput.value = checklistData.deadline;
+                    if (budgetInput) budgetInput.value = checklistData.clientBudget;
                     
                     // Load selected options
                     Object.keys(checklistData.selectedOptions).forEach(category => {
@@ -1656,7 +2110,8 @@
                                 options.forEach(option => {
                                     const optionName = option.querySelector('.option-name').textContent;
                                     if (optionName === checklistData.selectedOptions[category]?.name) {
-                                        option.click();
+                                        option.classList.add('selected');
+                                        option.querySelector('.custom-checkbox').classList.add('selected');
                                     }
                                 });
                             });
@@ -1669,7 +2124,7 @@
                         featureItems.forEach(item => {
                             const itemName = item.querySelector('span').textContent;
                             if (itemName === feature.name) {
-                                item.click();
+                                item.classList.add('selected');
                             }
                         });
                     });
@@ -1687,17 +2142,17 @@
         function resetChecklist() {
             if (confirm('Are you sure you want to reset the checklist? All data will be lost.')) {
                 // Clear form
-                document.getElementById('clientName').value = '';
-                document.getElementById('projectName').value = '';
-                document.getElementById('phoneNumber').value = '';
-                document.getElementById('emailAddress').value = '';
-                document.getElementById('projectDeadline').value = '';
-                document.getElementById('clientBudget').value = '';
+                const inputs = ['clientName', 'projectName', 'phoneNumber', 'emailAddress', 'projectDeadline', 'clientBudget'];
+                inputs.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) element.value = '';
+                });
                 
                 // Clear selections
                 document.querySelectorAll('.option-item').forEach(item => {
                     item.classList.remove('selected');
-                    item.querySelector('.custom-checkbox').classList.remove('selected');
+                    const checkbox = item.querySelector('.custom-checkbox');
+                    if (checkbox) checkbox.classList.remove('selected');
                 });
                 
                 document.querySelectorAll('.feature-item').forEach(item => {
@@ -1730,38 +2185,51 @@
                 updateTotalPrice();
                 compareBudgets();
                 
-                // Show confirmation
-                if (window.innerWidth <= 767) {
-                    alert('Checklist reset!');
+                // Show mobile notification
+                if (window.innerWidth <= 768) {
+                    showMobileNotification('Checklist reset!');
                 }
             }
         }
 
         // Save as PDF
-        function saveAsPDF() {
-            const projectName = document.getElementById('projectName').value || 'Untitled Project';
-            const filename = projectName.replace(/\s+/g, '_') + '_Checklist.pdf';
+        async function saveAsPDF() {
+            const projectName = document.getElementById('projectName')?.value || 'Untitled_Project';
+            const filename = projectName.replace(/[^\w\s]/gi, '').replace(/\s+/g, '_') + '_Checklist.pdf';
             
-            // Show loading
-            const originalText = document.querySelector('.btn-primary').innerHTML;
-            document.querySelector('.btn-primary').innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            // Show loading overlay
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            if (loadingOverlay) {
+                loadingOverlay.classList.add('active');
+            }
             
-            // Add hide-on-mobile class to show text during PDF generation
-            document.querySelectorAll('.hide-on-mobile').forEach(el => {
-                el.style.display = 'inline';
-            });
-            
-            html2canvas(document.querySelector('.container'), {
-                scale: 2,
-                useCORS: true,
-                logging: false,
-                backgroundColor: '#ffffff'
-            }).then(canvas => {
+            try {
+                // Temporarily show all text for PDF
+                const hiddenElements = document.querySelectorAll('.btn span');
+                const originalDisplay = [];
+                hiddenElements.forEach((el, index) => {
+                    originalDisplay[index] = el.style.display;
+                    el.style.display = 'inline';
+                });
+                
+                // Generate PDF
+                const element = document.querySelector('.container');
+                const canvas = await html2canvas(element, {
+                    scale: 2,
+                    useCORS: true,
+                    logging: false,
+                    backgroundColor: '#ffffff',
+                    windowWidth: element.scrollWidth,
+                    windowHeight: element.scrollHeight
+                });
+                
                 const imgData = canvas.toDataURL('image/png');
+                const { jsPDF } = window.jspdf;
                 const pdf = new jsPDF('p', 'mm', 'a4');
+                
                 const imgWidth = 210;
                 const pageHeight = 297;
-                const imgHeight = canvas.height * imgWidth / canvas.width;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
                 let heightLeft = imgHeight;
                 let position = 0;
                 
@@ -1775,160 +2243,394 @@
                     heightLeft -= pageHeight;
                 }
                 
+                // Save PDF
                 pdf.save(filename);
                 
-                // Restore button text
-                document.querySelector('.btn-primary').innerHTML = originalText;
-                
-                // Hide mobile text again
-                if (window.innerWidth <= 767) {
-                    document.querySelectorAll('.hide-on-mobile').forEach(el => {
-                        el.style.display = 'none';
-                    });
-                }
+                        // ... (previous JavaScript code continues)
+
+                // Restore hidden elements
+                hiddenElements.forEach((el, index) => {
+                    el.style.display = originalDisplay[index];
+                });
                 
                 // Show success message
-                if (window.innerWidth <= 767) {
-                    alert('PDF downloaded!');
+                if (window.innerWidth <= 768) {
+                    showMobileNotification('PDF generated!');
+                } else {
+                    showModal('successModal');
                 }
-            }).catch(error => {
-                console.error('PDF generation error:', error);
-                document.querySelector('.btn-primary').innerHTML = originalText;
+                
+            } catch (error) {
+                console.error('Error generating PDF:', error);
                 alert('Error generating PDF. Please try again.');
-            });
+            } finally {
+                // Hide loading overlay
+                if (loadingOverlay) {
+                    loadingOverlay.classList.remove('active');
+                }
+            }
         }
 
         // Share via WhatsApp
         function shareViaWhatsApp(event) {
             event.preventDefault();
             
-            const projectName = document.getElementById('projectName').value || 'Untitled Project';
-            const clientName = document.getElementById('clientName').value || 'Client';
+            const projectName = document.getElementById('projectName')?.value || 'Project Checklist';
             const totalPrice = checklistData.totalPrice.toLocaleString();
+            const clientName = document.getElementById('clientName')?.value || '';
             
-            let message = `*Project Checklist - ${projectName}*\n\n`;
-            message += `*Client:* ${clientName}\n`;
-            message += `*Estimated Cost:* ${totalPrice} KES\n\n`;
-            message += `*Selected Features:*\n`;
+            let message = `*${projectName} - Project Quote*\n`;
+            if (clientName) message += `Client: ${clientName}\n`;
+            message += `Total Estimated Cost: KES ${totalPrice}\n\n`;
             
-            if (checklistData.selectedOptions.projectType) {
-                message += `- ${checklistData.selectedOptions.projectType.name}: ${checklistData.selectedOptions.projectType.price.toLocaleString()} KES\n`;
-            }
-            
-            checklistData.selectedFeatures.forEach(feature => {
-                message += `- ${feature.name}: ${feature.price.toLocaleString()} KES\n`;
+            // Add selected options
+            message += '*Selected Options:*\n';
+            Object.keys(checklistData.selectedOptions).forEach(category => {
+                if (checklistData.selectedOptions[category]) {
+                    const option = checklistData.selectedOptions[category];
+                    message += `• ${option.name}: KES ${option.price.toLocaleString()}\n`;
+                }
             });
             
-            message += `\n*Total:* ${totalPrice} KES\n\n`;
-            message += `_Generated by LilBee Logics_\n`;
-            message += `Contact: +254712345678 | hello@lilbeelogics.co.ke`;
+            // Add selected features
+            if (checklistData.selectedFeatures.length > 0) {
+                message += '\n*Selected Features:*\n';
+                checklistData.selectedFeatures.forEach(feature => {
+                    message += `• ${feature.name}: KES ${feature.price.toLocaleString()}\n`;
+                });
+            }
             
-            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            message += `\n*Grand Total: KES ${totalPrice}*\n`;
+            message += `\nGenerated by LilBee Logics\nContact: +254 117 234 064`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+            
             window.open(whatsappUrl, '_blank');
         }
 
         // Share via Messenger
         function shareViaMessenger(event) {
             event.preventDefault();
-            alert('Messenger sharing would be implemented with Facebook SDK in production.');
+            
+            const projectName = document.getElementById('projectName')?.value || 'Project Checklist';
+            const totalPrice = checklistData.totalPrice.toLocaleString();
+            
+            let message = `${projectName} - Project Quote\n`;
+            message += `Total Estimated Cost: KES ${totalPrice}\n\n`;
+            message += `Generated by LilBee Logics\nContact: +254 117 234 064`;
+            
+            // For Facebook Messenger, we use the Facebook sharing dialog
+            const shareUrl = encodeURIComponent(window.location.href);
+            const facebookUrl = `https://www.facebook.com/dialog/send?link=${shareUrl}&app_id=YOUR_APP_ID&redirect_uri=${encodeURIComponent(window.location.href)}`;
+            
+            // Since we don't have an actual app_id, we'll use a fallback
+            alert('Messenger sharing requires Facebook App ID setup.\n\nYou can copy this link and share manually:\n' + window.location.href);
+            
+            // For now, copy to clipboard
+            copyToClipboard(message);
+            showMobileNotification('Project details copied to clipboard!');
         }
 
         // Share via Email
         function shareViaEmail(event) {
             event.preventDefault();
             
-            const projectName = document.getElementById('projectName').value || 'Untitled Project';
-            const clientName = document.getElementById('clientName').value || 'Client';
-            const email = document.getElementById('emailAddress').value;
+            const projectName = document.getElementById('projectName')?.value || 'Project Checklist';
+            const clientName = document.getElementById('clientName')?.value || '';
+            const email = document.getElementById('emailAddress')?.value || '';
             const totalPrice = checklistData.totalPrice.toLocaleString();
             
-            let subject = `Project Checklist - ${projectName}`;
-            let body = `Dear ${clientName},\n\n`;
-            body += `Please find below the project checklist for "${projectName}":\n\n`;
-            body += `ESTIMATED PROJECT COST: ${totalPrice} KES\n\n`;
-            body += `SELECTED OPTIONS:\n`;
+            let subject = `Project Quote: ${projectName}`;
+            let body = `Dear ${clientName || 'Client'},\n\n`;
+            body += `Here is the project quote for "${projectName}":\n\n`;
             
-            if (checklistData.selectedOptions.projectType) {
-                body += `- ${checklistData.selectedOptions.projectType.name}: ${checklistData.selectedOptions.projectType.price.toLocaleString()} KES\n`;
-            }
+            body += `*PROJECT SUMMARY*\n`;
+            body += `=========================\n`;
             
-            checklistData.selectedFeatures.forEach(feature => {
-                body += `- ${feature.name}: ${feature.price.toLocaleString()} KES\n`;
+            // Add selected options
+            body += `\n*Selected Options:*\n`;
+            Object.keys(checklistData.selectedOptions).forEach(category => {
+                if (checklistData.selectedOptions[category]) {
+                    const option = checklistData.selectedOptions[category];
+                    body += `• ${option.name}: KES ${option.price.toLocaleString()}\n`;
+                }
             });
             
-            body += `\nTOTAL: ${totalPrice} KES\n\n`;
+            // Add selected features
+            if (checklistData.selectedFeatures.length > 0) {
+                body += `\n*Selected Features:*\n`;
+                checklistData.selectedFeatures.forEach(feature => {
+                    body += `• ${feature.name}: KES ${feature.price.toLocaleString()}\n`;
+                });
+            }
+            
+            body += `\n=========================\n`;
+            body += `*TOTAL ESTIMATED COST: KES ${totalPrice}*\n`;
+            body += `=========================\n\n`;
+            
+            body += `*CONTACT INFORMATION*\n`;
+            body += `Company: LilBee Logics\n`;
+            body += `Email: lilbeelogics@gmail.com\n`;
+            body += `Phone: +254 117 234 064\n`;
+            body += `WhatsApp: +254 117 234 064\n\n`;
+            
+            body += `*NEXT STEPS*\n`;
+            body += `1. Review the quote above\n`;
+            body += `2. Contact us to discuss any changes\n`;
+            body += `3. We'll provide a detailed proposal\n`;
+            body += `4. Once approved, we start development\n\n`;
+            
+            body += `We respond within 1 hour!\n\n`;
             body += `Best regards,\n`;
-            body += `LilBee Logics Team\n`;
-            body += `Phone: +254712345678\n`;
-            body += `Email: hello@lilbeelogics.co.ke\n`;
-            body += `Website: https://lilbeelogics.co.ke`;
+            body += `LilBee Logics Team`;
             
             const mailtoLink = `mailto:${email || ''}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
             window.location.href = mailtoLink;
+        }
+
+        // Copy to clipboard utility
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+
+        // Show modal
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.style.opacity = '1';
+                }, 10);
+            }
         }
 
         // Close modal
         function closeModal() {
-            document.getElementById('successModal').style.display = 'none';
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            });
         }
 
-        // Form validation
-        document.getElementById('projectName').addEventListener('blur', function() {
-            if (!this.value.trim()) {
-                this.style.borderColor = '#dc3545';
-                this.style.boxShadow = '0 0 0 3px rgba(220, 53, 69, 0.1)';
-            } else {
-                this.style.borderColor = '#28a745';
-                this.style.boxShadow = '0 0 0 3px rgba(40, 167, 69, 0.1)';
-            }
-        });
-
-        // Auto-save on change
-        let saveTimeout;
-        document.querySelectorAll('input, select, textarea').forEach(element => {
-            element.addEventListener('change', function() {
-                clearTimeout(saveTimeout);
-                saveTimeout = setTimeout(saveChecklist, 1000);
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    closeModal();
+                }
             });
         });
 
-        // Save checklist every 30 seconds
-        setInterval(saveChecklist, 30000);
-
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth <= 767) {
-                // Mobile view
-                document.querySelectorAll('.btn span').forEach(span => {
-                    span.style.display = 'none';
-                });
-            } else {
-                // Desktop view
-                document.querySelectorAll('.btn span').forEach(span => {
-                    span.style.display = 'inline';
-                });
-            }
-        });
-
-        // Add keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            // Ctrl+S or Cmd+S to save
-            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-                e.preventDefault();
-                saveChecklist();
-            }
-            
-            // Ctrl+P or Cmd+P to save PDF
-            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
-                e.preventDefault();
-                saveAsPDF();
-            }
-            
-            // Escape to close modal
-            if (e.key === 'Escape') {
+        // Close modals with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
                 closeModal();
             }
         });
+
+        // Auto-save on input change
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('change', function() {
+                saveChecklist();
+                compareBudgets();
+            });
+            
+            element.addEventListener('input', function() {
+                // For budget field, update comparison in real-time
+                if (this.id === 'clientBudget') {
+                    compareBudgets();
+                }
+            });
+        });
+
+        // Add CSS for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideUp {
+                from {
+                    transform: translate(-50%, 100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translate(-50%, 0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideDown {
+                from {
+                    transform: translate(-50%, 0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translate(-50%, 100%);
+                    opacity: 0;
+                }
+            }
+            
+            /* Enhanced mobile touch feedback */
+            @media (max-width: 768px) {
+                .option-item:active,
+                .feature-item:active {
+                    background-color: #e9ecef;
+                    transform: scale(0.98);
+                }
+                
+                .btn:active {
+                    transform: scale(0.95);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            // Ctrl/Cmd + S to save
+            if ((event.ctrlKey || event.metaKey) && event.key === 's') {
+                event.preventDefault();
+                saveChecklist();
+                showMobileNotification('Checklist saved!');
+            }
+            
+            // Ctrl/Cmd + P to save as PDF
+            if ((event.ctrlKey || event.metaKey) && event.key === 'p') {
+                event.preventDefault();
+                saveAsPDF();
+            }
+            
+            // Escape to clear selections
+            if (event.key === 'Escape') {
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobileMenu');
+                const hamburgerMenu = document.getElementById('hamburgerMenu');
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    hamburgerMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            }
+        });
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize tooltips for mobile
+        function initTooltips() {
+            if (window.innerWidth <= 480) {
+                document.querySelectorAll('.btn').forEach(btn => {
+                    btn.addEventListener('touchstart', function() {
+                        const title = this.getAttribute('title');
+                        if (title) {
+                            const tooltip = document.createElement('div');
+                            tooltip.className = 'mobile-tooltip';
+                            tooltip.textContent = title;
+                            tooltip.style.cssText = `
+                                position: fixed;
+                                top: 50px;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                background: rgba(0,0,0,0.8);
+                                color: white;
+                                padding: 8px 12px;
+                                border-radius: 6px;
+                                font-size: 12px;
+                                z-index: 10000;
+                                white-space: nowrap;
+                            `;
+                            document.body.appendChild(tooltip);
+                            
+                            setTimeout(() => {
+                                if (tooltip.parentNode) {
+                                    tooltip.parentNode.removeChild(tooltip);
+                                }
+                            }, 2000);
+                        }
+                    });
+                });
+            }
+        }
+
+        // Call init on load
+        initTooltips();
+
+        // Update tooltips on resize
+        window.addEventListener('resize', initTooltips);
+
+        // Add data persistence for form fields on page reload
+        window.addEventListener('beforeunload', function() {
+            saveChecklist();
+        });
+
+        // Form validation
+        function validateForm() {
+            const projectName = document.getElementById('projectName');
+            if (projectName && !projectName.value.trim()) {
+                projectName.style.borderColor = '#dc3545';
+                projectName.focus();
+                showMobileNotification('Please enter a project name!');
+                return false;
+            }
+            return true;
+        }
+
+        // Add validation to save buttons
+        document.querySelectorAll('.btn-primary, .btn-success').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (!validateForm()) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            });
+        });
+
+        // Print functionality (alternative to PDF)
+        function printChecklist() {
+            if (window.innerWidth <= 768) {
+                if (!validateForm()) return;
+            }
+            
+            window.print();
+        }
+
+        // Add print button functionality (optional)
+        const printBtn = document.createElement('button');
+        printBtn.className = 'btn btn-primary';
+        printBtn.innerHTML = '<i class="fas fa-print"></i><span>Print</span>';
+        printBtn.title = 'Print Checklist';
+        printBtn.onclick = printChecklist;
+        
+        // Insert print button before PDF button
+        const pdfBtn = document.querySelector('.btn-primary');
+        if (pdfBtn) {
+            pdfBtn.parentNode.insertBefore(printBtn, pdfBtn);
+        }
+
+        // Final initialization
+        console.log('LilBee Logics Checklist initialized successfully!');
     </script>
 </body>
 </html>
