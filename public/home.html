@@ -3093,6 +3093,739 @@
                 eye.style.transform = `translate(${moveX}px, ${moveY}px)`;
             });
         });
+
+        // ===== JARVIS VOICE ASSISTANT =====
+// Add this code after the existing script or integrate it with your current functionality
+
+const jarvisVoice = {
+    // Speech Synthesis Configuration
+    synth: window.speechSynthesis,
+    voices: [],
+    currentVoice: null,
+    isSpeaking: false,
+    isListening: false,
+    recognition: null,
+    
+    // Initialize Voice Assistant
+    init: function() {
+        this.loadVoices();
+        this.initSpeechRecognition();
+        this.setupEventListeners();
+        console.log("JARVIS Voice Assistant Initialized! 🤖");
+    },
+    
+    // Load Available Voices
+    loadVoices: function() {
+        // Wait for voices to load
+        setTimeout(() => {
+            this.voices = this.synth.getVoices();
+            
+            // Try to find a male English voice
+            this.currentVoice = this.voices.find(voice => 
+                voice.lang.includes('en') && 
+                (voice.name.includes('Male') || voice.name.includes('male'))
+            ) || this.voices[0]; // Fallback to first available voice
+            
+            if (this.currentVoice) {
+                console.log(`JARVIS Voice: ${this.currentVoice.name}`);
+            }
+        }, 100);
+    },
+    
+    // Initialize Speech Recognition (if supported)
+    initSpeechRecognition: function() {
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            this.recognition = new SpeechRecognition();
+            
+            this.recognition.continuous = false;
+            this.recognition.interimResults = false;
+            this.recognition.lang = 'en-US';
+            this.recognition.maxAlternatives = 1;
+            
+            this.recognition.onstart = () => {
+                this.isListening = true;
+                this.updateJarvisListeningState(true);
+                this.showMessage("I'm listening... Speak now!", 3000);
+            };
+            
+            this.recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                console.log("User said: ", transcript);
+                this.processVoiceCommand(transcript);
+            };
+            
+            this.recognition.onerror = (event) => {
+                console.log("Speech recognition error: ", event.error);
+                this.isListening = false;
+                this.updateJarvisListeningState(false);
+                
+                if (event.error !== 'no-speech') {
+                    this.speak("Sorry, I didn't catch that. Could you please repeat?");
+                }
+            };
+            
+            this.recognition.onend = () => {
+                this.isListening = false;
+                this.updateJarvisListeningState(false);
+            };
+        } else {
+            console.log("Speech recognition not supported in this browser");
+        }
+    },
+    
+    // Setup Event Listeners
+    setupEventListeners: function() {
+        // Click JARVIS to toggle listening
+        document.getElementById('jarvisAvatar').addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!this.isListening) {
+                this.startListening();
+            } else {
+                this.stopListening();
+            }
+        });
+        
+        // Double-click to make JARVIS speak
+        document.getElementById('jarvisAvatar').addEventListener('dblclick', (e) => {
+            e.stopPropagation();
+            this.greetUser();
+        });
+        
+        // Voice command shortcuts
+        this.addVoiceCommands();
+        
+        // Welcome message on page load
+        setTimeout(() => {
+            this.greetUser();
+        }, 3000);
+    },
+    
+    // Speech Synthesis - Make JARVIS Speak
+    speak: function(text, callback) {
+        if (this.isSpeaking) {
+            this.synth.cancel();
+        }
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        
+        // Configure voice
+        if (this.currentVoice) {
+            utterance.voice = this.currentVoice;
+        }
+        
+        // Configure speech settings
+        utterance.rate = 1.0; // Speed (0.1 to 10)
+        utterance.pitch = 1.0; // Pitch (0 to 2)
+        utterance.volume = 1.0; // Volume (0 to 1)
+        
+        // Animate mouth while speaking
+        this.animateSpeaking(true);
+        
+        utterance.onstart = () => {
+            this.isSpeaking = true;
+            this.showMessage(text, 5000);
+        };
+        
+        utterance.onend = () => {
+            this.isSpeaking = false;
+            this.animateSpeaking(false);
+            if (callback) callback();
+        };
+        
+        utterance.onerror = (event) => {
+            console.log("Speech synthesis error: ", event);
+            this.isSpeaking = false;
+            this.animateSpeaking(false);
+        };
+        
+        this.synth.speak(utterance);
+    },
+    
+    // Start Listening for Voice Commands
+    startListening: function() {
+        if (this.recognition && !this.isListening) {
+            try {
+                this.recognition.start();
+                this.speak("Listening...", () => {
+                    // After speaking "Listening...", start recognition
+                    setTimeout(() => {
+                        if (this.recognition) {
+                            this.recognition.start();
+                        }
+                    }, 500);
+                });
+            } catch (error) {
+                console.log("Error starting speech recognition: ", error);
+            }
+        } else if (!this.recognition) {
+            this.speak("Sorry, voice commands are not supported in your browser.");
+        }
+    },
+    
+    // Stop Listening
+    stopListening: function() {
+        if (this.recognition && this.isListening) {
+            this.recognition.stop();
+            this.speak("Stopped listening.");
+        }
+    },
+    
+    // Process Voice Commands
+    processVoiceCommand: function(command) {
+        const lowerCommand = command.toLowerCase().trim();
+        
+        // Stop listening after receiving command
+        this.stopListening();
+        
+        // Process command
+        setTimeout(() => {
+            this.handleCommand(lowerCommand);
+        }, 500);
+    },
+    
+    // Handle Different Commands
+    handleCommand: function(command) {
+        const responses = {
+            // Greetings
+            'hello': "Hello! How can I help you today?",
+            'hi': "Hi there! Welcome to LilBee Logics!",
+            
+            // Navigation Commands
+            'go to services': "Navigating to services section.",
+            'show me services': "Taking you to our services.",
+            'go to portfolio': "Showing you our portfolio.",
+            'show me your work': "Displaying our recent projects.",
+            'go to pricing': "Showing our pricing calculator.",
+            'show me pricing': "Taking you to the pricing section.",
+            'contact me': "Opening the contact form for you.",
+            'get a quote': "Let's get you a quote right away!",
+            
+            // Information Commands
+            'what do you do': "We build premium, custom-coded web solutions that turn visitors into customers.",
+            'what services do you offer': "We offer Landing Pages, Business Websites, Full Systems, E-commerce stores, and Mobile Apps.",
+            'how much does it cost': "Landing pages start from 3,000 KES, Business websites from 10,000 KES, and Full systems from 25,000 KES.",
+            'how long does it take': "Landing pages take 1-3 days, Business websites take 3-7 days, and Full systems take 7-14 days.",
+            
+            // Action Commands
+            'start consultation': "Opening consultation form for you.",
+            'book a meeting': "Let me connect you with our team.",
+            'call me': "I'll have our team call you right away.",
+            'send me a quote': "Please fill out the contact form for a detailed quote.",
+            
+            // JARVIS Controls
+            'stop talking': "Okay, I'll be quiet.",
+            'start listening': "I'm ready to listen.",
+            'what can you do': "I can navigate the website, answer questions, help you book consultations, and provide information about LilBee Logics services.",
+            
+            // Default response
+            'default': `I heard: "${command}". To navigate, say things like "go to services", "show me pricing", or "contact me".`
+        };
+        
+        let response = responses.default;
+        let action = null;
+        
+        // Find matching command
+        for (const [key, value] of Object.entries(responses)) {
+            if (command.includes(key) && key !== 'default') {
+                response = value;
+                
+                // Set actions for specific commands
+                if (key.includes('services')) action = 'services';
+                else if (key.includes('portfolio') || key.includes('work')) action = 'portfolio';
+                else if (key.includes('pricing')) action = 'pricing';
+                else if (key.includes('contact') || key.includes('quote') || key.includes('consultation')) action = 'consultation';
+                break;
+            }
+        }
+        
+        // Speak response
+        this.speak(response, () => {
+            // Perform action after speaking
+            if (action) {
+                setTimeout(() => {
+                    this.performAction(action);
+                }, 500);
+            }
+        });
+    },
+    
+    // Perform Action Based on Command
+    performAction: function(action) {
+        switch(action) {
+            case 'services':
+                this.scrollToSection('#services');
+                break;
+            case 'portfolio':
+                this.scrollToSection('#portfolio');
+                break;
+            case 'pricing':
+                this.scrollToSection('#calculator');
+                break;
+            case 'consultation':
+                this.scrollToSection('#consultation');
+                // Auto-focus on first input after a delay
+                setTimeout(() => {
+                    const firstInput = document.querySelector('#consultation input');
+                    if (firstInput) firstInput.focus();
+                }, 1000);
+                break;
+        }
+    },
+    
+    // Greet User
+    greetUser: function() {
+        const greetings = [
+            "Welcome to Lil Bee Logics! I'm JARVIS, your AI assistant. Click me and speak to navigate the website.",
+            "Hello! I'm JARVIS. I can help you explore our services, pricing, and portfolio. Just click me and speak your command.",
+            "Welcome! I'm JARVIS. Say 'go to services' to see what we offer, or 'show me pricing' to see our rates.",
+            "Hi there! I'm JARVIS. Need help finding something? Click me and tell me what you're looking for."
+        ];
+        
+        const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+        this.speak(randomGreeting);
+    },
+    
+    // Scroll to Section
+    scrollToSection: function(selector) {
+        const element = document.querySelector(selector);
+        if (element) {
+            window.scrollTo({
+                top: element.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    },
+    
+    // Animate JARVIS Mouth While Speaking
+    animateSpeaking: function(isSpeaking) {
+        const mouth = document.querySelector('.jarvis-mouth');
+        if (mouth) {
+            if (isSpeaking) {
+                mouth.style.animation = 'speak 0.3s infinite alternate';
+            } else {
+                mouth.style.animation = '';
+            }
+        }
+    },
+    
+    // Update JARVIS Listening State
+    updateJarvisListeningState: function(isListening) {
+        const eyes = document.querySelectorAll('.jarvis-eye');
+        const halo = document.querySelector('.jarvis-halo');
+        
+        if (isListening) {
+            // Change eye color to indicate listening
+            eyes.forEach(eye => {
+                eye.style.background = 'linear-gradient(135deg, #FF4081, #F50057)';
+                eye.style.boxShadow = '0 0 30px rgba(245, 0, 87, 0.8)';
+            });
+            
+            // Speed up halo
+            if (halo) {
+                halo.style.animationDuration = '5s';
+            }
+        } else {
+            // Reset eye color
+            eyes.forEach(eye => {
+                eye.style.background = 'linear-gradient(135deg, #00BCD4, #2196F3)';
+                eye.style.boxShadow = '0 0 20px rgba(33, 150, 243, 0.5)';
+            });
+            
+            // Reset halo speed
+            if (halo) {
+                halo.style.animationDuration = '20s';
+            }
+        }
+    },
+    
+    // Show Message in JARVIS Bubble
+    showMessage: function(text, duration = 3000) {
+        const messageElement = document.getElementById('jarvisMessage');
+        if (messageElement) {
+            messageElement.textContent = text;
+            messageElement.classList.add('show');
+            
+            setTimeout(() => {
+                messageElement.classList.remove('show');
+            }, duration);
+        }
+    },
+    
+    // Add Voice Command Shortcuts to UI Elements
+    addVoiceCommands: function() {
+        // Service Cards
+        document.querySelectorAll('.service-card-advanced').forEach(card => {
+            card.addEventListener('click', (e) => {
+                const serviceTitle = card.querySelector('h3').textContent;
+                this.speak(`This is our ${serviceTitle} service. ${serviceTitle} includes...`);
+            });
+        });
+        
+        // Portfolio Items
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const projectTitle = item.querySelector('h3').textContent;
+                this.speak(`This is ${projectTitle}, one of our successful projects.`);
+            });
+        });
+        
+        // FAQ Items
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', (e) => {
+                const questionText = question.querySelector('span').textContent;
+                const answerText = question.nextElementSibling.textContent;
+                
+                // Read the answer
+                this.speak(`The answer to "${questionText}" is: ${answerText}`);
+            });
+        });
+    },
+    
+    // Voice Command Tutorial
+    showVoiceTutorial: function() {
+        const tutorial = `
+            Voice Commands Tutorial:
+            
+            Navigation:
+            - "Go to services" or "Show me services"
+            - "Go to portfolio" or "Show me your work"
+            - "Go to pricing" or "Show me pricing"
+            - "Contact me" or "Get a quote"
+            
+            Information:
+            - "What do you do?"
+            - "What services do you offer?"
+            - "How much does it cost?"
+            - "How long does it take?"
+            
+            Actions:
+            - "Start consultation"
+            - "Book a meeting"
+            - "Call me"
+            
+            JARVIS Controls:
+            - "Stop talking"
+            - "Start listening"
+            - "What can you do?"
+            
+            Click JARVIS to start listening, double-click for a greeting.
+        `;
+        
+        this.showMessage("Voice commands tutorial displayed in console.", 5000);
+        console.log(tutorial);
+        this.speak("I've displayed a list of voice commands in your console. Press F12 to see it.");
+    }
+};
+
+// ===== KEYBOARD SHORTCUTS FOR JARVIS =====
+const jarvisShortcuts = {
+    init: function() {
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + J to toggle JARVIS listening
+            if ((e.ctrlKey || e.metaKey) && e.key === 'j') {
+                e.preventDefault();
+                if (!jarvisVoice.isListening) {
+                    jarvisVoice.startListening();
+                } else {
+                    jarvisVoice.stopListening();
+                }
+            }
+            
+            // Ctrl/Cmd + K to make JARVIS speak
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                jarvisVoice.greetUser();
+            }
+            
+            // Ctrl/Cmd + L to show voice tutorial
+            if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
+                e.preventDefault();
+                jarvisVoice.showVoiceTutorial();
+            }
+            
+            // Escape to stop JARVIS
+            if (e.key === 'Escape' && (jarvisVoice.isSpeaking || jarvisVoice.isListening)) {
+                if (jarvisVoice.isSpeaking) {
+                    jarvisVoice.synth.cancel();
+                    jarvisVoice.isSpeaking = false;
+                    jarvisVoice.animateSpeaking(false);
+                }
+                if (jarvisVoice.isListening) {
+                    jarvisVoice.stopListening();
+                }
+                jarvisVoice.showMessage("Stopped.", 2000);
+            }
+        });
+    }
+};
+
+// ===== ENHANCED JARVIS ANIMATIONS =====
+const jarvisAnimations = {
+    // Add glowing pulse when active
+    addActiveGlow: function() {
+        const style = document.createElement('style');
+        style.textContent = `
+            .jarvis-active {
+                animation: activeGlow 2s ease-in-out infinite;
+            }
+            
+            @keyframes activeGlow {
+                0%, 100% { 
+                    filter: brightness(1) drop-shadow(0 0 10px rgba(255, 193, 7, 0.5));
+                }
+                50% { 
+                    filter: brightness(1.2) drop-shadow(0 0 30px rgba(255, 193, 7, 0.8));
+                }
+            }
+            
+            .jarvis-listening {
+                animation: listeningPulse 1s ease-in-out infinite;
+            }
+            
+            @keyframes listeningPulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+            }
+        `;
+        document.head.appendChild(style);
+    },
+    
+    // Update JARVIS state
+    updateState: function(state) {
+        const avatar = document.getElementById('jarvisAvatar');
+        if (!avatar) return;
+        
+        avatar.classList.remove('jarvis-active', 'jarvis-listening');
+        
+        if (state === 'listening') {
+            avatar.classList.add('jarvis-active', 'jarvis-listening');
+        } else if (state === 'speaking') {
+            avatar.classList.add('jarvis-active');
+        }
+    }
+};
+
+// ===== INTEGRATION WITH EXISTING JARVIS FUNCTIONALITY =====
+function integrateJarvisVoice() {
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initJarvis);
+    } else {
+        initJarvis();
+    }
+    
+    function initJarvis() {
+        // Initialize enhanced JARVIS
+        jarvisAnimations.addActiveGlow();
+        jarvisVoice.init();
+        jarvisShortcuts.init();
+        
+        // Update existing JARVIS message system
+        const originalShowMessage = window.showJarvisMessage;
+        window.showJarvisMessage = function(message) {
+            // Call original if exists
+            if (typeof originalShowMessage === 'function') {
+                originalShowMessage(message);
+            }
+            
+            // Also speak the message
+            jarvisVoice.speak(message);
+        };
+        
+        // Add voice control button to UI
+        addVoiceControlUI();
+        
+        console.log("🎙️ JARVIS Voice Assistant Integrated!");
+    }
+    
+    function addVoiceControlUI() {
+        // Create voice control panel
+        const controlPanel = document.createElement('div');
+        controlPanel.id = 'jarvisControlPanel';
+        controlPanel.style.cssText = `
+            position: fixed;
+            bottom: 120px;
+            left: 30px;
+            background: var(--gradient-dark);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 1003;
+            box-shadow: var(--shadow-hover);
+            border: 2px solid var(--primary-yellow);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        `;
+        
+        controlPanel.innerHTML = `
+            <button id="jarvisListenBtn" style="
+                background: var(--gradient-whatsapp);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                color: white;
+                cursor: pointer;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            ">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <button id="jarvisHelpBtn" style="
+                background: var(--gradient-primary);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                color: white;
+                cursor: pointer;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            ">
+                <i class="fas fa-question"></i>
+            </button>
+        `;
+        
+        document.body.appendChild(controlPanel);
+        
+        // Add event listeners
+        document.getElementById('jarvisListenBtn').addEventListener('click', () => {
+            jarvisVoice.startListening();
+        });
+        
+        document.getElementById('jarvisHelpBtn').addEventListener('click', () => {
+            jarvisVoice.showVoiceTutorial();
+        });
+        
+        // Update control panel when JARVIS state changes
+        const listenBtn = document.getElementById('jarvisListenBtn');
+        const updateButtonState = () => {
+            if (jarvisVoice.isListening) {
+                listenBtn.innerHTML = '<i class="fas fa-microphone-slash"></i>';
+                listenBtn.style.background = 'var(--gradient-primary)';
+                jarvisAnimations.updateState('listening');
+            } else {
+                listenBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+                listenBtn.style.background = 'var(--gradient-whatsapp)';
+                
+                if (jarvisVoice.isSpeaking) {
+                    jarvisAnimations.updateState('speaking');
+                } else {
+                    jarvisAnimations.updateState('idle');
+                }
+            }
+        };
+        
+        // Observe JARVIS state changes
+        setInterval(updateButtonState, 100);
+    }
+}
+
+// ===== BROWSER COMPATIBILITY CHECK =====
+function checkBrowserCompatibility() {
+    if (!('speechSynthesis' in window)) {
+        console.warn("Speech synthesis not supported in this browser");
+        return false;
+    }
+    
+    // Check for microphone permission
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(() => console.log("Microphone access granted"))
+            .catch(() => console.warn("Microphone access denied"));
+    }
+    
+    return true;
+}
+
+// ===== START JARVIS VOICE ASSISTANT =====
+// Check compatibility and initialize
+if (checkBrowserCompatibility()) {
+    // Initialize after a short delay to ensure DOM is ready
+    setTimeout(integrateJarvisVoice, 1000);
+} else {
+    console.log("JARVIS voice features require a modern browser with speech synthesis support.");
+}
+
+// ===== ADDITIONAL CSS FOR VOICE ASSISTANT =====
+const jarvisStyles = `
+    /* Voice Wave Animation */
+    .voice-wave {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 3px;
+    }
+    
+    .voice-wave div {
+        width: 3px;
+        background: var(--primary-yellow);
+        border-radius: 2px;
+        animation: wave 1.2s ease-in-out infinite;
+    }
+    
+    .voice-wave div:nth-child(2) { animation-delay: 0.1s; }
+    .voice-wave div:nth-child(3) { animation-delay: 0.2s; }
+    .voice-wave div:nth-child(4) { animation-delay: 0.3s; }
+    .voice-wave div:nth-child(5) { animation-delay: 0.4s; }
+    
+    @keyframes wave {
+        0%, 100% { height: 5px; }
+        50% { height: 15px; }
+    }
+    
+    /* Voice Command Hint */
+    .voice-hint {
+        position: fixed;
+        bottom: 180px;
+        left: 30px;
+        background: var(--gradient-dark);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--border-radius-sm);
+        font-size: 0.875rem;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        pointer-events: none;
+        z-index: 1004;
+        border: 1px solid var(--primary-yellow);
+    }
+    
+    .voice-hint.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Mobile Optimizations */
+    @media (max-width: 768px) {
+        #jarvisControlPanel {
+            bottom: 100px;
+            left: 15px;
+            padding: 0.75rem;
+        }
+        
+        .voice-hint {
+            bottom: 160px;
+            left: 15px;
+            max-width: 200px;
+            font-size: 0.8rem;
+        }
+    }
+`;
+
+// Inject styles
+const styleSheet = document.createElement("style");
+styleSheet.textContent = jarvisStyles;
+document.head.appendChild(styleSheet);
     </script>
 </body>
 </html>
