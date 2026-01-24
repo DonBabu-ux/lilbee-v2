@@ -1,0 +1,2940 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LilBee Logics | Premium Digital Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== ROOT VARIABLES ===== */
+        :root {
+            /* Light Theme */
+            --primary-yellow: #FFC107;
+            --primary-orange: #FF9800;
+            --secondary-blue: #1A237E;
+            --secondary-charcoal: #0F172A;
+            --accent-teal: #00BCD4;
+            --accent-purple: #8A2BE2;
+            --light-gray: #F8FAFC;
+            --white: #FFFFFF;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --bg-primary: #F8FAFC;
+            --bg-secondary: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --border-color: rgba(0, 0, 0, 0.1);
+            
+            /* Glassmorphism */
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            
+            /* Typography */
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            /* Spacing & Effects */
+            --section-padding: 6rem 1.5rem;
+            --card-padding: 2rem;
+            --border-radius: 20px;
+            --border-radius-sm: 12px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.12);
+            --shadow-glow: 0 0 30px rgba(255, 152, 0, 0.2);
+            --shadow-glow-purple: 0 0 30px rgba(138, 43, 226, 0.4);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+            --gradient-dark: linear-gradient(135deg, #1A237E 0%, #0F172A 100%);
+            --gradient-purple: linear-gradient(135deg, #8A2BE2 0%, #4B0082 100%);
+            --gradient-whatsapp: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+
+        [data-theme="dark"] {
+            --primary-yellow: #FFD54F;
+            --primary-orange: #FFB74D;
+            --secondary-blue: #5C6BC0;
+            --secondary-charcoal: #121212;
+            --accent-teal: #26C6DA;
+            --accent-purple: #9C4DFF;
+            --light-gray: #121212;
+            --white: #1E1E1E;
+            --text-dark: #E0E0E0;
+            --text-light: #B0B0B0;
+            --bg-primary: #121212;
+            --bg-secondary: #1E1E1E;
+            --card-bg: #1E1E1E;
+            --border-color: rgba(255, 255, 255, 0.1);
+            
+            --glass-bg: rgba(30, 30, 30, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-color: var(--bg-primary);
+            overflow-x: hidden;
+            transition: var(--transition);
+            padding-top: 80px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        section {
+            padding: var(--section-padding);
+        }
+        
+        /* ===== UTILITY CLASSES ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ===== TOP CONTROLS ===== */
+        .top-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1100;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 1101;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-sm);
+            padding: 0.4rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 0.3rem;
+            z-index: 1101;
+        }
+        
+        .lang-btn {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            background: transparent;
+            color: var(--text-dark);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        
+        .lang-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+        }
+        
+        /* ===== LOGO ===== */
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 800;
+            font-size: 1.75rem;
+            color: var(--secondary-blue);
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon::before {
+            content: "🐝";
+            font-size: 1.5rem;
+            z-index: 2;
+        }
+        
+        .logo-icon::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(from 0deg, transparent 0%, rgba(26, 35, 126, 0.3) 30%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+        
+        .logo-text span:first-child {
+            color: var(--secondary-blue);
+            font-weight: 800;
+        }
+        
+        .logo-text span:last-child {
+            color: var(--primary-orange);
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ===== NAVIGATION ===== */
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            height: 80px;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+            height: 80px;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-btn {
+            padding: 0.75rem 1.75rem;
+            border-radius: var(--border-radius-sm);
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .auth-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .login-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .login-link:hover {
+            color: var(--primary-orange);
+        }
+        
+        /* ===== HAMBURGER MENU ===== */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--secondary-blue);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu-btn:hover {
+            background: var(--light-gray);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .mobile-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .mobile-links li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .mobile-links li a:hover {
+            color: var(--primary-orange);
+            padding-left: 1rem;
+        }
+        
+        .mobile-auth {
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .mobile-auth a {
+            display: block;
+            text-align: center;
+            padding: 1rem;
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .mobile-auth .login-link {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--border-color);
+        }
+        
+        .mobile-auth .nav-btn {
+            text-align: center;
+        }
+        
+        /* ===== ROBOT AVATAR ===== */
+        .robot-container {
+            position: fixed;
+            bottom: 130px;
+            left: 30px;
+            z-index: 1002;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            pointer-events: none;
+        }
+        
+        .robot-avatar {
+            width: 70px;
+            height: 100px;
+            position: relative;
+            cursor: pointer;
+            pointer-events: auto;
+            transform-origin: center bottom;
+        }
+        
+        .robot-head {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #FFC107, #FF9800);
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 10px;
+            z-index: 3;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            animation: robotHeadBob 3s ease-in-out infinite;
+        }
+        
+        .robot-eye {
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 15px;
+        }
+        
+        .robot-eye.left {
+            left: 12px;
+            animation: blink 3s infinite;
+        }
+        
+        .robot-eye.right {
+            right: 12px;
+            animation: blink 3s infinite 0.1s;
+        }
+        
+        .robot-mouth {
+            width: 25px;
+            height: 8px;
+            background: white;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 10px;
+            left: 12.5px;
+            animation: smile 2s infinite;
+        }
+        
+        .robot-body {
+            width: 60px;
+            height: 50px;
+            background: linear-gradient(135deg, #1A237E, #0F172A);
+            border-radius: 20px;
+            position: absolute;
+            top: 40px;
+            left: 5px;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .robot-arm {
+            width: 40px;
+            height: 12px;
+            background: linear-gradient(135deg, #1A237E, #0F172A);
+            border-radius: 6px;
+            position: absolute;
+            top: 45px;
+        }
+        
+        .robot-arm.left-arm {
+            left: -30px;
+            transform-origin: right center;
+            animation: waveLeft 2s infinite;
+        }
+        
+        .robot-arm.right-arm {
+            right: -30px;
+            transform-origin: left center;
+            animation: waveRight 2s infinite 0.5s;
+        }
+        
+        .robot-leg {
+            width: 15px;
+            height: 30px;
+            background: linear-gradient(135deg, #1A237E, #0F172A);
+            border-radius: 8px;
+            position: absolute;
+            bottom: -30px;
+        }
+        
+        .robot-leg.left-leg {
+            left: 15px;
+            animation: jumpLeft 1s infinite;
+        }
+        
+        .robot-leg.right-leg {
+            right: 15px;
+            animation: jumpRight 1s infinite 0.5s;
+        }
+        
+        .robot-message {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            z-index: 1003;
+        }
+        
+        .robot-message.show {
+            opacity: 1;
+            visibility: visible;
+            animation: messagePop 4s forwards;
+        }
+        
+        @keyframes robotHeadBob {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            25% { transform: translateY(-5px) rotate(2deg); }
+            75% { transform: translateY(-3px) rotate(-2deg); }
+        }
+        
+        @keyframes waveLeft {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-45deg); }
+        }
+        
+        @keyframes waveRight {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(45deg); }
+        }
+        
+        @keyframes jumpLeft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes jumpRight {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes blink {
+            0%, 90%, 100% { height: 10px; }
+            95% { height: 2px; }
+        }
+        
+        @keyframes smile {
+            0%, 100% { width: 25px; }
+            50% { width: 30px; }
+        }
+        
+        @keyframes messagePop {
+            0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-10px); visibility: hidden; }
+        }
+        
+        /* ===== CONFETTI CANVAS ===== */
+        #confettiCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            display: none;
+        }
+        
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: 8rem 1.5rem 6rem;
+            background: var(--gradient-dark);
+            position: relative;
+            overflow: hidden;
+            margin-top: -80px;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255, 152, 0, 0.1) 0%, transparent 70%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff 0%, var(--primary-yellow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .cta-primary {
+            padding: 1rem 2.5rem;
+            border-radius: var(--border-radius-sm);
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 152, 0, 0.3);
+        }
+        
+        .cta-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: var(--border-radius-sm);
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-5px);
+        }
+        
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-top: -4rem;
+            position: relative;
+            z-index: 100;
+            box-shadow: var(--shadow-hover);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-orange);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* ===== MASTERCLASS ===== */
+        .masterclass-section {
+            background: var(--gradient-dark);
+            color: white;
+            padding: 3rem 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 3rem auto;
+            max-width: 900px;
+            text-align: center;
+        }
+        
+        .countdown {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-yellow);
+            margin: 1rem 0;
+        }
+        
+        .zoom-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #2D8CFF;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            margin-top: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .zoom-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(45, 140, 255, 0.3);
+        }
+        
+        /* ===== TECHNOLOGIES WITH GLOWING BORDERS ===== */
+        .tech-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .tech-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tech-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--border-radius-sm);
+            padding: 2px;
+            background: var(--gradient-purple);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow-purple);
+        }
+        
+        .tech-item:hover::before {
+            opacity: 1;
+            animation: borderGlow 2s linear infinite;
+        }
+        
+        @keyframes borderGlow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+        
+        .tech-icon {
+            font-size: 2.5rem;
+        }
+        
+        /* Language specific colors */
+        .html5 .tech-icon { color: #E34F26; }
+        .css3 .tech-icon { color: #1572B6; }
+        .javascript .tech-icon { color: #F7DF1E; }
+        .react .tech-icon { color: #61DAFB; }
+        .nodejs .tech-icon { color: #339933; }
+        .python .tech-icon { color: #3776AB; }
+        .php .tech-icon { color: #777BB4; }
+        .mysql .tech-icon { color: #4479A1; }
+        .mongodb .tech-icon { color: #47A248; }
+        .git .tech-icon { color: #F05032; }
+        
+        /* ===== SERVICES ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .service-card-advanced {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .service-card-advanced:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .service-header {
+            padding: 1.5rem;
+            background: var(--gradient-primary);
+            color: white;
+        }
+        
+        .service-header h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-price {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-top: 1rem;
+        }
+        
+        .service-features {
+            padding: 1.5rem;
+            list-style: none;
+        }
+        
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+        
+        .service-features li i {
+            color: var(--primary-orange);
+        }
+        
+        .service-actions {
+            padding: 1rem 1.5rem 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .whatsapp-order {
+            flex: 1;
+            background: var(--gradient-whatsapp);
+            border: none;
+            padding: 1rem;
+            border-radius: var(--border-radius-sm);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .whatsapp-order:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+        
+        /* ===== PORTFOLIO ===== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .portfolio-item {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .portfolio-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 35, 126, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+        
+        .portfolio-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .portfolio-tag {
+            background: var(--light-gray);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-dark);
+        }
+        
+        /* Portfolio projects with background colors */
+        .portfolio-image.sparkle { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .portfolio-image.instapesa { background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%); }
+        .portfolio-image.ngaru { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .portfolio-image.salon { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        
+        /* ===== MEDIA SHOWCASE ===== */
+        .media-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .media-item {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .media-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .media-item video,
+        .media-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .media-caption {
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        /* ===== PRICING CALCULATOR ===== */
+        .pricing-calculator {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 600px;
+            box-shadow: var(--shadow);
+        }
+        
+        .calculator-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .calculator-inputs select,
+        .calculator-inputs input {
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            background: var(--bg-secondary);
+            color: var(--text-dark);
+            font-family: var(--font-body);
+        }
+        
+        .calculator-result {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: var(--border-radius-sm);
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        /* ===== TESTIMONIALS ===== */
+        .testimonial-container {
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+        
+        .testimonial-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.5s ease;
+        }
+        
+        .testimonial-card {
+            min-width: 350px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            flex-shrink: 0;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .testimonial-card:hover {
+            border-color: var(--primary-orange);
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .carousel-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* ===== CONSULTATION FORM ===== */
+        .consultation-form {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            box-shadow: var(--shadow-hover);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            font-family: var(--font-body);
+            transition: var(--transition);
+            background: var(--bg-secondary);
+            color: var(--text-dark);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* ===== FAQS ===== */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-sm);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+        
+        .faq-toggle {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+        
+        /* ===== GOOGLE BUTTON ===== */
+        .google-btn-container {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .google-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: white;
+            color: #4285F4;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(66, 133, 244, 0.3);
+            border: 2px solid #4285F4;
+            transition: var(--transition);
+        }
+        
+        .google-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(66, 133, 244, 0.4);
+            background: #4285F4;
+            color: white;
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--secondary-charcoal);
+            color: white;
+            padding: 5rem 1.5rem 2rem;
+            margin-top: 5rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-yellow);
+            padding-left: 0.5rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius-sm);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .newsletter-form button {
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+        
+        /* ===== FLOATING BUTTONS ===== */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+        
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            box-shadow: var(--shadow-hover);
+            transition: var(--transition);
+        }
+        
+        .floating-btn.whatsapp {
+            background: var(--gradient-whatsapp);
+        }
+        
+        .floating-btn.messenger {
+            background: linear-gradient(135deg, #0084FF, #0062FF);
+        }
+        
+        .floating-btn.checklist {
+            background: var(--gradient-primary);
+        }
+        
+        .floating-btn.hosting {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.75rem;
+            }
+            
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                margin-top: -2rem;
+            }
+            
+            .top-controls {
+                top: 15px;
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .nav-wrapper {
+                height: 70px;
+            }
+            
+            .nav {
+                height: 70px;
+            }
+            
+            .hero {
+                padding: 7rem 1.5rem 4rem;
+                margin-top: -70px;
+            }
+            
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .auth-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .top-controls {
+                right: 70px;
+            }
+            
+            .theme-toggle {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .lang-switcher {
+                padding: 0.3rem;
+            }
+            
+            .lang-btn {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.8rem;
+            }
+            
+            .stats-bar {
+                grid-template-columns: 1fr;
+                margin-top: 0;
+                border-radius: 0;
+            }
+            
+            .services-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .consultation-form {
+                padding: 2rem 1.5rem;
+            }
+            
+            .testimonial-card {
+                min-width: 300px;
+            }
+            
+            .mobile-menu {
+                top: 70px;
+            }
+            
+            .robot-container {
+                bottom: 120px;
+                left: 20px;
+            }
+            
+            .robot-avatar {
+                width: 60px;
+                height: 85px;
+            }
+            
+            .robot-head {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .robot-body {
+                width: 50px;
+                height: 45px;
+            }
+            
+            .robot-arm {
+                width: 35px;
+                height: 10px;
+            }
+            
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.875rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .service-price {
+                font-size: 1.75rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .top-controls {
+                right: 60px;
+                gap: 5px;
+            }
+            
+            .theme-toggle {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .lang-switcher {
+                display: none;
+            }
+            
+            .mobile-menu {
+                padding: 1.5rem;
+            }
+            
+            .robot-container {
+                bottom: 110px;
+                left: 15px;
+            }
+            
+            .robot-avatar {
+                width: 50px;
+                height: 70px;
+            }
+            
+            .robot-head {
+                width: 35px;
+                height: 35px;
+                left: 7.5px;
+            }
+            
+            .robot-body {
+                width: 40px;
+                height: 35px;
+                left: 5px;
+            }
+            
+            .robot-arm {
+                width: 30px;
+                height: 8px;
+            }
+            
+            .robot-leg {
+                width: 12px;
+                height: 25px;
+            }
+            
+            .robot-message {
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
+                bottom: 100px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-showcase {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .tech-item {
+                padding: 1rem;
+            }
+            
+            .tech-icon {
+                font-size: 2rem;
+            }
+            
+            .robot-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Controls -->
+    <div class="top-controls">
+        <div class="lang-switcher" id="langSwitcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="sw">SW</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-wrapper">
+        <div class="container">
+            <nav class="nav">
+                <a href="home.html" class="logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">
+                        <span>Lil-Bee</span>
+                        <span>LOGICS</span>
+                    </div>
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#technologies">Technologies</a></li>
+                    <li><a href="#media">Our Work</a></li>
+                    <li><a href="#consultation">Get Quote</a></li>
+                    <li><a href="#faqs">FAQs</a></li>
+                </ul>
+                
+                <div class="auth-links">
+                    <a href="login.html" class="login-link">Login</a>
+                    <a href="signup.html" class="nav-btn">Sign Up</a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#technologies">Technologies</a></li>
+            <li><a href="#media">Our Work</a></li>
+            <li><a href="#consultation">Get Quote</a></li>
+            <li><a href="#faqs">FAQs</a></li>
+        </ul>
+        <div class="mobile-auth">
+            <a href="login.html" class="login-link">Login</a>
+            <a href="signup.html" class="nav-btn">Sign Up</a>
+        </div>
+    </div>
+
+    <!-- Robot Avatar -->
+    <div class="robot-container">
+        <div class="robot-avatar" id="robotAvatar">
+            <div class="robot-head">
+                <div class="robot-eye left"></div>
+                <div class="robot-eye right"></div>
+                <div class="robot-mouth"></div>
+            </div>
+            <div class="robot-body">
+                <div class="robot-arm left-arm"></div>
+                <div class="robot-arm right-arm"></div>
+                <div class="robot-leg left-leg"></div>
+                <div class="robot-leg right-leg"></div>
+            </div>
+        </div>
+        <div class="robot-message" id="robotMessage">
+            Welcome to LilBee Logics!
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero fade-in">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in" data-en="Smart Digital Solutions for Growing Businesses" data-sw="Suluhisho Dijitali Zenye Akili kwa Biashara Zinazokua">
+                    Smart Digital Solutions for Growing Businesses
+                </h1>
+                <p class="fade-in delay-1" data-en="We build premium, custom-coded web solutions that turn visitors into customers. Fast, SEO-ready, and optimized for growth." data-sw="Tunajenga suluhisho za wavuti za hali ya juu ambazo hubadilisha wageni kuwa wateja. Haraka, tayari kwa SEO, na zimeboreshwa kwa ukuaji.">
+                    We build premium, custom-coded web solutions that turn visitors into customers. Fast, SEO-ready, and optimized for growth.
+                </p>
+                <div class="hero-actions">
+                    <a href="#consultation" class="cta-primary fade-in delay-2">
+                        <i class="fas fa-calendar-check"></i> 
+                        <span data-en="Book Free Consultation" data-sw="Tuma Ombi ya Mazungumzo Bure">
+                            Book Free Consultation
+                        </span>
+                    </a>
+                    <a href="#portfolio" class="cta-secondary fade-in delay-2">
+                        <i class="fas fa-eye"></i> 
+                        <span data-en="View Our Work" data-sw="Angalia Kazi Yetu">
+                            View Our Work
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="container">
+        <div class="stats-bar fade-in delay-3">
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label" data-en="Projects Delivered" data-sw="Miradi Iliyokamilishwa">
+                    Projects Delivered
+                </span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">98%</span>
+                <span class="stat-label" data-en="Satisfaction Rate" data-sw="Kiwango cha Kuridhika">
+                    Satisfaction Rate
+                </span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">1-3</span>
+                <span class="stat-label" data-en="Days Delivery" data-sw="Siku za Kufikisha">
+                    Days Delivery
+                </span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label" data-en="Support" data-sw="Msaada">
+                    Support
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Masterclass Section -->
+    <section class="container">
+        <div class="masterclass-section fade-in">
+            <h2 data-en="FREE WEB DEVELOPMENT MASTERCLASS" data-sw="DARASA KUU LA MAENDELEO YA WAVUTI BURE">
+                FREE WEB DEVELOPMENT MASTERCLASS
+            </h2>
+            <p data-en="🔥 HTML & CSS Introduction for Techies | 30-Day Web Development Challenge" data-sw="🔥 Utangulizi wa HTML & CSS kwa Watekinolojia | Changamoto ya Siku 30 ya Maendeleo ya Wavuti">
+                🔥 HTML & CSS Introduction for Techies | 30-Day Web Development Challenge
+            </p>
+            <p data-en="📅 Every Monday | 9:30 PM – 10:00 PM EAT" data-sw="📅 Kila Jumatatu | 9:30 Usiku – 10:00 Usiku">
+                📅 Every Monday | 9:30 PM – 10:00 PM EAT
+            </p>
+            <div class="countdown" id="countdown">00:00:00</div>
+            <a href="https://us05web.zoom.us/j/3441647010?pwd=WlFqjgux6AU2fUGlZKofKji9cEaEbb.1" class="zoom-link" target="_blank">
+                <i class="fas fa-video"></i> 
+                <span data-en="Join Zoom Class" data-sw="Jiunge na Darasa la Zoom">
+                    Join Zoom Class
+                </span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Built With Modern Technologies" data-sw="Imejengwa Kwa Teknolojia za Kisasa">
+                    Built With Modern Technologies
+                </h2>
+                <p class="section-subtitle" data-en="We use cutting-edge tools to build fast, secure, and scalable solutions" data-sw="Tunatumia zana za kisasa kuunda suluhisho za haraka, salama na zinazoweza kupanuka">
+                    We use cutting-edge tools to build fast, secure, and scalable solutions
+                </p>
+            </div>
+            
+            <div class="tech-showcase">
+                <!-- Tech items with glowing purple borders -->
+                <div class="tech-item html5 fade-in">
+                    <i class="fab fa-html5 tech-icon"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="tech-item css3 fade-in delay-1">
+                    <i class="fab fa-css3-alt tech-icon"></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="tech-item javascript fade-in delay-2">
+                    <i class="fab fa-js tech-icon"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="tech-item react fade-in">
+                    <i class="fab fa-react tech-icon"></i>
+                    <span>React.js</span>
+                </div>
+                <div class="tech-item nodejs fade-in delay-1">
+                    <i class="fab fa-node-js tech-icon"></i>
+                    <span>Node.js</span>
+                </div>
+                <div class="tech-item python fade-in delay-2">
+                    <i class="fab fa-python tech-icon"></i>
+                    <span>Python</span>
+                </div>
+                <div class="tech-item php fade-in">
+                    <i class="fab fa-php tech-icon"></i>
+                    <span>PHP</span>
+                </div>
+                <div class="tech-item mysql fade-in delay-1">
+                    <i class="fas fa-database tech-icon"></i>
+                    <span>MySQL</span>
+                </div>
+                <div class="tech-item mongodb fade-in delay-2">
+                    <i class="fas fa-leaf tech-icon"></i>
+                    <span>MongoDB</span>
+                </div>
+                <div class="tech-item git fade-in">
+                    <i class="fab fa-git-alt tech-icon"></i>
+                    <span>Git</span>
+                </div>
+            </div>
+
+            <!-- View on Google -->
+            <div class="google-btn-container fade-in delay-3">
+                <a href="https://www.google.com/search?q=Lil-Bee+Logics" class="google-btn" target="_blank">
+                    <i class="fab fa-google"></i>
+                    <span data-en="View on Google" data-sw="Angalia kwenye Google">
+                        View on Google
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Our Premium Services" data-sw="Huduma Zetu za Hali ya Juu">
+                    Our Premium Services
+                </h2>
+                <p class="section-subtitle" data-en="Quality web solutions delivered quickly with transparent pricing" data-sw="Suluhisho bora za wavuti zinazofikishwa haraka na bei wazi">
+                    Quality web solutions delivered quickly with transparent pricing
+                </p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service 1: Landing Pages -->
+                <div class="service-card-advanced fade-in">
+                    <div class="service-header">
+                        <h3 data-en="Landing Pages" data-sw="Kurasa za Kutua">
+                            Landing Pages
+                        </h3>
+                        <p data-en="Perfect for small businesses and startups" data-sw="Kamili kwa biashara ndogo na makampuni mapya">
+                            Perfect for small businesses and startups
+                        </p>
+                        <div class="service-price">From 3,000 KES</div>
+                    </div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-en="1-3 day delivery" data-sw="Ufikishaji wa siku 1-3">1-3 day delivery</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Mobile responsive design" data-sw="Muundo unaolingana na simu">Mobile responsive design</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="SEO optimized" data-sw="Imeboreshwa kwa SEO">SEO optimized</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Contact forms" data-sw="Fomu za mawasiliano">Contact forms</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Basic analytics" data-sw="Uchambuzi wa msingi">Basic analytics</span></li>
+                    </ul>
+                    <div class="service-actions">
+                        <a href="https://wa.me/254117234064?text=Hi! I'm interested in a Landing Page from LilBee Logics. Can you help me get started?" class="whatsapp-order" target="_blank">
+                            <i class="fab fa-whatsapp"></i> 
+                            <span data-en="Order via WhatsApp" data-sw="Agiza kupitia WhatsApp">
+                                Order via WhatsApp
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 2: Business Websites -->
+                <div class="service-card-advanced fade-in delay-1">
+                    <div class="service-header" style="background: linear-gradient(135deg, #2196F3, #1976D2);">
+                        <h3 data-en="Business Websites" data-sw="Wavuti za Biashara">
+                            Business Websites
+                        </h3>
+                        <p data-en="Multi-page websites with advanced features" data-sw="Wavuti zenye kurasa nyingi na huduma za hali ya juu">
+                            Multi-page websites with advanced features
+                        </p>
+                        <div class="service-price">From 10,000 KES</div>
+                    </div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-en="3-5 responsive pages" data-sw="Kurasa 3-5 zinazolingana">3-5 responsive pages</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Admin dashboard" data-sw="Dashibodi ya msimamizi">Admin dashboard</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Email integration" data-sw="Ujumuishaji wa barua pepe">Email integration</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Content management" data-sw="Usimamizi wa maudhui">Content management</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="SEO optimization" data-sw="Uboreshaji wa SEO">SEO optimization</span></li>
+                    </ul>
+                    <div class="service-actions">
+                        <a href="https://wa.me/254117234064?text=Hi! I'm interested in a Business Website from LilBee Logics. Can you provide me with a quote?" class="whatsapp-order" target="_blank">
+                            <i class="fab fa-whatsapp"></i> 
+                            <span data-en="Order via WhatsApp" data-sw="Agiza kupitia WhatsApp">
+                                Order via WhatsApp
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 3: Full Systems -->
+                <div class="service-card-advanced fade-in delay-2">
+                    <div class="service-header" style="background: linear-gradient(135deg, #9C27B0, #7B1FA2);">
+                        <h3 data-en="Full Systems" data-sw="Mifumo Kamili">
+                            Full Systems
+                        </h3>
+                        <p data-en="Complete web applications with custom features" data-sw="Programu kamili za wavuti zilizo na huduma maalum">
+                            Complete web applications with custom features
+                        </p>
+                        <div class="service-price">From 25,000 KES</div>
+                    </div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span data-en="User authentication" data-sw="Uthibitishaji wa mtumiaji">User authentication</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="MySQL database" data-sw="Hifadhidata ya MySQL">MySQL database</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="API integration" data-sw="Ujumuishaji wa API">API integration</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Payment gateways" data-sw="Milango ya malipo">Payment gateways</span></li>
+                        <li><i class="fas fa-check"></i> <span data-en="Advanced reporting" data-sw="Ripoti za hali ya juu">Advanced reporting</span></li>
+                    </ul>
+                    <div class="service-actions">
+                        <a href="https://wa.me/254117234064?text=Hi! I'm interested in a Full System from LilBee Logics. Please send me more details and pricing." class="whatsapp-order" target="_blank">
+                            <i class="fab fa-whatsapp"></i> 
+                            <span data-en="Order via WhatsApp" data-sw="Agiza kupitia WhatsApp">
+                                Order via WhatsApp
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" style="background: linear-gradient(135deg, var(--light-gray) 0%, #f1f5f9 100%);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Our Recent Projects" data-sw="Miradi Yetu ya Hivi Karibuni">
+                    Our Recent Projects
+                </h2>
+                <p class="section-subtitle" data-en="Delivered in 1-3 days for Kenyan businesses" data-sw="Zilizofikishwa kwa siku 1-3 kwa biashara za Kenya">
+                    Delivered in 1-3 days for Kenyan businesses
+                </p>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- InstaPesa -->
+                <div class="portfolio-item fade-in">
+                    <div class="portfolio-image instapesa">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center;">
+                            <i class="fas fa-money-bill-wave" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h3 style="margin: 0;">InstaPesa</h3>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <a href="#" class="cta-primary">Live Demo</a>
+                            <a href="#" class="cta-secondary">Get Code</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>InstaPesa</h3>
+                        <p style="color: var(--text-light); margin: 0.5rem 0;">
+                            Mobile payment platform with M-Pesa integration and instant transfers
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">React</span>
+                            <span class="portfolio-tag">Node.js</span>
+                            <span class="portfolio-tag">M-Pesa API</span>
+                            <span class="portfolio-tag">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ngaru Anglican Church -->
+                <div class="portfolio-item fade-in delay-1">
+                    <div class="portfolio-image ngaru">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center;">
+                            <i class="fas fa-church" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h3 style="margin: 0;">Ngaru Church</h3>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <a href="#" class="cta-primary">Live Demo</a>
+                            <a href="#" class="cta-secondary">Get Code</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Ngaru Anglican Church Website</h3>
+                        <p style="color: var(--text-light); margin: 0.5rem 0;">
+                            Church management system with event calendar, donations, and sermon archive
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">PHP</span>
+                            <span class="portfolio-tag">MySQL</span>
+                            <span class="portfolio-tag">Calendar API</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Salon Website -->
+                <div class="portfolio-item fade-in delay-2">
+                    <div class="portfolio-image salon">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center;">
+                            <i class="fas fa-spa" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h3 style="margin: 0;">Beauty Salon</h3>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <a href="#" class="cta-primary">Live Demo</a>
+                            <a href="#" class="cta-secondary">Get Code</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Salon & Spa Website</h3>
+                        <p style="color: var(--text-light); margin: 0.5rem 0;">
+                            Booking system with online appointments, services catalog, and gallery
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">HTML/CSS</span>
+                            <span class="portfolio-tag">JavaScript</span>
+                            <span class="portfolio-tag">Booking System</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sparkle App -->
+                <div class="portfolio-item fade-in">
+                    <div class="portfolio-image sparkle">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center;">
+                            <i class="fas fa-sparkles" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h3 style="margin: 0;">Sparkle App</h3>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <a href="#" class="cta-primary">Live Demo</a>
+                            <a href="#" class="cta-secondary">Get Code</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Sparkle Social Media App</h3>
+                        <p style="color: var(--text-light); margin: 0.5rem 0;">
+                            Social networking platform with real-time chat and content sharing
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">React Native</span>
+                            <span class="portfolio-tag">Firebase</span>
+                            <span class="portfolio-tag">WebSocket</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Showcase -->
+    <section id="media">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Work in Action" data-sw="Kazi Kwa Vitendo">
+                    Work in Action
+                </h2>
+                <p class="section-subtitle" data-en="See our projects through images and videos" data-sw="Ona miradi yetu kupitia picha na video">
+                    See our projects through images and videos
+                </p>
+            </div>
+            
+            <div class="media-showcase">
+                <div class="media-item fade-in">
+                    <video controls poster="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-programmer-working-on-a-laptop-5091-large.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="media-caption">
+                        <h4 data-en="Development Process" data-sw="Mchakato wa Uundaji">
+                            Development Process
+                        </h4>
+                        <p data-en="See how we build responsive websites" data-sw="Ona jinsi tunavyojenga wavuti zinazolingana">
+                            See how we build responsive websites
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="media-item fade-in delay-1">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Client Meeting">
+                    <div class="media-caption">
+                        <h4 data-en="Client Collaboration" data-sw="Ushirikiano na Wateja">
+                            Client Collaboration
+                        </h4>
+                        <p data-en="Working closely with clients for best results" data-sw="Kufanya kazi kwa karibu na wateja kwa matokeo bora">
+                            Working closely with clients for best results
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="media-item fade-in delay-2">
+                    <video controls poster="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-businessman-using-a-laptop-5092-large.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="media-caption">
+                        <h4 data-en="Final Delivery" data-sw="Ufikishaji wa Mwisho">
+                            Final Delivery
+                        </h4>
+                        <p data-en="Handing over completed projects to clients" data-sw="Kukabidhi miradi iliyokamilika kwa wateja">
+                            Handing over completed projects to clients
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Calculator -->
+    <section id="calculator">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Price Calculator" data-sw="Kikokotoo cha Bei">
+                    Price Calculator
+                </h2>
+                <p class="section-subtitle" data-en="Estimate your project cost instantly" data-sw="Kadiria gharama ya mradi wako mara moja">
+                    Estimate your project cost instantly
+                </p>
+            </div>
+            
+            <div class="pricing-calculator fade-in">
+                <h3 data-en="Custom Quote Calculator" data-sw="Kikokotoo cha Bei Maalum">
+                    Custom Quote Calculator
+                </h3>
+                <div class="calculator-inputs">
+                    <select id="serviceType">
+                        <option value="3000" data-en="Landing Page" data-sw="Kurasa ya Kutua">Landing Page</option>
+                        <option value="10000" data-en="Business Website" data-sw="Wavuti ya Biashara">Business Website</option>
+                        <option value="25000" data-en="Full System" data-sw="Mfumo Kamili">Full System</option>
+                        <option value="50000" data-en="E-commerce" data-sw="Biashara ya Mtandaoni">E-commerce</option>
+                        <option value="75000" data-en="Mobile App" data-sw="Programu ya Simu">Mobile App</option>
+                    </select>
+                    
+                    <select id="pages">
+                        <option value="0" data-en="Number of Pages" data-sw="Idadi ya Kurasa">Number of Pages</option>
+                        <option value="0">1</option>
+                        <option value="2000">2-3</option>
+                        <option value="5000">4-6</option>
+                        <option value="10000">7-10</option>
+                    </select>
+                    
+                    <select id="features">
+                        <option value="0" data-en="Additional Features" data-sw="Huduma Zaidi">Additional Features</option>
+                        <option value="3000" data-en="M-Pesa Integration" data-sw="Ujumuishaji wa M-Pesa">M-Pesa Integration</option>
+                        <option value="5000" data-en="Admin Dashboard" data-sw="Dashibodi ya Msimamizi">Admin Dashboard</option>
+                        <option value="7000" data-en="User Accounts" data-sw="Akaunti za Watumiaji">User Accounts</option>
+                        <option value="10000" data-en="Custom API" data-sw="API Maalum">Custom API</option>
+                    </select>
+                </div>
+                
+                <div class="calculator-result" id="calculatedPrice">
+                    3,000 KES
+                </div>
+                
+                <div style="text-align: center; margin-top: 1rem;">
+                    <button class="cta-primary" onclick="calculatePrice()">
+                        <i class="fas fa-calculator"></i> 
+                        <span data-en="Calculate Price" data-sw="Kokotoa Bei">
+                            Calculate Price
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section style="background-color: var(--secondary-blue); color: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;" data-en="What Kenyan Businesses Say" data-sw="Wanasema Nini Biashara za Kenya">
+                    What Kenyan Businesses Say
+                </h2>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);" data-en="Trusted by 50+ businesses across Kenya" data-sw="Imeaminika na biashara 50+ nchini Kenya">
+                    Trusted by 50+ businesses across Kenya
+                </p>
+            </div>
+            
+            <div class="testimonial-container">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div style="color: var(--primary-yellow); margin-bottom: 1rem;">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"My restaurant website was delivered in just 2 days! The ordering system works perfectly on mobile and increased our sales by 30%."</p>
+                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: var(--light-gray); border-radius: 50%;"></div>
+                            <div>
+                                <h4 style="margin: 0;">Sarah Mwangi</h4>
+                                <p style="opacity: 0.8; margin: 0.25rem 0 0;">Owner, Nairobi Restaurant</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div style="color: var(--primary-yellow); margin-bottom: 1rem;">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"The church website has transformed how we connect with our congregation. Online donations have increased by 40%!"</p>
+                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: var(--light-gray); border-radius: 50%;"></div>
+                            <div>
+                                <h4 style="margin: 0;">Rev. John Kimani</h4>
+                                <p style="opacity: 0.8; margin: 0.25rem 0 0;">Ngaru Anglican Church</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div style="color: var(--primary-yellow); margin-bottom: 1rem;">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Sparkle app transformed my salon. Bookings increased by 60% and the automated reminders save me hours every week."</p>
+                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: var(--light-gray); border-radius: 50%;"></div>
+                            <div>
+                                <h4 style="margin: 0;">Lisa Wangari</h4>
+                                <p style="opacity: 0.8; margin: 0.25rem 0 0;">CEO, Glamour Beauty Spa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Frequently Asked Questions" data-sw="Maswali Yanayoulizwa Mara Kwa Mara">
+                    Frequently Asked Questions
+                </h2>
+                <p class="section-subtitle" data-en="Find answers to common questions about our services" data-sw="Pata majibu ya maswali ya kawaida kuhusu huduma zetu">
+                    Find answers to common questions about our services
+                </p>
+            </div>
+            
+            <div class="faq-container">
+                <!-- FAQ 1 -->
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span data-en="How long does it take to build a website?" data-sw="Inachukua muda gani kujenga wavuti?">
+                            How long does it take to build a website?
+                        </span>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Landing pages: 1-3 days, Business websites: 3-7 days, Full systems: 7-14 days. We provide regular updates throughout the process." data-sw="Kurasa za kutua: siku 1-3, Wavuti za biashara: siku 3-7, Mifumo kamili: siku 7-14. Tunatoa matangazo ya kawaida katika mchakato mzima.">
+                            Landing pages: 1-3 days, Business websites: 3-7 days, Full systems: 7-14 days. We provide regular updates throughout the process.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="faq-item fade-in delay-1">
+                    <div class="faq-question">
+                        <span data-en="Do you offer maintenance after delivery?" data-sw="Je, unatoa matengenezo baada ya uwasilishaji?">
+                            Do you offer maintenance after delivery?
+                        </span>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Yes! We offer 30 days of free maintenance for all projects. After that, we have affordable monthly maintenance plans starting from 1,000 KES/month." data-sw="Ndio! Tunatoa siku 30 za matengenezo ya bure kwa miradi yote. Baada ya hapo, tuna mipango ya matengenezo ya kila mwezi inayotoka KES 1,000/kwa mwezi.">
+                            Yes! We offer 30 days of free maintenance for all projects. After that, we have affordable monthly maintenance plans starting from 1,000 KES/month.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="faq-item fade-in delay-2">
+                    <div class="faq-question">
+                        <span data-en="Can I update my website content myself?" data-sw="Je, naweza kusasisha maudhui ya wavuti yangu mwenyewe?">
+                            Can I update my website content myself?
+                        </span>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Yes, for Business Websites and Full Systems, we include a user-friendly admin panel where you can update text, images, and manage your content easily without coding knowledge." data-sw="Ndio, kwa Wavuti za Biashara na Mifumo Kamili, tunajumuisha paneli ya msimamizi rahisi ambayo unaweza kusasisha maandishi, picha, na kudhibiti maudhui yako kwa urahisi bila ujuzi wa coding.">
+                            Yes, for Business Websites and Full Systems, we include a user-friendly admin panel where you can update text, images, and manage your content easily without coding knowledge.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span data-en="Do you offer hosting and domain services?" data-sw="Je, unatoa huduma za hosting na domain?">
+                            Do you offer hosting and domain services?
+                        </span>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Yes! We offer complete hosting solutions starting from 500 KES/month. We can also help you register a domain name (.co.ke, .com, .org, etc.) and set up professional email addresses." data-sw="Ndio! Tunatoa suluhisho kamili za hosting kuanzia KES 500/kwa mwezi. Tunaweza pia kukusaidia kusajili jina la domain (.co.ke, .com, .org, n.k.) na kuanzisha anwani za barua pepe za kitaaluma.">
+                            Yes! We offer complete hosting solutions starting from 500 KES/month. We can also help you register a domain name (.co.ke, .com, .org, etc.) and set up professional email addresses.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Section -->
+    <section id="consultation">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Get Your Project Started" data-sw="Anzisha Mradi Wako">
+                    Get Your Project Started
+                </h2>
+                <p class="section-subtitle" data-en="Contact us for a free quote. We respond within 1 hour!" data-sw="Wasiliana nasi kwa bei bure. Tunajibu ndani ya saa 1!">
+                    Contact us for a free quote. We respond within 1 hour!
+                </p>
+            </div>
+            
+            <div class="consultation-form fade-in">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h3 data-en="Request Free Quote" data-sw="Omba Bei Bure">
+                        Request Free Quote
+                    </h3>
+                    <p style="color: var(--text-light);" data-en="Fill out the form below and we'll get back to you within 1 hour" data-sw="Jaza fomu hapa chini na tutakujibu ndani ya saa 1">
+                        Fill out the form below and we'll get back to you within 1 hour
+                    </p>
+                </div>
+                
+                <form id="quoteForm" class="form-grid">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Phone/WhatsApp Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="" data-en="Select Service" data-sw="Chagua Huduma">Select Service</option>
+                            <option value="landing" data-en="Landing Page (3,000 KES+)" data-sw="Kurasa ya Kutua (KES 3,000+)">Landing Page (3,000 KES+)</option>
+                            <option value="business" data-en="Business Website (10,000 KES+)" data-sw="Wavuti ya Biashara (KES 10,000+)">Business Website (10,000 KES+)</option>
+                            <option value="system" data-en="Full System (25,000 KES+)" data-sw="Mfumo Kamili (KES 25,000+)">Full System (25,000 KES+)</option>
+                            <option value="other" data-en="Other Project" data-sw="Mradi Mwingine">Other Project</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <textarea placeholder="Tell us about your project..." rows="4" required></textarea>
+                    </div>
+                </form>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" form="quoteForm" class="cta-primary" style="padding: 1rem 3rem;">
+                        <i class="fas fa-paper-plane"></i> 
+                        <span data-en="Get Free Quote" data-sw="Pata Bei Bure">
+                            Get Free Quote
+                        </span>
+                    </button>
+                    <p style="margin-top: 1rem; color: var(--text-light);" data-en="We'll respond with a detailed quote within 1 hour!" data-sw="Tutakujibu na bei kamili ndani ya saa 1!">
+                        We'll respond with a detailed quote within 1 hour!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <a href="home.html" class="logo" style="color: white; margin-bottom: 1.5rem; display: inline-flex;">
+                        <div class="logo-icon"></div>
+                        <div class="logo-text">
+                            <span>Lil-Bee</span>
+                            <span>LOGICS</span>
+                        </div>
+                    </a>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1.5rem;" data-en="Fast web solutions for Kenyan businesses. Websites delivered in 1-3 days with free fixes included." data-sw="Suluhisho za wavuti haraka kwa biashara za Kenya. Wavuti zinazofikishwa kwa siku 1-3 na urekebishaji bure.">
+                        Fast web solutions for Kenyan businesses. Websites delivered in 1-3 days with free fixes included.
+                    </p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3 data-en="Quick Links" data-sw="Viungo Vya Haraka">
+                        Quick Links
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-en="Home" data-sw="Nyumbani">Home</a></li>
+                        <li><a href="#services" data-en="Services" data-sw="Huduma">Services</a></li>
+                        <li><a href="#portfolio" data-en="Portfolio" data-sw="Portfolio">Portfolio</a></li>
+                        <li><a href="#technologies" data-en="Technologies" data-sw="Teknolojia">Technologies</a></li>
+                        <li><a href="#consultation" data-en="Get Quote" data-sw="Pata Bei">Get Quote</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-section">
+                    <h3 data-en="Services" data-sw="Huduma">
+                        Services
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-en="Landing Pages" data-sw="Kurasa za Kutua">Landing Pages</a></li>
+                        <li><a href="#" data-en="Business Websites" data-sw="Wavuti za Biashara">Business Websites</a></li>
+                        <li><a href="#" data-en="Full Systems" data-sw="Mifumo Kamili">Full Systems</a></li>
+                        <li><a href="#" data-en="E-commerce Stores" data-sw="Maduka ya Mtandaoni">E-commerce Stores</a></li>
+                        <li><a href="#" data-en="Mobile Apps" data-sw="Programu za Simu">Mobile Apps</a></li>
+                        <li><a href="#" data-en="Maintenance" data-sw="Matengenezo">Maintenance</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact & Newsletter -->
+                <div class="footer-section">
+                    <h3 data-en="Contact Info" data-sw="Maelezo ya Mawasiliano">
+                        Contact Info
+                    </h3>
+                    <ul class="footer-links">
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+254117234064">+254 117 234 064</a>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/254117234064" data-en="WhatsApp" data-sw="WhatsApp">WhatsApp</a>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:lilbeelogics@gmail.com">lilbeelogics@gmail.com</a>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span data-en="Nairobi, Kenya" data-sw="Nairobi, Kenya">Nairobi, Kenya</span>
+                        </li>
+                    </ul>
+                    
+                    <!-- Newsletter -->
+                    <div style="margin-top: 1.5rem;">
+                        <h4 data-en="Get Free Web Tips" data-sw="Pata Vidokezo vya Wavuti Bure">
+                            Get Free Web Tips
+                        </h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address">
+                            <button type="submit" data-en="Subscribe" data-sw="Jiandikishe">Subscribe</button>
+                        </form>
+                        <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.5); margin-top: 0.5rem;">
+                            <span data-en="No spam. Unsubscribe anytime." data-sw="Hakuna spam. Jiondoe wakati wowote.">
+                                No spam. Unsubscribe anytime.
+                            </span>
+                        </p>
+                    </div>
+                    
+                    <!-- Website Hosting Button -->
+                    <div style="margin-top: 1.5rem;">
+                        <a href="hosting.html" class="whatsapp-order" style="display: block; text-align: center; text-decoration: none;">
+                            <i class="fas fa-server"></i> 
+                            <span data-en="Website Hosting" data-sw="Hosting ya Wavuti">
+                                Website Hosting
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="copyright">
+                <p>&copy; <span id="currentYear">2024</span> Lil-Bee Logics. 
+                    <span data-en="All rights reserved." data-sw="Haki zote zimehifadhiwa.">
+                        All rights reserved.
+                    </span> | 
+                    <span data-en="Websites delivered in 1-3 days with free fixes included." data-sw="Wavuti zinazofikishwa kwa siku 1-3 na urekebishaji bure.">
+                        Websites delivered in 1-3 days with free fixes included.
+                    </span>
+                </p>
+                <p style="margin-top: 0.5rem;">
+                    <a href="#" style="color: rgba(255, 255, 255, 0.7); margin-right: 1rem;" data-en="Privacy Policy" data-sw="Sera ya Faragha">
+                        Privacy Policy
+                    </a>
+                    <a href="#" style="color: rgba(255, 255, 255, 0.7);" data-en="Terms of Service" data-sw="Masharti ya Huduma">
+                        Terms of Service
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="checklist.html" class="floating-btn checklist" title="Pricing Checklist">
+            <i class="fas fa-clipboard-check"></i>
+        </a>
+        <a href="hosting.html" class="floating-btn hosting" title="Website Hosting">
+            <i class="fas fa-server"></i>
+        </a>
+        <a href="https://wa.me/254117234064" class="floating-btn messenger" target="_blank" title="Message on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://wa.me/254117234064?text=Hi! I'm interested in your web services. Can you provide me with more information?" class="floating-btn whatsapp" target="_blank" title="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+        // ===== LANGUAGE SWITCHER =====
+        const langButtons = document.querySelectorAll('.lang-btn');
+        let currentLang = 'en';
+
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.lang;
+                currentLang = lang;
+                
+                // Update active button
+                langButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Update all translatable elements
+                document.querySelectorAll('[data-en]').forEach(el => {
+                    const text = el.getAttribute(`data-${lang}`);
+                    if (text) {
+                        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
+                            if (el.tagName === 'SELECT') {
+                                Array.from(el.options).forEach(option => {
+                                    const optionText = option.getAttribute(`data-${lang}`);
+                                    if (optionText) option.textContent = optionText;
+                                });
+                            } else {
+                                el.placeholder = text;
+                            }
+                        } else {
+                            el.textContent = text;
+                        }
+                    }
+                });
+                
+                localStorage.setItem('language', lang);
+            });
+        });
+
+        // Load saved language
+        const savedLang = localStorage.getItem('language') || 'en';
+        document.querySelector(`.lang-btn[data-lang="${savedLang}"]`)?.click();
+
+        // ===== MOBILE MENU =====
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+            
+            // Prevent body scrolling when menu is open
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ===== ROBOT AVATAR =====
+        const robotAvatar = document.getElementById('robotAvatar');
+        const robotMessage = document.getElementById('robotMessage');
+        const confettiCanvas = document.getElementById('confettiCanvas');
+        let confettiActive = false;
+
+        // Show welcome message on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                robotMessage.classList.add('show');
+                triggerConfetti();
+            }, 1000);
+        });
+
+        // Click robot to show message
+        robotAvatar.addEventListener('click', () => {
+            if (!robotMessage.classList.contains('show')) {
+                robotMessage.classList.add('show');
+                triggerConfetti();
+            }
+        });
+
+        // Confetti function
+        function triggerConfetti() {
+            if (confettiActive) return;
+            confettiActive = true;
+            
+            const canvas = confettiCanvas;
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            canvas.style.display = 'block';
+            
+            const confettiPieces = [];
+            const colors = ['#FFC107', '#FF9800', '#1A237E', '#8A2BE2', '#25D366', '#FF4081'];
+            
+            // Create confetti pieces
+            for (let i = 0; i < 150; i++) {
+                confettiPieces.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 10 + 5,
+                    d: Math.random() * 5 + 2,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    tilt: Math.random() * 10 - 10,
+                    tiltAngleIncremental: Math.random() * 0.07 + 0.05,
+                    tiltAngle: 0
+                });
+            }
+            
+            let animationFrame;
+            let time = 0;
+            
+            function drawConfetti() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                confettiPieces.forEach(p => {
+                    ctx.beginPath();
+                    ctx.lineWidth = p.r / 2;
+                    ctx.strokeStyle = p.color;
+                    ctx.moveTo(p.x + p.tilt + p.r / 4, p.y);
+                    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 4);
+                    ctx.stroke();
+                    
+                    // Update position
+                    p.tiltAngle += p.tiltAngleIncremental;
+                    p.y += (Math.cos(time + p.d) + 1 + p.r / 2) / 2;
+                    p.x += Math.sin(time);
+                    p.tilt = Math.sin(p.tiltAngle) * 15;
+                    
+                    // Reset if out of screen
+                    if (p.y > canvas.height) {
+                        p.x = Math.random() * canvas.width;
+                        p.y = -20;
+                        p.tilt = Math.random() * 10 - 10;
+                    }
+                });
+                
+                time += 0.05;
+                
+                if (time < 3) {
+                    animationFrame = requestAnimationFrame(drawConfetti);
+                } else {
+                    cancelAnimationFrame(animationFrame);
+                    canvas.style.display = 'none';
+                    confettiActive = false;
+                }
+            }
+            
+            drawConfetti();
+            
+            // Hide canvas after animation
+            setTimeout(() => {
+                canvas.style.display = 'none';
+                confettiActive = false;
+            }, 3000);
+        }
+
+        // ===== SMOOTH SCROLLING =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                        document.body.style.overflow = '';
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ===== TESTIMONIAL CAROUSEL =====
+        const testimonialTrack = document.getElementById('testimonialTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        const slideWidth = 350 + 32; // card width + gap
+
+        nextBtn.addEventListener('click', () => {
+            currentSlide = Math.min(currentSlide + 1, 2);
+            testimonialTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentSlide = Math.max(currentSlide - 1, 0);
+            testimonialTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        });
+
+        // Auto-rotate testimonials
+        setInterval(() => {
+            currentSlide = currentSlide >= 2 ? 0 : currentSlide + 1;
+            testimonialTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        }, 5000);
+
+        // ===== FORM SUBMISSION =====
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name') || 'Not provided';
+            const phone = formData.get('phone') || 'Not provided';
+            const service = this.querySelector('select').value;
+            
+            // Create WhatsApp message
+            const whatsappMessage = `Hi! I'm ${name}. I'm interested in your ${service} service. My phone number is ${phone}. Please send me more details.`;
+            const whatsappUrl = `https://wa.me/254117234064?text=${encodeURIComponent(whatsappMessage)}`;
+            
+            // Show success message and redirect to WhatsApp
+            if(currentLang === 'en') {
+                alert('Thank you! We\'re redirecting you to WhatsApp to continue the conversation.');
+            } else {
+                alert('Asante! Tunakuelekeza kwenye WhatsApp kuendelea na mazungumzo.');
+            }
+            
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // ===== PRICING CALCULATOR =====
+        function calculatePrice() {
+            const servicePrice = parseInt(document.getElementById('serviceType').value) || 0;
+            const pagesPrice = parseInt(document.getElementById('pages').value) || 0;
+            const featuresPrice = parseInt(document.getElementById('features').value) || 0;
+            
+            const total = servicePrice + pagesPrice + featuresPrice;
+            
+            document.getElementById('calculatedPrice').textContent = 
+                total.toLocaleString('en-KE', { style: 'currency', currency: 'KES' });
+        }
+
+        // Initialize calculator
+        calculatePrice();
+
+        // ===== MASTERCLASS COUNTDOWN =====
+        function updateCountdown() {
+            const now = new Date();
+            const nextMonday = new Date();
+            
+            // Get next Monday 9:30 PM
+            nextMonday.setDate(now.getDate() + ((1 + 7 - now.getDay()) % 7));
+            nextMonday.setHours(21, 30, 0, 0);
+            
+            // If it's past Monday 9:30 PM, get next Monday
+            if (now > nextMonday) {
+                nextMonday.setDate(nextMonday.getDate() + 7);
+            }
+            
+            const diff = nextMonday - now;
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // ===== FAQ TOGGLE =====
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // ===== ANIMATION ON SCROLL =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all elements
+        document.querySelectorAll('section, .stats-bar, .tech-item, .service-card-advanced, .portfolio-item, .media-item, .faq-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== UPDATE COPYRIGHT YEAR =====
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // ===== INITIALIZE SELECT OPTIONS =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update select options based on current language
+            document.querySelectorAll('select').forEach(select => {
+                Array.from(select.options).forEach(option => {
+                    const optionText = option.getAttribute(`data-${currentLang}`);
+                    if (optionText) option.textContent = optionText;
+                });
+            });
+        });
+
+        // ===== UPDATE WHATSAPP LINKS =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update all WhatsApp links
+            document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+                if (link.href.includes('254712345678')) {
+                    link.href = link.href.replace('254712345678', '254117234064');
+                }
+            });
+            
+            // Update WhatsApp button in floating buttons
+            const whatsappBtn = document.querySelector('.floating-btn.whatsapp');
+            if (whatsappBtn) {
+                whatsappBtn.href = 'https://wa.me/254117234064?text=Hi! I\'m interested in your web services. Can you provide me with more information?';
+            }
+        });
+    </script>
+</body>
+</html>
