@@ -683,7 +683,7 @@
             border-radius: 12px;
             margin: 20px 0;
             overflow: hidden;
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(0,0,0,0.1);
         }
 
         /* ===== PORTFOLIO FILTER ===== */
@@ -697,7 +697,7 @@
 
         .filter-btn {
             padding: 10px 24px;
-            border: 2px solid var(--border-color);
+            border: 2px solid rgba(0,0,0,0.1);
             border-radius: 25px;
             background: transparent;
             color: var(--text-dark);
@@ -729,155 +729,121 @@
             transform: scale(1.05);
         }
 
-        /* ===== WEB MOCKUP STYLES ===== */
-        .web-mockup {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin: 20px 0;
+        /* ===== MOCKUP GRID FOR TEMPLATES ===== */
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            height: 180px;
+            background: #f0f0f0;
         }
 
-        .web-mockup::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 30px;
-            background: #e0e0e0;
-            border-radius: 12px 12px 0 0;
-            z-index: 1;
-        }
-
-        .web-mockup::after {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            width: 12px;
-            height: 12px;
-            background: #ff5f57;
-            border-radius: 50%;
-            box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #28ca42;
-            z-index: 2;
-        }
-
-        .web-mockup-content {
-            position: absolute;
-            top: 30px;
-            left: 0;
-            width: 100%;
-            height: calc(100% - 30px);
+        .mockup-cell {
             background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #666;
             overflow: hidden;
         }
 
-        .web-mockup-nav {
-            position: absolute;
-            top: 10px;
-            left: 0;
+        .mockup-cell:nth-child(1) { background: #667eea; color: white; }
+        .mockup-cell:nth-child(2) { background: #764ba2; color: white; }
+        .mockup-cell:nth-child(3) { background: #f093fb; }
+        .mockup-cell:nth-child(4) { background: #f5576c; color: white; }
+        .mockup-cell:nth-child(5) { background: #4facfe; color: white; }
+        .mockup-cell:nth-child(6) { background: #00f2fe; }
+        .mockup-cell:nth-child(7) { background: #00b09b; color: white; }
+        .mockup-cell:nth-child(8) { background: #96c93d; }
+
+        /* ===== REAL MOCKUP IMAGES ===== */
+        .mockup-img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Project-specific mockup backgrounds */
+        .instapesa-mockup { background: linear-gradient(135deg, #00b09b, #96c93d); }
+        .sparkle-mockup { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .ngaru-church-mockup { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .salon-mockup { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .school-mockup { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .ecommerce-mockup { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+
+        /* Template backgrounds */
+        .template-business { background: linear-gradient(135deg, #2c3e50, #34495e); }
+        .template-creative { background: linear-gradient(135deg, #8a2387, #f27121); }
+        .template-ecommerce { background: linear-gradient(135deg, #1d976c, #93f9b9); }
+        .template-restaurant { background: linear-gradient(135deg, #ff512f, #dd2476); }
+        
+        /* REAL IMAGE PLACEHOLDERS - Using CSS generated content */
+        .mockup-content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mockup-screen {
+            position: absolute;
+            width: 85%;
+            height: 70%;
+            background: white;
+            border-radius: 8px;
+            top: 15%;
+            left: 7.5%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .mockup-header {
             height: 40px;
             background: linear-gradient(135deg, var(--secondary-blue), var(--accent-purple));
             display: flex;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 15px;
             color: white;
             font-weight: 600;
             font-size: 14px;
         }
-
-        .web-mockup-sidebar {
-            position: absolute;
-            top: 50px;
-            left: 0;
-            width: 60px;
-            height: calc(100% - 50px);
-            background: #f8f9fa;
-            border-right: 1px solid #e0e0e0;
-        }
-
-        .web-mockup-main {
-            position: absolute;
-            top: 50px;
-            left: 60px;
-            width: calc(100% - 60px);
-            height: calc(100% - 50px);
+        
+        .mockup-body {
             padding: 15px;
+            height: calc(100% - 40px);
         }
-
-        .mockup-post {
-            background: white;
-            border-radius: 8px;
-            padding: 10px;
+        
+        .mockup-row {
+            height: 10px;
+            background: #f0f0f0;
             margin-bottom: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 2px;
         }
-
-        .mockup-post-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
+        
+        .mockup-row.short { width: 60%; }
+        .mockup-row.medium { width: 80%; }
+        .mockup-row.long { width: 95%; }
+        
+        .mockup-grid-view {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 10px;
         }
-
-        .mockup-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-orange));
-        }
-
-        .mockup-post-content {
+        
+        .mockup-grid-item {
             height: 60px;
             background: #f8f9fa;
             border-radius: 4px;
         }
+        
+        /* Template-specific mockups */
+        .template-business .mockup-header { background: linear-gradient(135deg, #2c3e50, #34495e); }
+        .template-creative .mockup-header { background: linear-gradient(135deg, #8a2387, #f27121); }
+        .template-ecommerce .mockup-header { background: linear-gradient(135deg, #1d976c, #93f9b9); }
+        .template-restaurant .mockup-header { background: linear-gradient(135deg, #ff512f, #dd2476); }
 
-        /* ===== SPECIFIC PROJECT IMAGE STYLES ===== */
-        .instapesa-mockup {
-            background: linear-gradient(135deg, #00b09b, #96c93d);
-        }
-
-        .sparkle-mockup {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-        }
-
-        .ngaru-church-mockup {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-        }
-
-        .salon-mockup {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-        }
-
-        .school-mockup {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-        }
-
-        .ecommerce-mockup {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-        }
-
-        /* ===== TEMPLATE BACKGROUNDS ===== */
-        .template-business {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-        }
-
-        .template-creative {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-        }
-
-        .template-ecommerce {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-        }
-
-        .template-restaurant {
-            background: linear-gradient(135deg, #00b09b, #96c93d);
-        }
     </style>
 </head>
 <body>
@@ -949,6 +915,24 @@
             <!-- InstaPesa -->
             <div class="portfolio-item fade-in" data-category="mobile">
                 <div class="portfolio-image instapesa-mockup">
+                    <!-- Real mock image representation -->
+                    <div class="mockup-content">
+                        <div class="mockup-screen">
+                            <div class="mockup-header">
+                                <i class="fas fa-wallet"></i> InstaPesa - Mobile Wallet
+                            </div>
+                            <div class="mockup-body">
+                                <div class="mockup-row long" style="background: #e8f5e9;"></div>
+                                <div class="mockup-row medium" style="background: #c8e6c9;"></div>
+                                <div class="mockup-grid-view">
+                                    <div class="mockup-grid-item" style="background: #4caf50; color: white; display: flex; align-items: center; justify-content: center; font-size: 12px;">Send Money</div>
+                                    <div class="mockup-grid-item" style="background: #8bc34a; color: white; display: flex; align-items: center; justify-content: center; font-size: 12px;">Pay Bills</div>
+                                    <div class="mockup-grid-item" style="background: #cddc39; display: flex; align-items: center; justify-content: center; font-size: 12px;">Buy Airtime</div>
+                                </div>
+                                <div class="mockup-row short" style="margin-top: 15px; background: #81c784;"></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="portfolio-overlay">
                         <a href="#" class="btn-primary btn-small">
                             <i class="fas fa-eye"></i> Live Demo
@@ -974,29 +958,6 @@
                         <button class="theme-btn orange">M-Pesa Integration</button>
                     </div>
                     
-                    <div class="web-mockup instapesa-mockup">
-                        <div class="web-mockup-nav">
-                            <i class="fas fa-wallet"></i> InstaPesa
-                        </div>
-                        <div class="web-mockup-sidebar"></div>
-                        <div class="web-mockup-main">
-                            <div class="mockup-post">
-                                <div class="mockup-post-header">
-                                    <div class="mockup-avatar"></div>
-                                    <div>Send Money</div>
-                                </div>
-                                <div class="mockup-post-content"></div>
-                            </div>
-                            <div class="mockup-post">
-                                <div class="mockup-post-header">
-                                    <div class="mockup-avatar"></div>
-                                    <div>Pay Bills</div>
-                                </div>
-                                <div class="mockup-post-content"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div class="portfolio-tags">
                         <span class="portfolio-tag">React Native</span>
                         <span class="portfolio-tag">M-Pesa API</span>
@@ -1010,6 +971,34 @@
             <!-- Sparkle Social Media -->
             <div class="portfolio-item fade-in delay-1" data-category="mobile">
                 <div class="portfolio-image sparkle-mockup">
+                    <div class="mockup-content">
+                        <div class="mockup-screen">
+                            <div class="mockup-header" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                                <i class="fas fa-sparkles"></i> Sparkle Social
+                            </div>
+                            <div class="mockup-body">
+                                <div class="mockup-row long" style="background: linear-gradient(90deg, #667eea20, #764ba220);"></div>
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                                    <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2);"></div>
+                                    <div style="flex: 1;">
+                                        <div class="mockup-row short" style="background: #667eea30;"></div>
+                                        <div class="mockup-row medium" style="background: #764ba230; margin-top: 5px;"></div>
+                                    </div>
+                                </div>
+                                <div class="mockup-grid-view">
+                                    <div class="mockup-grid-item" style="background: #667eea; color: white; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <div class="mockup-grid-item" style="background: #764ba2; color: white; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fas fa-comment"></i>
+                                    </div>
+                                    <div class="mockup-grid-item" style="background: #f093fb; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fas fa-share"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="portfolio-overlay">
                         <a href="https://13tabm.mimo.run/index.html" class="btn-primary btn-small">
                             <i class="fas fa-eye"></i> Live Demo
@@ -1026,36 +1015,13 @@
                     <div class="project-explanation">
                         <p><strong>Project Type:</strong> Social Networking Mobile Application (Instagram Clone)</p>
                         <p><strong>The Challenge:</strong> Create a Kenyan-centric social media platform that focuses on local communities, businesses, and real connections with photo sharing, stories, and direct messaging.</p>
-                        <p><strong>The Solution:</strong> A React Native app with real-time chat, photo/video sharing, stories feature, local business directories, community groups, and content sharing optimized for Kenyan networks. Features include location-based content, Swahili language support, and M-Pesa integration for in-app transactions.</p>
+                        <p><strong>The Solution:</strong> A React Native app with real-time chat, photo/video sharing, stories feature, local business directories, community groups, and content sharing optimized for Kenyan networks.</p>
                     </div>
                     
                     <div class="theme-buttons">
                         <button class="theme-btn purple">Social Theme</button>
                         <button class="theme-btn blue">Real-time Chat</button>
                         <button class="theme-btn orange">Photo Sharing</button>
-                    </div>
-                    
-                    <div class="web-mockup sparkle-mockup">
-                        <div class="web-mockup-nav">
-                            <i class="fas fa-sparkles"></i> Sparkle
-                        </div>
-                        <div class="web-mockup-sidebar"></div>
-                        <div class="web-mockup-main">
-                            <div class="mockup-post">
-                                <div class="mockup-post-header">
-                                    <div class="mockup-avatar"></div>
-                                    <div>@user1 shared a photo</div>
-                                </div>
-                                <div class="mockup-post-content"></div>
-                            </div>
-                            <div class="mockup-post">
-                                <div class="mockup-post-header">
-                                    <div class="mockup-avatar"></div>
-                                    <div>@user2 added to story</div>
-                                </div>
-                                <div class="mockup-post-content"></div>
-                            </div>
-                        </div>
                     </div>
                     
                     <div class="portfolio-tags">
@@ -1071,6 +1037,33 @@
             <!-- Ngaru Anglican Church -->
             <div class="portfolio-item fade-in delay-2" data-category="web">
                 <div class="portfolio-image ngaru-church-mockup">
+                    <div class="mockup-content">
+                        <div class="mockup-screen">
+                            <div class="mockup-header" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                                <i class="fas fa-church"></i> Ngaru Anglican Church
+                            </div>
+                            <div class="mockup-body">
+                                <div style="text-align: center; margin-bottom: 15px;">
+                                    <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #f093fb, #f5576c); margin: 0 auto 10px;"></div>
+                                    <div class="mockup-row medium" style="margin: 0 auto; background: #f093fb30;"></div>
+                                </div>
+                                <div class="mockup-grid-view">
+                                    <div class="mockup-grid-item" style="background: #f093fb; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px;">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>Events</span>
+                                    </div>
+                                    <div class="mockup-grid-item" style="background: #f5576c; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px;">
+                                        <i class="fas fa-pray"></i>
+                                        <span>Sermons</span>
+                                    </div>
+                                    <div class="mockup-grid-item" style="background: #ff9a9e; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px;">
+                                        <i class="fas fa-donate"></i>
+                                        <span>Donate</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="portfolio-overlay">
                         <a href="#" class="btn-primary btn-small">
                             <i class="fas fa-eye"></i> Live Demo
@@ -1096,29 +1089,6 @@
                         <button class="theme-btn orange">Event Management</button>
                     </div>
                     
-                    <div class="web-mockup ngaru-church-mockup">
-                        <div class="web-mockup-nav">
-                            <i class="fas fa-church"></i> Ngaru Anglican Church
-                        </div>
-                        <div class="web-mockup-sidebar"></div>
-                        <div class="web-mockup-main">
-                            <div class="mockup-post">
-                                <div class="mockup-post-header">
-                                    <div class="mockup-avatar"></div>
-                                    <div>Sunday Service: 9AM</div>
-                                </div>
-                                <div class="mockup-post-content"></div>
-                            </div>
-                            <div class="mockup-post">
-                                <div class="mockup-post-header">
-                                    <div class="mockup-avatar"></div>
-                                    <div>Bible Study: Wednesday</div>
-                                </div>
-                                <div class="mockup-post-content"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div class="portfolio-tags">
                         <span class="portfolio-tag">PHP</span>
                         <span class="portfolio-tag">MySQL</span>
@@ -1132,6 +1102,30 @@
             <!-- Salon Website -->
             <div class="portfolio-item fade-in" data-category="business">
                 <div class="portfolio-image salon-mockup">
+                    <div class="mockup-content">
+                        <div class="mockup-screen">
+                            <div class="mockup-header" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                                <i class="fas fa-spa"></i> Sparkle Beauty Salon
+                            </div>
+                            <div class="mockup-body">
+                                <div class="mockup-row long" style="background: #4facfe20;"></div>
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px;">
+                                    <div style="background: #4facfe; height: 40px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px;">
+                                        <i class="fas fa-scissors"></i> Haircut
+                                    </div>
+                                    <div style="background: #00f2fe; height: 40px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px;">
+                                        <i class="fas fa-spa"></i> Spa
+                                    </div>
+                                    <div style="background: #2193b0; height: 40px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px;">
+                                        <i class="fas fa-paint-brush"></i> Makeup
+                                    </div>
+                                    <div style="background: #6dd5ed; height: 40px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px;">
+                                        <i class="fas fa-calendar"></i> Book Now
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="portfolio-overlay">
                         <a href="#" class="btn-primary btn-small">
                             <i class="fas fa-eye"></i> Live Demo
@@ -1157,29 +1151,6 @@
                         <button class="theme-btn orange">Mobile Optimization</button>
                     </div>
                     
-                    <div class="web-mockup salon-mockup">
-                        <div class="web-mockup-nav">
-                            <i class="fas fa-spa"></i> Sparkle Beauty Salon
-                        </div>
-                        <div class="web-mockup-sidebar"></div>
-                        <div class="web-mockup-main">
-                            <div class="mockup-post">
-                                <div class="mockup-post-header">
-                                    <div class="mockup-avatar"></div>
-                                    <div>Book Appointment</div>
-                                </div>
-                                <div class="mockup-post-content"></div>
-                            </div>
-                            <div class="mockup-post">
-                                <div class="mockup-post-header">
-                                    <div class="mockup-avatar"></div>
-                                    <div>View Services</div>
-                                </div>
-                                <div class="mockup-post-content"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div class="portfolio-tags">
                         <span class="portfolio-tag">HTML/CSS</span>
                         <span class="portfolio-tag">JavaScript</span>
@@ -1193,6 +1164,31 @@
             <!-- School Management -->
             <div class="portfolio-item fade-in delay-1" data-category="web">
                 <div class="portfolio-image school-mockup">
+                    <div class="mockup-content">
+                        <div class="mockup-screen">
+                            <div class="mockup-header" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                                <i class="fas fa-graduation-cap"></i> EduSmart School System
+                            </div>
+                            <div class="mockup-body">
+                                <div style="margin-bottom: 15px;">
+                                    <div class="mockup-row long" style="background: #f093fb20;"></div>
+                                    <div class="mockup-row medium" style="background: #f5576c20;"></div>
+                                </div>
+                                <div style="display: flex; gap: 10px;">
+                                    <div style="flex: 1; background: #f093fb; height: 30px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px;">
+                                        Students
+                                    </div>
+                                    <div style="flex: 1; background: #f5576c; height: 30px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px;">
+                                        Teachers
+                                    </div>
+                                    <div style="flex: 1; background: #ff9a9e; height: 30px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px;">
+                                        Parents
+                                    </div>
+                                </div>
+                                <div class="mockup-row short" style="margin-top: 15px; background: #f093fb40;"></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="portfolio-overlay">
                         <a href="#" class="btn-primary btn-small">
                             <i class="fas fa-eye"></i> Live Demo
@@ -1218,29 +1214,6 @@
                         <button class="theme-btn orange">SMS Integration</button>
                     </div>
                     
-                    <div class="web-mockup school-mockup">
-                        <div class="web-mockup-nav">
-                            <i class="fas fa-graduation-cap"></i> EduSmart School System
-                        </div>
-                        <div class="web-mockup-sidebar"></div>
-                        <div class="web-mockup-main">
-                            <div class="mockup-post">
-                                <div class="mockup-post-header">
-                                    <div class="mockup-avatar"></div>
-                                    <div>Student Portal</div>
-                                </div>
-                                <div class="mockup-post-content"></div>
-                            </div>
-                            <div class="mockup-post">
-                                <div class="mockup-post-header">
-                                    <div class="mockup-avatar"></div>
-                                    <div>Exam Results</div>
-                                </div>
-                                <div class="mockup-post-content"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div class="portfolio-tags">
                         <span class="portfolio-tag">Laravel</span>
                         <span class="portfolio-tag">MySQL</span>
@@ -1254,6 +1227,31 @@
             <!-- E-commerce Store -->
             <div class="portfolio-item fade-in delay-2" data-category="ecommerce">
                 <div class="portfolio-image ecommerce-mockup">
+                    <div class="mockup-content">
+                        <div class="mockup-screen">
+                            <div class="mockup-header" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                                <i class="fas fa-store"></i> AfrikaBazar Marketplace
+                            </div>
+                            <div class="mockup-body">
+                                <div class="mockup-row long" style="background: #4facfe20;"></div>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 15px;">
+                                    <div style="background: white; border: 1px solid #4facfe30; border-radius: 4px; padding: 5px; text-align: center;">
+                                        <div style="width: 100%; height: 40px; background: #4facfe40; border-radius: 2px; margin-bottom: 5px;"></div>
+                                        <div style="font-size: 9px; color: #333;">Product 1</div>
+                                    </div>
+                                    <div style="background: white; border: 1px solid #00f2fe30; border-radius: 4px; padding: 5px; text-align: center;">
+                                        <div style="width: 100%; height: 40px; background: #00f2fe40; border-radius: 2px; margin-bottom: 5px;"></div>
+                                        <div style="font-size: 9px; color: #333;">Product 2</div>
+                                    </div>
+                                    <div style="background: white; border: 1px solid #2193b030; border-radius: 4px; padding: 5px; text-align: center;">
+                                        <div style="width: 100%; height: 40px; background: #2193b040; border-radius: 2px; margin-bottom: 5px;"></div>
+                                        <div style="font-size: 9px; color: #333;">Product 3</div>
+                                    </div>
+                                </div>
+                                <div class="mockup-row medium" style="margin-top: 15px; background: #00f2fe30;"></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="portfolio-overlay">
                         <a href="#" class="btn-primary btn-small">
                             <i class="fas fa-eye"></i> Live Demo
@@ -1277,29 +1275,6 @@
                         <button class="theme-btn purple">Marketplace Theme</button>
                         <button class="theme-btn blue">Multi-vendor</button>
                         <button class="theme-btn orange">M-Pesa Payments</button>
-                    </div>
-                    
-                    <div class="web-mockup ecommerce-mockup">
-                        <div class="web-mockup-nav">
-                            <i class="fas fa-store"></i> AfrikaBazar Marketplace
-                        </div>
-                        <div class="web-mockup-sidebar"></div>
-                        <div class="web-mockup-main">
-                            <div class="mockup-post">
-                                <div class="mockup-post-header">
-                                    <div class="mockup-avatar"></div>
-                                    <div>Featured Products</div>
-                                </div>
-                                <div class="mockup-post-content"></div>
-                            </div>
-                            <div class="mockup-post">
-                                <div class="mockup-post-header">
-                                    <div class="mockup-avatar"></div>
-                                    <div>Special Offers</div>
-                                </div>
-                                <div class="mockup-post-content"></div>
-                            </div>
-                        </div>
                     </div>
                     
                     <div class="portfolio-tags">
@@ -1371,8 +1346,36 @@
             </div>
             
             <div class="templates-grid">
+                <!-- Business Template -->
                 <div class="template-card fade-in">
                     <div class="template-preview template-business">
+                        <div class="mockup-content">
+                            <div class="mockup-screen">
+                                <div class="mockup-header">
+                                    <i class="fas fa-briefcase"></i> Business Elegance Template
+                                </div>
+                                <div class="mockup-body">
+                                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                                        <div style="width: 50px; height: 50px; background: #2c3e50; border-radius: 4px;"></div>
+                                        <div style="flex: 1;">
+                                            <div class="mockup-row long" style="background: #2c3e5020;"></div>
+                                            <div class="mockup-row medium" style="background: #34495e20; margin-top: 5px;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mockup-grid-view">
+                                        <div class="mockup-grid-item" style="background: #2c3e50; color: white; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-users"></i>
+                                        </div>
+                                        <div class="mockup-grid-item" style="background: #34495e; color: white; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-chart-line"></i>
+                                        </div>
+                                        <div class="mockup-grid-item" style="background: #7f8c8d; display: flex; align-items: center; justify-content: center; color: white;">
+                                            <i class="fas fa-image"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="template-actions">
                             <a href="#" class="btn-primary btn-small">Preview</a>
                             <a href="#" class="btn-outline btn-small">Use Template</a>
@@ -1388,8 +1391,30 @@
                     </div>
                 </div>
                 
+                <!-- Creative Portfolio Template -->
                 <div class="template-card fade-in delay-1">
                     <div class="template-preview template-creative">
+                        <div class="mockup-content">
+                            <div class="mockup-screen">
+                                <div class="mockup-header">
+                                    <i class="fas fa-palette"></i> Creative Portfolio Template
+                                </div>
+                                <div class="mockup-body">
+                                    <div style="text-align: center; margin-bottom: 15px;">
+                                        <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #8a2387, #f27121); margin: 0 auto 10px;"></div>
+                                        <div class="mockup-row medium" style="margin: 0 auto; background: #8a238720;"></div>
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;">
+                                        <div style="background: #8a2387; height: 30px; border-radius: 2px;"></div>
+                                        <div style="background: #f27121; height: 30px; border-radius: 2px;"></div>
+                                        <div style="background: #f8b500; height: 30px; border-radius: 2px;"></div>
+                                        <div style="background: #f8b500; height: 30px; border-radius: 2px;"></div>
+                                        <div style="background: #8a2387; height: 30px; border-radius: 2px;"></div>
+                                        <div style="background: #f27121; height: 30px; border-radius: 2px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="template-actions">
                             <a href="#" class="btn-primary btn-small">Preview</a>
                             <a href="#" class="btn-outline btn-small">Use Template</a>
@@ -1405,8 +1430,30 @@
                     </div>
                 </div>
                 
+                <!-- E-commerce Template -->
                 <div class="template-card fade-in delay-2">
                     <div class="template-preview template-ecommerce">
+                        <div class="mockup-content">
+                            <div class="mockup-screen">
+                                <div class="mockup-header">
+                                    <i class="fas fa-shopping-cart"></i> E-commerce Store Template
+                                </div>
+                                <div class="mockup-body">
+                                    <div class="mockup-row long" style="background: #1d976c20;"></div>
+                                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px;">
+                                        <div style="background: white; border: 1px solid #1d976c30; border-radius: 4px; padding: 5px;">
+                                            <div style="height: 30px; background: #1d976c40; border-radius: 2px; margin-bottom: 5px;"></div>
+                                            <div style="font-size: 8px; color: #333; text-align: center;">Product 1</div>
+                                        </div>
+                                        <div style="background: white; border: 1px solid #93f9b930; border-radius: 4px; padding: 5px;">
+                                            <div style="height: 30px; background: #93f9b940; border-radius: 2px; margin-bottom: 5px;"></div>
+                                            <div style="font-size: 8px; color: #333; text-align: center;">Product 2</div>
+                                        </div>
+                                    </div>
+                                    <div class="mockup-row short" style="margin-top: 10px; background: #93f9b920;"></div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="template-actions">
                             <a href="#" class="btn-primary btn-small">Preview</a>
                             <a href="#" class="btn-outline btn-small">Use Template</a>
@@ -1422,8 +1469,30 @@
                     </div>
                 </div>
                 
+                <!-- Restaurant Template -->
                 <div class="template-card fade-in delay-3">
                     <div class="template-preview template-restaurant">
+                        <div class="mockup-content">
+                            <div class="mockup-screen">
+                                <div class="mockup-header">
+                                    <i class="fas fa-utensils"></i> Restaurant & Food Template
+                                </div>
+                                <div class="mockup-body">
+                                    <div class="mockup-row medium" style="background: #ff512f20;"></div>
+                                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                        <div style="flex: 1; background: white; border-radius: 4px; padding: 5px; text-align: center;">
+                                            <div style="height: 40px; background: #ff512f30; border-radius: 2px; margin-bottom: 5px;"></div>
+                                            <div style="font-size: 8px; color: #333;">Appetizers</div>
+                                        </div>
+                                        <div style="flex: 1; background: white; border-radius: 4px; padding: 5px; text-align: center;">
+                                            <div style="height: 40px; background: #dd247630; border-radius: 2px; margin-bottom: 5px;"></div>
+                                            <div style="font-size: 8px; color: #333;">Main Course</div>
+                                        </div>
+                                    </div>
+                                    <div class="mockup-row short" style="margin-top: 10px; background: #dd247620;"></div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="template-actions">
                             <a href="#" class="btn-primary btn-small">Preview</a>
                             <a href="#" class="btn-outline btn-small">Use Template</a>
@@ -1440,15 +1509,36 @@
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 40px;">
-                <div class="project-explanation" style="max-width: 800px; margin: 0 auto;">
-                    <h4 style="color: var(--secondary-blue); margin-bottom: 10px;">All Templates Feature:</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: left;">
-                        <div><i class="fas fa-image" style="color: var(--primary-orange);"></i> High-quality image placeholders</div>
-                        <div><i class="fas fa-mobile-alt" style="color: var(--primary-orange);"></i> Mobile-responsive design</div>
-                        <div><i class="fas fa-palette" style="color: var(--primary-orange);"></i> Customizable color schemes</div>
-                        <div><i class="fas fa-eye" style="color: var(--primary-orange);"></i> Visible image galleries</div>
+            <!-- Add New Template Button -->
+            <div style="text-align: center; margin-top: 50px;">
+                <div class="project-explanation" style="max-width: 800px; margin: 0 auto; padding: 30px;">
+                    <h4 style="color: var(--secondary-blue); margin-bottom: 15px;">Easy to Add New Templates</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: left; margin-bottom: 20px;">
+                        <div>
+                            <div style="width: 40px; height: 40px; background: var(--primary-orange); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; margin-bottom: 10px;">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <h5 style="margin-bottom: 5px;">1. Create Template Card</h5>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Add new template-card div with unique class</p>
+                        </div>
+                        <div>
+                            <div style="width: 40px; height: 40px; background: var(--accent-purple); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; margin-bottom: 10px;">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <h5 style="margin-bottom: 5px;">2. Add Mockup Content</h5>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Include mockup-screen with header and body sections</p>
+                        </div>
+                        <div>
+                            <div style="width: 40px; height: 40px; background: var(--secondary-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; margin-bottom: 10px;">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h5 style="margin-bottom: 5px;">3. Customize Design</h5>
+                            <p style="font-size: 0.9rem; color: var(--text-light);">Use CSS variables for consistent styling</p>
+                        </div>
                     </div>
+                    <a href="#" class="btn-primary" style="margin-top: 10px;">
+                        <i class="fas fa-plus-circle"></i> Add New Template Structure
+                    </a>
                 </div>
             </div>
         </div>
@@ -1675,24 +1765,72 @@
             }
         });
 
-        // Web mockup interactions
-        document.querySelectorAll('.web-mockup').forEach(mockup => {
-            mockup.addEventListener('click', function() {
-                const projectName = this.closest('.portfolio-content').querySelector('h3').textContent;
-                alert(`Interactive preview of: ${projectName}\n\nClick the "Live Demo" button above to see the full working prototype.`);
+        // Mockup interactions
+        document.querySelectorAll('.mockup-content').forEach(mockup => {
+            mockup.addEventListener('click', function(e) {
+                if (!e.target.closest('.template-actions')) {
+                    const projectName = this.closest('.portfolio-item') 
+                        ? this.closest('.portfolio-item').querySelector('h3').textContent 
+                        : this.closest('.template-card').querySelector('h4').textContent;
+                    
+                    if (this.closest('.portfolio-item')) {
+                        alert(`Interactive preview of: ${projectName}\n\nClick the "Live Demo" button to see the full working prototype.`);
+                    } else {
+                        alert(`Template preview: ${projectName}\n\nThis shows the visual layout with image placeholders ready for your content.`);
+                    }
+                }
             });
         });
 
-        // Template image hover effect
-        document.querySelectorAll('.template-preview').forEach(preview => {
-            preview.addEventListener('mouseenter', function() {
-                const templateName = this.closest('.template-card').querySelector('h4').textContent;
-                this.style.backgroundSize = '110%';
-            });
+        // Add New Template functionality
+        document.querySelector('.btn-primary[href="#"]').addEventListener('click', function(e) {
+            e.preventDefault();
             
-            preview.addEventListener('mouseleave', function() {
-                this.style.backgroundSize = '100%';
-            });
+            const newTemplateHTML = `
+                <div class="template-card fade-in">
+                    <div class="template-preview" style="background: linear-gradient(135deg, var(--accent-purple), var(--primary-orange));">
+                        <div class="mockup-content">
+                            <div class="mockup-screen">
+                                <div class="mockup-header" style="background: linear-gradient(135deg, var(--accent-purple), var(--primary-orange));">
+                                    <i class="fas fa-star"></i> New Template
+                                </div>
+                                <div class="mockup-body">
+                                    <div style="text-align: center; padding: 20px;">
+                                        <div style="width: 60px; height: 60px; background: var(--white); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-plus" style="color: var(--accent-purple); font-size: 1.5rem;"></i>
+                                        </div>
+                                        <div class="mockup-row medium" style="margin: 0 auto; background: var(--white)30;"></div>
+                                        <div class="mockup-row short" style="margin: 10px auto; background: var(--white)30;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="template-actions">
+                            <a href="#" class="btn-primary btn-small">Preview</a>
+                            <a href="#" class="btn-outline btn-small">Use Template</a>
+                        </div>
+                    </div>
+                    <div style="padding: 15px;">
+                        <h4>New Custom Template</h4>
+                        <p>Add your description here. Customize colors and layout as needed.</p>
+                        <div style="margin-top: 10px; font-size: 0.875rem; color: var(--text-light);">
+                            <i class="fas fa-check-circle" style="color: var(--primary-orange);"></i> Custom Design
+                            <i class="fas fa-check-circle" style="color: var(--primary-orange); margin-left: 10px;"></i> Responsive
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add to templates grid
+            const templatesGrid = document.querySelector('.templates-grid');
+            const newTemplate = document.createElement('div');
+            newTemplate.innerHTML = newTemplateHTML;
+            templatesGrid.appendChild(newTemplate.firstElementChild);
+            
+            // Re-initialize animations
+            observer.observe(templatesGrid.lastElementChild);
+            
+            alert('New template structure added! Customize the colors, icons, and content as needed.');
         });
     </script>
 </body>
