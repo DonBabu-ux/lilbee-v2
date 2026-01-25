@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /index.html  # Don't crawl splash screen
+Sitemap: https://lilbeelogics.vercel.app/sitemap.xml
