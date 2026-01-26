@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | TechFlow Solutions</title>
+    <meta name="description" content="Join TechFlow Solutions - Exciting career opportunities in technology, software development, and digital innovation.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #D32F2F;
+            --dark-red: #B71C1C;
+            --light-red: #FFEBEE;
+            --accent-red: #FF5252;
+            --primary-blue: #1976D2;
+            --dark-blue: #0D47A1;
+            --light-blue: #E3F2FD;
+            --primary-gray: #424242;
+            --light-gray: #F5F5F5;
+            --dark-gray: #212121;
+            --white: #FFFFFF;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-gray);
+            background: linear-gradient(135deg, var(--light-red) 0%, var(--light-blue) 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(211, 47, 47, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--light-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--light-blue);
+        }
+
+        .nav-links a.active {
+            background: var(--light-blue);
+            color: var(--dark-red);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .careers-hero {
+            background: linear-gradient(rgba(211, 47, 47, 0.85), rgba(25, 118, 210, 0.7)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: var(--white);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            color: var(--light-blue);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--dark-red);
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-red), var(--primary-blue));
+            border-radius: 2px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-red);
+            box-shadow: 0 15px 35px rgba(211, 47, 47, 0.2);
+        }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        /* Job Openings */
+        .jobs-section {
+            margin-bottom: 4rem;
+        }
+
+        .jobs-filter {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            background: var(--white);
+            border: 2px solid var(--light-gray);
+            border-radius: 30px;
+            color: var(--primary-gray);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-red);
+            color: var(--white);
+            border-color: var(--primary-red);
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .job-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary-blue);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(25, 118, 210, 0.2);
+            border-left-color: var(--primary-red);
+        }
+
+        .job-category {
+            display: inline-block;
+            background: var(--light-red);
+            color: var(--dark-red);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .job-title {
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .job-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-gray);
+            font-size: 0.9rem;
+        }
+
+        .job-meta i {
+            color: var(--primary-red);
+        }
+
+        .job-description {
+            margin: 1.5rem 0;
+            color: var(--primary-gray);
+        }
+
+        .job-requirements {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .job-requirements li {
+            padding: 5px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .job-requirements li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .job-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Application Process */
+        .process-section {
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--light-red) 0%, var(--light-blue) 100%);
+            border-radius: 20px;
+            border: 3px solid var(--primary-red);
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        /* Why Join Us */
+        .why-join-section {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            box-shadow: var(--shadow);
+        }
+
+        .why-join-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-join-item {
+            padding: 1.5rem;
+            border-radius: 10px;
+            background: var(--light-gray);
+            transition: var(--transition);
+        }
+
+        .why-join-item:hover {
+            background: var(--light-blue);
+            transform: translateX(5px);
+        }
+
+        /* Application Form */
+        .application-section {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+        }
+
+        .file-upload {
+            border: 2px dashed var(--light-gray);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary-blue);
+            background: var(--light-blue);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(211, 47, 47, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(211, 47, 47, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-red);
+            border: 2px solid var(--primary-red);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-red);
+            color: var(--white);
+        }
+
+        .btn-full {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--light-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--light-red);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--light-blue);
+            color: var(--dark-red);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--light-red);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .jobs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .process-step {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-red);
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+                border-radius: 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .careers-hero {
+                padding: 3rem 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .main-container {
+                padding: 0 1rem 3rem;
+            }
+            
+            .process-section, .why-join-section, .application-section {
+                padding: 2rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .benefits-grid, .why-join-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .job-title {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 2rem;
+            }
+            
+            .jobs-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .job-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .job-actions {
+                flex-direction: column;
+            }
+            
+            .job-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-code-branch"></i> TechFlow Solutions
+            </a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="team.html">Our Team</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="careers.html" class="active">Careers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="careers-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Build Your Future With Us</h1>
+            <p class="hero-subtitle">Join a team that's shaping the future of technology</p>
+            <p class="hero-description">At TechFlow Solutions, we're not just looking for employees - we're looking for innovators, problem-solvers, and visionaries. Join us in creating technology that makes a difference.</p>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Benefits Section -->
+        <div class="benefits-section">
+            <h2 class="section-title">Why Work With Us</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--primary-blue);">We invest in our team's growth and well-being</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Learning & Growth</h3>
+                    <p>Annual training budget, conference attendance, and mentorship programs to accelerate your career growth.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Health & Wellness</h3>
+                    <p>Comprehensive health insurance, gym memberships, mental health support, and flexible wellness programs.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Work-Life Balance</h3>
+                    <p>Flexible working hours, remote work options, generous vacation time, and family-friendly policies.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Career Advancement</h3>
+                    <p>Clear career paths, regular promotions, leadership training, and opportunities to work on impactful projects.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Job Openings -->
+        <div class="jobs-section">
+            <h2 class="section-title">Current Openings</h2>
+            
+            <div class="jobs-filter">
+                <button class="filter-btn active" data-filter="all">All Positions</button>
+                <button class="filter-btn" data-filter="development">Development</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+                <button class="filter-btn" data-filter="security">Security</button>
+                <button class="filter-btn" data-filter="data">Data Science</button>
+                <button class="filter-btn" data-filter="operations">Operations</button>
+            </div>
+
+            <div class="jobs-grid">
+                <!-- Development Jobs -->
+                <div class="job-card" data-category="development">
+                    <span class="job-category">Development</span>
+                    <h3 class="job-title">Senior Frontend Developer</h3>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-clock"></i> Posted 2 days ago</span>
+                    </div>
+                    <p class="job-description">We're looking for an experienced Frontend Developer to lead the development of our client-facing applications using React, TypeScript, and modern web technologies.</p>
+                    <ul class="job-requirements">
+                        <li>5+ years experience with React/TypeScript</li>
+                        <li>Expertise in state management (Redux/MobX)</li>
+                        <li>Strong understanding of web performance optimization</li>
+                        <li>Experience with testing frameworks</li>
+                    </ul>
+                    <div class="job-actions">
+                        <button class="btn apply-btn" data-job="Senior Frontend Developer">Apply Now</button>
+                        <button class="btn btn-outline view-details">View Details</button>
+                    </div>
+                </div>
+
+                <div class="job-card" data-category="development">
+                    <span class="job-category">Development</span>
+                    <h3 class="job-title">Backend Engineer (Node.js)</h3>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-clock"></i> Posted 5 days ago</span>
+                    </div>
+                    <p class="job-description">Join our backend team to build scalable microservices and APIs that power thousands of businesses across Africa.</p>
+                    <ul class="job-requirements">
+                        <li>Strong Node.js/Express.js experience</li>
+                        <li>Experience with databases (PostgreSQL, MongoDB)</li>
+                        <li>Knowledge of Docker and Kubernetes</li>
+                        <li>Understanding of RESTful API design</li>
+                    </ul>
+                    <div class="job-actions">
+                        <button class="btn apply-btn" data-job="Backend Engineer (Node.js)">Apply Now</button>
+                        <button class="btn btn-outline view-details">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Design Jobs -->
+                <div class="job-card" data-category="design">
+                    <span class="job-category">Design</span>
+                    <h3 class="job-title">UX/UI Designer</h3>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-clock"></i> Posted 1 week ago</span>
+                    </div>
+                    <p class="job-description">Create beautiful, intuitive user experiences for our enterprise software products. Collaborate with product managers and developers to bring designs to life.</p>
+                    <ul class="job-requirements">
+                        <li>3+ years UX/UI design experience</li>
+                        <li>Proficiency in Figma, Sketch, or Adobe XD</li>
+                        <li>Strong portfolio demonstrating user-centered design</li>
+                        <li>Understanding of design systems</li>
+                    </ul>
+                    <div class="job-actions">
+                        <button class="btn apply-btn" data-job="UX/UI Designer">Apply Now</button>
+                        <button class="btn btn-outline view-details">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Security Jobs -->
+                <div class="job-card" data-category="security">
+                    <span class="job-category">Security</span>
+                    <h3 class="job-title">Cybersecurity Analyst</h3>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-clock"></i> Posted 3 days ago</span>
+                    </div>
+                    <p class="job-description">Protect our systems and client data by monitoring, detecting, and responding to security threats in real-time.</p>
+                    <ul class="job-requirements">
+                        <li>Experience with security monitoring tools</li>
+                        <li>Knowledge of network protocols and security</li>
+                        <li>Understanding of compliance frameworks</li>
+                        <li>Relevant certifications (CEH, Security+) preferred</li>
+                    </ul>
+                    <div class="job-actions">
+                        <button class="btn apply-btn" data-job="Cybersecurity Analyst">Apply Now</button>
+                        <button class="btn btn-outline view-details">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Data Science Jobs -->
+                <div class="job-card" data-category="data">
+                    <span class="job-category">Data Science</span>
+                    <h3 class="job-title">Data Scientist</h3>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Remote/Hybrid</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-clock"></i> Posted 2 weeks ago</span>
+                    </div>
+                    <p class="job-description">Build machine learning models and analytics solutions that drive business decisions for our clients across various industries.</p>
+                    <ul class="job-requirements">
+                        <li>Strong Python programming skills</li>
+                        <li>Experience with ML frameworks (TensorFlow, PyTorch)</li>
+                        <li>Knowledge of statistical analysis and data visualization</li>
+                        <li>Experience with big data technologies</li>
+                    </ul>
+                    <div class="job-actions">
+                        <button class="btn apply-btn" data-job="Data Scientist">Apply Now</button>
+                        <button class="btn btn-outline view-details">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Operations Jobs -->
+                <div class="job-card" data-category="operations">
+                    <span class="job-category">Operations</span>
+                    <h3 class="job-title">DevOps Engineer</h3>
+                    <div class="job-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time</span>
+                        <span><i class="fas fa-clock"></i> Posted 1 day ago</span>
+                    </div>
+                    <p class="job-description">Build and maintain our cloud infrastructure, CI/CD pipelines, and deployment automation to ensure reliable and scalable systems.</p>
+                    <ul class="job-requirements">
+                        <li>Experience with AWS/Azure/GCP</li>
+                        <li>Proficiency in Docker and Kubernetes</li>
+                        <li>Knowledge of CI/CD tools (Jenkins, GitLab CI)</li>
+                        <li>Infrastructure as Code (Terraform/CloudFormation)</li>
+                    </ul>
+                    <div class="job-actions">
+                        <button class="btn apply-btn" data-job="DevOps Engineer">Apply Now</button>
+                        <button class="btn btn-outline view-details">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Application Process -->
+        <div class="process-section">
+            <h2 class="section-title" style="color: var(--dark-blue);">Our Hiring Process</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; color: var(--dark-blue);">Transparent and efficient process designed to find the best talent</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Application Review</h3>
+                    <p>Our team reviews your application and portfolio within 48 hours of submission.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Screening Call</h3>
+                    <p>A 30-minute introductory call with our HR team to discuss your experience and expectations.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Technical Assessment</h3>
+                    <p>Skills-based assessment relevant to the position you're applying for.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Team Interviews</h3>
+                    <p>Meet with potential team members and managers to assess cultural fit.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3>Offer & Onboarding</h3>
+                    <p>Successful candidates receive an offer within 5 business days.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Join Us -->
+        <div class="why-join-section">
+            <h2 class="section-title">Life at TechFlow</h2>
+            
+            <div class="why-join-grid">
+                <div class="why-join-item">
+                    <h3>Innovative Culture</h3>
+                    <p>We encourage experimentation and provide resources for hackathons, innovation sprints, and research projects.</p>
+                </div>
+                
+                <div class="why-join-item">
+                    <h3>Diverse & Inclusive</h3>
+                    <p>Our team represents 15+ nationalities with equal opportunities for all. We celebrate diversity in all its forms.</p>
+                </div>
+                
+                <div class="why-join-item">
+                    <h3>Impactful Work</h3>
+                    <p>Work on projects that solve real-world problems for businesses across Africa, creating meaningful impact.</p>
+                </div>
+                
+                <div class="why-join-item">
+                    <h3>Modern Workspace</h3>
+                    <p>State-of-the-art offices with collaboration spaces, quiet zones, and all the tools you need to succeed.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Application Form -->
+        <div class="application-section" id="applicationForm" style="display: none;">
+            <h2 class="section-title">Apply Now</h2>
+            <p style="text-align: center; margin-bottom: 2rem;" id="positionTitle"></p>
+            
+            <form id="careerForm">
+                <div class="form-row">
+                    <div class="form-group" style="flex: 1;">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" class="form-control" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" class="form-control" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="position">Position Applied For *</label>
+                    <input type="text" id="position" class="form-control" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">Years of Experience *</label>
+                    <select id="experience" class="form-control" required>
+                        <option value="">Select experience</option>
+                        <option value="0-1">0-1 years</option>
+                        <option value="1-3">1-3 years</option>
+                        <option value="3-5">3-5 years</option>
+                        <option value="5-10">5-10 years</option>
+                        <option value="10+">10+ years</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="coverLetter">Cover Letter *</label>
+                    <textarea id="coverLetter" class="form-control" rows="5" required placeholder="Tell us why you're interested in this position and what makes you a great candidate..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Resume/CV *</label>
+                    <div class="file-upload" id="resumeUpload">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--primary-blue); margin-bottom: 1rem;"></i>
+                        <p>Click to upload your resume (PDF, DOC, DOCX)</p>
+                        <p style="font-size: 0.9rem; color: var(--primary-gray);">Max file size: 5MB</p>
+                        <input type="file" id="resume" accept=".pdf,.doc,.docx" style="display: none;">
+                    </div>
+                    <div id="fileName" style="margin-top: 10px; font-size: 0.9rem; color: var(--primary-blue);"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="portfolio">Portfolio or GitHub Link</label>
+                    <input type="url" id="portfolio" class="form-control" placeholder="https://github.com/yourusername or portfolio link">
+                </div>
+                
+                <button type="submit" class="btn btn-full">Submit Application</button>
+            </form>
+        </div>
+
+        <!-- No Match CTA -->
+        <div class="join-team" id="noMatchCTA">
+            <h2 class="join-title">Don't See a Perfect Match?</h2>
+            <p class="join-description">We're always looking for talented individuals. Send us your resume and we'll keep you in mind for future opportunities.</p>
+            
+            <button class="btn" id="generalApplication">
+                <i class="fas fa-paper-plane"></i> Submit General Application
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>TechFlow Solutions</h3>
+                <p>Innovative technology partner for digital transformation and software excellence across Africa.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="team.html">Our Team</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Software Development</a></li>
+                    <li><a href="#">Cloud Solutions</a></li>
+                    <li><a href="#">Cybersecurity</a></li>
+                    <li><a href="#">Data Analytics</a></li>
+                    <li><a href="#">IT Consulting</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                    <li><i class="fas fa-phone"></i> +254 700 000 000</li>
+                    <li><i class="fas fa-envelope"></i> careers@techflow.com</li>
+                    <li><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2024 TechFlow Solutions. All rights reserved. | Innovation Through Technology</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('mobileToggle').querySelector('i').classList.add('fa-bars');
+                document.getElementById('mobileToggle').querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Job Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const jobCards = document.querySelectorAll('.job-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                jobCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Apply Now Button
+        const applyButtons = document.querySelectorAll('.apply-btn');
+        const applicationForm = document.getElementById('applicationForm');
+        const positionField = document.getElementById('position');
+        const positionTitle = document.getElementById('positionTitle');
+        const noMatchCTA = document.getElementById('noMatchCTA');
+        const generalApplicationBtn = document.getElementById('generalApplication');
+
+        applyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const jobTitle = button.getAttribute('data-job');
+                positionField.value = jobTitle;
+                positionTitle.textContent = `Applying for: ${jobTitle}`;
+                
+                // Show application form, hide no-match CTA
+                applicationForm.style.display = 'block';
+                noMatchCTA.style.display = 'none';
+                
+                // Scroll to application form
+                applicationForm.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // General Application Button
+        generalApplicationBtn.addEventListener('click', () => {
+            positionField.value = 'General Application - Any Open Position';
+            positionTitle.textContent = 'General Application';
+            positionField.removeAttribute('readonly');
+            
+            // Show application form, hide no-match CTA
+            applicationForm.style.display = 'block';
+            noMatchCTA.style.display = 'none';
+            
+            // Scroll to application form
+            applicationForm.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // File Upload
+        const resumeUpload = document.getElementById('resumeUpload');
+        const resumeInput = document.getElementById('resume');
+        const fileName = document.getElementById('fileName');
+
+        resumeUpload.addEventListener('click', () => {
+            resumeInput.click();
+        });
+
+        resumeInput.addEventListener('change', () => {
+            if (resumeInput.files.length > 0) {
+                fileName.textContent = `Selected: ${resumeInput.files[0].name}`;
+                fileName.style.color = 'var(--primary-blue)';
+            }
+        });
+
+        // Form Submission
+        document.getElementById('careerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = 'var(--primary-red)';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+            
+            if (isValid) {
+                // Show success message
+                alert('Application submitted successfully! We will contact you within 3 business days.');
+                
+                // Reset form
+                this.reset();
+                fileName.textContent = '';
+                
+                // Hide form, show no-match CTA
+                applicationForm.style.display = 'none';
+                noMatchCTA.style.display = 'block';
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+
+        // View Details Button
+        document.querySelectorAll('.view-details').forEach(button => {
+            button.addEventListener('click', function() {
+                const jobCard = this.closest('.job-card');
+                const jobTitle = jobCard.querySelector('.job-title').textContent;
+                const requirements = jobCard.querySelectorAll('.job-requirements li');
+                
+                let requirementsText = '';
+                requirements.forEach(req => {
+                    requirementsText += `• ${req.textContent}\n`;
+                });
+                
+                alert(`Full Job Description: ${jobTitle}\n\nRequirements:\n${requirementsText}\n\nClick "Apply Now" to submit your application.`);
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
