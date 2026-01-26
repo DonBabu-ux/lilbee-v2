@@ -7,6 +7,22 @@
     <meta name="description" content="Learn about Lilbee Logics - A reliable logistics and freight company in Kenya providing shipping, warehousing, and transport services since 2020.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --light-gold: #F4E8C1;
+            --primary-purple: #6A0DAD;
+            --light-purple: #9D4EDD;
+            --dark-purple: #4A0072;
+            --primary-pink: #FF69B4;
+            --light-pink: #FFF0F5;
+            --deep-red: #8B0000;
+            --light-red: #FF6B6B;
+            --white: #FFFFFF;
+            --dark-gray: #333333;
+            --light-gray: #f9f9f9;
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,197 +30,796 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
-            padding: 20px;
-            max-width: 1200px;
+            color: var(--dark-gray);
+            background: linear-gradient(135deg, var(--light-pink) 0%, #f9f5ff 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, var(--dark-purple) 0%, var(--primary-purple) 100%);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(106, 13, 173, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--primary-gold);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary-pink);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--primary-gold);
+        }
+
+        .nav-links a.active {
+            background: var(--primary-gold);
+            color: var(--dark-purple);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Header */
+        .hero-header {
+            background: linear-gradient(rgba(106, 13, 173, 0.85), rgba(139, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
             margin: 0 auto;
         }
         
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-        
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: var(--primary-gold);
         }
         
         .subtitle {
-            font-size: 1.2em;
+            font-size: 1.4rem;
             opacity: 0.9;
+            margin-bottom: 2rem;
+            color: var(--light-gold);
         }
-        
-        .container {
+
+        .highlight {
+            color: var(--primary-pink);
+            font-weight: 600;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
         }
         
         .card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.1);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(106, 13, 173, 0.2);
+            border-color: var(--primary-gold);
+        }
+
+        .card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--primary-pink), var(--light-purple));
+        }
+
         .mission-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--dark-purple) 0%, var(--primary-purple) 100%);
+            color: var(--white);
+            border: 2px solid var(--primary-gold);
+        }
+
+        .mission-card:before {
+            background: linear-gradient(90deg, var(--primary-gold), var(--light-red), var(--primary-pink));
         }
         
         h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-size: 1.8em;
+            color: var(--primary-purple);
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
         }
-        
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-gold);
+            border-radius: 2px;
+        }
+
         .mission-card h2 {
-            color: white;
+            color: var(--primary-gold);
         }
-        
-        .team {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .team-member {
-            text-align: center;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .team-member img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            background: #667eea;
+
+        .mission-card h2:after {
+            background: var(--primary-pink);
         }
         
         .icon {
-            font-size: 2em;
-            color: #667eea;
-            margin-bottom: 15px;
+            font-size: 3rem;
+            color: var(--primary-purple);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--light-pink), var(--light-gold));
+            border-radius: 15px;
         }
         
         .mission-card .icon {
-            color: white;
+            color: var(--primary-gold);
+            background: rgba(212, 175, 55, 0.2);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Values Section */
+        .values-section {
+            margin-bottom: 4rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
         
+        .value-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(106, 13, 173, 0.1);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-pink);
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.2);
+        }
+
+        .value-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            padding: 12px;
+        }
+
+        .value-card h3 {
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            margin-bottom: 4rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px rgba(106, 13, 173, 0.3);
+        }
+
+        .gallery-item img, .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(106, 13, 173, 0.9));
+            color: var(--white);
+            padding: 1.5rem;
+            font-weight: 500;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--deep-red) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            color: var(--light-gold);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--light-gold) 100%);
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            border: 3px solid var(--primary-gold);
+        }
+
         .btn {
             display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--primary-pink) 100%);
+            color: var(--dark-purple);
             text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            font-weight: bold;
-            transition: transform 0.3s;
+            border-radius: 50px;
+            margin: 1rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 3px solid transparent;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
         }
         
         .btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            border-color: var(--primary-purple);
         }
-        
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--light-purple) 0%, var(--primary-purple) 100%);
+            color: var(--white);
+        }
+
         .back-home {
             display: inline-block;
-            margin-top: 30px;
-            color: #667eea;
+            margin-top: 2rem;
+            color: var(--primary-purple);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
         }
-        
-        @media (max-width: 768px) {
-            .container {
+
+        .back-home:hover {
+            color: var(--primary-pink);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-purple) 0%, var(--primary-purple) 100%);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--light-gold);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-pink);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-gold);
+            color: var(--dark-purple);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--light-gold);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .cards-grid {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-purple);
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+                border-radius: 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero-header {
+                padding: 3rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .main-container {
+                padding: 0 1rem 3rem;
+            }
+            
+            .card {
+                padding: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 0.8rem 2rem;
+                margin: 0.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>About Lilbee Logics</h1>
-        <p class="subtitle">Reliable Logistics Solutions Since 2020</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-truck-loading"></i> Lilbee Logics
+            </a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="founder.html">Our Founder</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="hero-header">
+        <div class="hero-content">
+            <h1>About Lilbee Logics</h1>
+            <p class="subtitle">Excellence in Logistics Since 2020 | Connecting Kenya's Business World</p>
+            <p>We are more than just a logistics company - we are your strategic partner in growth, dedicated to moving your business forward with precision, reliability, and innovation.</p>
+        </div>
     </header>
-    
-    <div class="container">
-        <div class="card">
-            <div class="icon">
-                <i class="fas fa-history"></i>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Story & Mission Cards -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <h2>Our Journey</h2>
+                <p>Founded in <span class="highlight">2020</span> during a time of global uncertainty, Lilbee Logics was born from a vision to create reliable logistics solutions that businesses could depend on. What began as a small transport service with two vehicles has evolved into a comprehensive logistics powerhouse.</p>
+                <p>Our journey is marked by <span class="highlight">steady growth, client trust, and an unwavering commitment to excellence</span>. We've expanded our fleet, diversified our services, and built a team of logistics experts who share our passion for making supply chains seamless.</p>
+                <p>Today, we proudly serve clients across <span class="highlight">Kenya and East Africa</span>, delivering not just packages, but promises of reliability and peace of mind.</p>
             </div>
-            <h2>Our Story</h2>
-            <p>Founded in 2020, Lilbee Logics started with a simple mission: to provide reliable, efficient, and affordable logistics solutions to businesses across Kenya. What began as a small transport service has grown into a comprehensive logistics company serving clients nationwide.</p>
-            <p>We understand the challenges businesses face in moving goods efficiently, and we've built our services to solve these challenges with precision and care.</p>
+            
+            <div class="card mission-card">
+                <div class="icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h2>Our Mission</h2>
+                <p>To revolutionize logistics in Kenya through <span class="highlight">innovative solutions, reliable services, and exceptional customer care</span>. We aim to be the most trusted logistics partner for businesses of all sizes, from startups to established corporations.</p>
+                
+                <div class="icon" style="margin-top: 2rem;">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h2>Our Vision</h2>
+                <p>To become <span class="highlight">East Africa's leading logistics provider</span>, known for reliability, innovation, and excellence in service delivery. We envision a future where businesses can focus on growth while we handle their logistics with precision and care.</p>
+            </div>
+        </div>
+
+        <!-- Values Section -->
+        <div class="values-section">
+            <h2 style="text-align: center;">Our Core Values</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">These principles guide every decision we make and every service we provide</p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Reliability</h3>
+                    <p>Consistent, dependable service you can count on. We keep our promises and deliver on time, every time.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Efficiency</h3>
+                    <p>Timely delivery and optimized operations. We find smarter ways to move your goods faster and safer.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Integrity</h3>
+                    <p>Honest, transparent business practices. We believe in doing business the right way, always.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Customer Focus</h3>
+                    <p>Solutions tailored to your specific needs. Your success is our success.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="gallery-section">
+            <h2>Our Operations</h2>
+            <p>See our team and facilities in action</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Modern Warehouse Facility">
+                    <div class="gallery-caption">State-of-the-Art Warehouse</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1562887189-e5d078343de4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Logistics Team Working">
+                    <div class="gallery-caption">Dedicated Logistics Team</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <video controls poster="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-cargo-trucks-driving-on-a-road-41503-large.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="gallery-caption">Our Fleet in Action</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <h2 style="color: var(--primary-gold);">By The Numbers</h2>
+            <p style="color: var(--light-gold);">Our impact in numbers</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">2500+</div>
+                    <div class="stat-label">Successful Deliveries</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">On-Time Delivery Rate</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Dedicated Staff</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 style="color: var(--primary-purple);">Ready to Simplify Your Logistics?</h2>
+            <p style="max-width: 700px; margin: 1rem auto 2rem;">Join hundreds of businesses who trust Lilbee Logics with their supply chain needs. Let's discuss how we can optimize your logistics operations.</p>
+            
+            <a href="contact.html" class="btn">
+                <i class="fas fa-paper-plane"></i> Get In Touch
+            </a>
+            <a href="services.html" class="btn btn-secondary">
+                <i class="fas fa-concierge-bell"></i> Our Services
+            </a>
+            
+            <br>
+            <a href="/" class="back-home">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Lilbee Logics</h3>
+                <p>Your reliable partner in logistics and supply chain solutions across Kenya and East Africa.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="founder.html">Our Founder</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                    <li><i class="fas fa-phone"></i> +254 700 000 000</li>
+                    <li><i class="fas fa-envelope"></i> info@lilbeelogics.com</li>
+                    <li><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM</li>
+                </ul>
+            </div>
         </div>
         
-        <div class="card mission-card">
-            <div class="icon">
-                <i class="fas fa-bullseye"></i>
-            </div>
-            <h2>Our Mission</h2>
-            <p>To revolutionize logistics in Kenya through innovative solutions, reliable services, and exceptional customer care. We aim to be the most trusted logistics partner for businesses of all sizes.</p>
-            
-            <h2 style="margin-top: 30px;">Our Vision</h2>
-            <p>To become East Africa's leading logistics provider, known for reliability, innovation, and excellence in service delivery.</p>
+        <div class="copyright">
+            <p>&copy; 2024 Lilbee Logics. All rights reserved. | Excellence in Logistics</p>
         </div>
-    </div>
-    
-    <div class="card">
-        <h2>Our Values</h2>
-        <div class="team">
-            <div class="team-member">
-                <div class="icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Reliability</h3>
-                <p>Consistent, dependable service you can count on.</p>
-            </div>
-            
-            <div class="team-member">
-                <div class="icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3>Efficiency</h3>
-                <p>Timely delivery and optimized operations.</p>
-            </div>
-            
-            <div class="team-member">
-                <div class="icon">
-                    <i class="fas fa-handshake"></i>
-                </div>
-                <h3>Integrity</h3>
-                <p>Honest, transparent business practices.</p>
-            </div>
-            
-            <div class="team-member">
-                <div class="icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h3>Customer Focus</h3>
-                <p>Solutions tailored to your specific needs.</p>
-            </div>
-        </div>
-    </div>
-    
-    <div style="text-align: center; margin-top: 40px;">
-        <a href="contact.html" class="btn">Contact Us Today</a>
-        <br>
-        <a href="/home.html" class="back-home"><i class="fas fa-home"></i> Back to Home</a>
-    </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('mobileToggle').querySelector('i').classList.add('fa-bars');
+                document.getElementById('mobileToggle').querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
