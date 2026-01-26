@@ -3,39 +3,902 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logistics Services | Lilbee Logics Kenya</title>
-    <meta name="description" content="Professional freight, shipping, warehousing, and transport services in Kenya. Reliable logistics solutions for businesses.">
+    <title>Technology & Software Services | TechFlow Solutions from LilBee Logics</title>
+    <meta name="description" content="Professional software development, cloud solutions, cybersecurity, and IT consulting services. Innovative technology solutions for modern businesses.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; max-width: 1200px; margin: auto; }
-        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        .service { background: #f8f9fa; padding: 20px; margin: 20px 0; border-radius: 5px; border-left: 4px solid #3498db; }
-        .back-home { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; }
+        :root {
+            --primary-blue: #2A5CAA;
+            --light-blue: #E8F2FF;
+            --primary-purple: #6A0DAD;
+            --light-purple: #9D4EDD;
+            --dark-purple: #4A0072;
+            --accent-teal: #00CED1;
+            --light-teal: #E0FFFF;
+            --deep-navy: #0A1F44;
+            --light-navy: #1E3A8A;
+            --white: #FFFFFF;
+            --dark-gray: #333333;
+            --light-gray: #f9f9f9;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background: linear-gradient(135deg, var(--light-blue) 0%, #f9f5ff 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--primary-blue) 100%);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(42, 92, 170, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--accent-teal);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent-teal);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: rgba(0, 206, 209, 0.2);
+            color: var(--accent-teal);
+        }
+
+        .nav-links a.active {
+            background: var(--accent-teal);
+            color: var(--deep-navy);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(42, 92, 170, 0.85), rgba(10, 31, 68, 0.7)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: var(--accent-teal);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            color: var(--light-teal);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .service-card {
+            background: var(--white);
+            padding: 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(42, 92, 170, 0.1);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(42, 92, 170, 0.2);
+            border-color: var(--accent-teal);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--light-blue), var(--light-teal));
+            border-radius: 15px;
+        }
+        
+        .service-title {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .service-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-teal);
+            border-radius: 2px;
+        }
+
+        .service-description {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .features-list li:before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        /* Service Highlight */
+        .service-highlight {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--primary-blue) 100%);
+            color: var(--white);
+            border-color: var(--accent-teal);
+        }
+
+        .service-highlight .service-icon {
+            color: var(--accent-teal);
+            background: rgba(0, 206, 209, 0.2);
+        }
+
+        .service-highlight .service-title {
+            color: var(--accent-teal);
+        }
+
+        .service-highlight .service-title:after {
+            background: var(--accent-teal);
+        }
+
+        /* Process Section */
+        .process-section {
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-teal) 100%);
+            border-radius: 20px;
+            border: 3px solid var(--accent-teal);
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-teal);
+            border-radius: 2px;
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-teal), var(--primary-blue));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            margin-bottom: 4rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px rgba(42, 92, 170, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(42, 92, 170, 0.9));
+            color: var(--white);
+            padding: 1rem;
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--deep-navy) 100%);
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            color: var(--white);
+        }
+
+        .cta-title {
+            color: var(--accent-teal);
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .cta-description {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--light-teal);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--accent-teal) 0%, var(--primary-blue) 100%);
+            color: var(--deep-navy);
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 1rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 3px solid transparent;
+            box-shadow: 0 5px 20px rgba(0, 206, 209, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 206, 209, 0.4);
+            border-color: var(--primary-blue);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 3px solid var(--accent-teal);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-teal);
+            color: var(--deep-navy);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--primary-blue) 100%);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-teal);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--light-teal);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-teal);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(0, 206, 209, 0.2);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-teal);
+            color: var(--deep-navy);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 206, 209, 0.3);
+            color: var(--light-teal);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 0 auto 4rem;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .process-step {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-blue);
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+                border-radius: 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero-section {
+                padding: 3rem 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .main-container {
+                padding: 0 1rem 3rem;
+            }
+            
+            .process-section {
+                padding: 2rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .service-title {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 2rem;
+                margin: 0.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Our Logistics Services in Kenya</h1>
-    
-    <div class="service">
-        <h2><i class="fas fa-truck"></i> Freight & Shipping</h2>
-        <p>Local and international freight solutions for businesses across Kenya.</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-code-branch"></i> TechFlow Solutions
+            </a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="team.html">Our Team</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Our Technology Services</h1>
+            <p class="hero-subtitle">Innovative Software & IT Solutions for Modern Businesses</p>
+            <p class="hero-description">From custom software development to comprehensive cloud infrastructure - we provide end-to-end technology solutions designed to accelerate your digital transformation and drive business growth.</p>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Services Grid -->
+        <div class="services-grid">
+            <div class="service-card service-highlight">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Software Development" class="service-image">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h2 class="service-title">Custom Software Development</h2>
+                    <p class="service-description">Tailored software solutions built with modern technologies to solve your unique business challenges.</p>
+                    <ul class="features-list">
+                        <li>Web Application Development</li>
+                        <li>Mobile App Development (iOS/Android)</li>
+                        <li>Enterprise Software Solutions</li>
+                        <li>API Development & Integration</li>
+                        <li>Progressive Web Apps (PWA)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Cloud Solutions" class="service-image">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h2 class="service-title">Cloud & Infrastructure</h2>
+                    <p class="service-description">Scalable cloud infrastructure solutions with robust security and 99.9% uptime guarantee.</p>
+                    <ul class="features-list">
+                        <li>AWS/Azure/GCP Migration</li>
+                        <li>Cloud Architecture Design</li>
+                        <li>DevOps & CI/CD Implementation</li>
+                        <li>Containerization (Docker/Kubernetes)</li>
+                        <li>Serverless Computing</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Cybersecurity" class="service-image">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2 class="service-title">Cybersecurity Services</h2>
+                    <p class="service-description">Comprehensive security solutions to protect your digital assets from evolving threats.</p>
+                    <ul class="features-list">
+                        <li>Security Audits & Assessments</li>
+                        <li>Penetration Testing</li>
+                        <li>Managed Security Services</li>
+                        <li>Data Encryption & Protection</li>
+                        <li>Compliance Management (GDPR, HIPAA)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Data Analytics" class="service-image">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2 class="service-title">Data & Analytics</h2>
+                    <p class="service-description">Transform your data into actionable insights with advanced analytics and visualization.</p>
+                    <ul class="features-list">
+                        <li>Business Intelligence Solutions</li>
+                        <li>Big Data Processing</li>
+                        <li>Machine Learning & AI Integration</li>
+                        <li>Data Warehousing</li>
+                        <li>Real-time Analytics Dashboards</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="IT Consulting" class="service-image">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h2 class="service-title">IT Consulting & Strategy</h2>
+                    <p class="service-description">Strategic guidance to align your technology investments with business objectives.</p>
+                    <ul class="features-list">
+                        <li>Digital Transformation Roadmaps</li>
+                        <li>Technology Stack Assessment</li>
+                        <li>IT Infrastructure Planning</li>
+                        <li>Vendor Management</li>
+                        <li>IT Governance & Risk Management</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Support & Maintenance" class="service-image">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h2 class="service-title">Support & Maintenance</h2>
+                    <p class="service-description">Proactive support and maintenance services to ensure optimal system performance.</p>
+                    <ul class="features-list">
+                        <li>24/7 Technical Support</li>
+                        <li>Software Updates & Patches</li>
+                        <li>Performance Monitoring</li>
+                        <li>Disaster Recovery Planning</li>
+                        <li>SLA-based Support Packages</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Process Section -->
+        <div class="process-section">
+            <h2 class="section-title">Our Development Process</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; color: var(--primary-blue);">A structured agile methodology to ensure quality and efficiency at every stage</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Discovery</h3>
+                    <p>Understanding your business requirements and technical challenges.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Planning</h3>
+                    <p>Creating detailed project specifications and technology roadmap.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Development</h3>
+                    <p>Agile development with continuous integration and testing.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Deployment</h3>
+                    <p>Secure deployment with comprehensive documentation and training.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3>Support</h3>
+                    <p>Ongoing maintenance, updates, and technical support.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="gallery-section">
+            <h2 class="section-title">Our Technology Stack</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Modern technologies powering innovative solutions</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Development Team">
+                    <div class="gallery-caption">Development & Code Review</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Cloud Infrastructure">
+                    <div class="gallery-caption">Cloud Infrastructure Management</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Data Analytics">
+                    <div class="gallery-caption">Data Analytics & Visualization</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to Transform Your Business?</h2>
+            <p class="cta-description">Partner with TechFlow Solutions for innovative, reliable, and scalable technology solutions. Let us handle your digital transformation while you focus on growing your business.</p>
+            
+            <a href="contact.html" class="btn">
+                <i class="fas fa-paper-plane"></i> Start Your Project
+            </a>
+            <a href="tel:+254700000000" class="btn btn-secondary">
+                <i class="fas fa-phone"></i> Schedule a Consultation
+            </a>
+        </div>
     </div>
-    
-    <div class="service">
-        <h2><i class="fas fa-warehouse"></i> Warehousing</h2>
-        <p>Secure storage and inventory management solutions.</p>
-    </div>
-    
-    <div class="service">
-        <h2><i class="fas fa-road"></i> Transport Services</h2>
-        <p>Reliable transportation across all regions of Kenya.</p>
-    </div>
-    
-    <div class="service">
-        <h2><i class="fas fa-box"></i> Cargo Handling</h2>
-        <p>Professional cargo loading, unloading, and handling services.</p>
-    </div>
-    
-    <a href="home.html" class="back-home"><i class="fas fa-home"></i> Back to Home</a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>TechFlow Solutions</h3>
+                <p>Innovative technology partner for digital transformation and software excellence across Africa.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="team.html">Our Team</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Software Development</a></li>
+                    <li><a href="#">Cloud Solutions</a></li>
+                    <li><a href="#">Cybersecurity</a></li>
+                    <li><a href="#">Data Analytics</a></li>
+                    <li><a href="#">IT Consulting</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                    <li><i class="fas fa-phone"></i> +254 700 000 000</li>
+                    <li><i class="fas fa-envelope"></i> lilbeelogics@gmail.com</li>
+                    <li><i class="fas fa-clock"></i> 24/7 Technical Support</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2026 TechFlow Solutions|LilBee Logics. All rights reserved. | Innovation Through Technology</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('mobileToggle').querySelector('i').classList.add('fa-bars');
+                document.getElementById('mobileToggle').querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
