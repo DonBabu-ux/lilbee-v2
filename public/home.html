@@ -2055,6 +2055,106 @@
         padding-bottom: 70px;
     }
 }
+
+        /* Dropdown Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dropdown-toggle .fa-chevron-down {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-toggle .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    min-width: 200px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding: 10px 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    color: var(--dark-purple);
+    padding: 10px 20px;
+    display: block;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.dropdown-menu a:hover {
+    background: var(--light-pink);
+    color: var(--primary-purple);
+    padding-left: 25px;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0;
+        transition: max-height 0.3s ease;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        max-height: 200px;
+        padding: 10px 0;
+    }
+    
+    .dropdown-menu a {
+        color: var(--white);
+        padding: 8px 20px;
+    }
+    
+    .dropdown-menu a:hover {
+        background: rgba(212, 175, 55, 0.2);
+    }
+    
+    .dropdown-toggle .fa-chevron-down {
+        transition: transform 0.3s ease;
+    }
+    
+    .dropdown.active .dropdown-toggle .fa-chevron-down {
+        transform: rotate(180deg);
+    }
+}
+        
     </style>
 </head>
 <body>
@@ -2089,6 +2189,16 @@
                     <li><a href="#media">Our Work</a></li>
                     <li><a href="#consultation">Get Quote</a></li>
                     <li><a href="#faqs">FAQs</a></li>
+                      <!-- About Dropdown -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">
+                    About <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="founder.html">About Founder</a></li>
+                </ul>
+            </li>
                 </ul>
                 
                 <div class="auth-links">
@@ -2117,7 +2227,18 @@
             <li><a href="#consultation">Get Quote</a></li>
             <li><a href="#faqs">FAQs</a></li>
             <a href="services.html">Services</a>
-            <li><a href="about.html">About</a></li>
+
+
+              <!-- About Dropdown -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">
+                    About <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="founder.html">About Founder</a></li>
+                </ul>
+            </li>
             <li><a href="services.html">Services</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -4201,6 +4322,47 @@ const styleSheet = document.createElement("style");
 styleSheet.textContent = jarvisStyles;
 document.head.appendChild(styleSheet);
 
+
+        // Mobile dropdown functionality
+document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            const dropdown = this.parentElement;
+            dropdown.classList.toggle('active');
+            
+            // Close other dropdowns
+            document.querySelectorAll('.dropdown').forEach(otherDropdown => {
+                if (otherDropdown !== dropdown) {
+                    otherDropdown.classList.remove('active');
+                }
+            });
+        }
+    });
+});
+
+// Close dropdowns when clicking outside (for mobile)
+document.addEventListener('click', function(e) {
+    if (window.innerWidth <= 768) {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        }
+    }
+});
+
+// Update your existing mobile menu toggle to close dropdowns
+document.getElementById('mobileToggle').addEventListener('click', function() {
+    // Your existing mobile toggle code...
+    
+    // Close all dropdowns when mobile menu is closed
+    if (!document.getElementById('navLinks').classList.contains('active')) {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
+    }
+});
        
     </script>
 </body>
