@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team | TechFlow Solutions</title>
+    <meta name="description" content="Meet the expert team behind TechFlow Solutions - skilled professionals dedicated to delivering innovative technology solutions.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #D32F2F;
+            --dark-red: #B71C1C;
+            --light-red: #FFEBEE;
+            --accent-red: #FF5252;
+            --primary-blue: #1976D2;
+            --dark-blue: #0D47A1;
+            --light-blue: #E3F2FD;
+            --primary-gray: #424242;
+            --light-gray: #F5F5F5;
+            --dark-gray: #212121;
+            --white: #FFFFFF;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-gray);
+            background: linear-gradient(135deg, var(--light-red) 0%, var(--light-blue) 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(211, 47, 47, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--light-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--light-blue);
+        }
+
+        .nav-links a.active {
+            background: var(--light-blue);
+            color: var(--dark-red);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .team-hero {
+            background: linear-gradient(rgba(211, 47, 47, 0.85), rgba(25, 118, 210, 0.7)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: var(--white);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            color: var(--light-blue);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        /* Team Introduction */
+        .team-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary-red);
+            border-right: 5px solid var(--primary-blue);
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--dark-red);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-red), var(--primary-blue));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .team-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(211, 47, 47, 0.2);
+            border-color: var(--primary-red);
+        }
+
+        .team-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .team-content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .team-role {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
+            color: var(--white);
+            padding: 5px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .team-name {
+            color: var(--dark-red);
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .team-position {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .team-description {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--primary-gray);
+        }
+
+        .team-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .skill-tag {
+            background: var(--light-red);
+            color: var(--dark-red);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .team-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--light-gray);
+            border-radius: 50%;
+            color: var(--primary-red);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .team-social a:hover {
+            background: var(--primary-red);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        /* Leadership Highlight */
+        .leadership-card {
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(25, 118, 210, 0.2);
+        }
+
+        .leadership-card:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 40px rgba(25, 118, 210, 0.3);
+        }
+
+        .leadership-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        /* Values Section */
+        .values-section {
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .value-item:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .value-title {
+            color: var(--dark-red);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* Join Team CTA */
+        .join-team {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-blue) 100%);
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            color: var(--white);
+        }
+
+        .join-title {
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .join-description {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--light-blue);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--white);
+            color: var(--dark-red);
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 1rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 3px solid transparent;
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
+            border-color: var(--light-blue);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 3px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--dark-red);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--light-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--light-red);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--light-blue);
+            color: var(--dark-red);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--light-red);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-red);
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+                border-radius: 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .team-hero {
+                padding: 3rem 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .main-container {
+                padding: 0 1rem 3rem;
+            }
+            
+            .team-intro, .values-section {
+                padding: 2rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .team-name {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 2rem;
+                margin: 0.5rem;
+            }
+            
+            .value-item {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-code-branch"></i> TechFlow Solutions
+            </a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="team.html" class="active">Our Team</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="team-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Meet Our Team</h1>
+            <p class="hero-subtitle">Experts Driving Innovation in Technology</p>
+            <p class="hero-description">Our diverse team of skilled professionals combines technical expertise with creative problem-solving to deliver exceptional technology solutions for our clients.</p>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Team Introduction -->
+        <div class="team-intro">
+            <h2 class="section-title">The Minds Behind the Innovation</h2>
+            <p class="section-subtitle">Passionate professionals dedicated to excellence</p>
+            <p>At TechFlow Solutions, our strength lies in our people. We've assembled a team of highly skilled developers, designers, strategists, and support specialists who are passionate about technology and committed to delivering outstanding results for our clients. Each team member brings unique expertise and perspective, creating a collaborative environment where innovation thrives.</p>
+        </div>
+
+        <!-- Team Grid -->
+        <h2 class="section-title" style="margin-bottom: 3rem;">Leadership Team</h2>
+        <div class="team-grid">
+            <div class="team-card leadership-card">
+                <div class="leadership-badge">CEO & Founder</div>
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Alex Morgan" class="team-image">
+                <div class="team-content">
+                    <span class="team-role">Leadership</span>
+                    <h3 class="team-name">Alex Morgan</h3>
+                    <p class="team-position">Chief Executive Officer</p>
+                    <p class="team-description">With over 15 years of experience in technology leadership, Alex founded TechFlow Solutions with a vision to bridge the gap between innovative technology and business success. He holds an MBA from Stanford and has led digital transformations for Fortune 500 companies.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Strategic Planning</span>
+                        <span class="skill-tag">Business Development</span>
+                        <span class="skill-tag">Digital Transformation</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-card leadership-card">
+                <div class="leadership-badge">CTO</div>
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="James Chen" class="team-image">
+                <div class="team-content">
+                    <span class="team-role">Technology</span>
+                    <h3 class="team-name">James Chen</h3>
+                    <p class="team-position">Chief Technology Officer</p>
+                    <p class="team-description">James leads our technology strategy with expertise in cloud architecture, AI, and scalable systems. Formerly a principal engineer at Google, he holds a PhD in Computer Science from MIT and has published numerous papers on distributed systems.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Cloud Architecture</span>
+                        <span class="skill-tag">AI/ML</span>
+                        <span class="skill-tag">System Design</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" style="margin: 4rem 0 3rem;">Technical Team</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Sarah Johnson" class="team-image">
+                <div class="team-content">
+                    <span class="team-role">Development</span>
+                    <h3 class="team-name">Sarah Johnson</h3>
+                    <p class="team-position">Lead Software Engineer</p>
+                    <p class="team-description">Sarah specializes in full-stack development with expertise in React, Node.js, and cloud-native applications. She leads our development teams in building scalable, high-performance solutions for enterprise clients.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Michael Rodriguez" class="team-image">
+                <div class="team-content">
+                    <span class="team-role">Security</span>
+                    <h3 class="team-name">Michael Rodriguez</h3>
+                    <p class="team-position">Cybersecurity Specialist</p>
+                    <p class="team-description">Michael ensures our clients' systems are protected against evolving cyber threats. With certifications in CISSP and CEH, he implements robust security frameworks and conducts regular vulnerability assessments.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Network Security</span>
+                        <span class="skill-tag">Penetration Testing</span>
+                        <span class="skill-tag">Compliance</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="David Kim" class="team-image">
+                <div class="team-content">
+                    <span class="team-role">Data Science</span>
+                    <h3 class="team-name">David Kim</h3>
+                    <p class="team-position">Data Scientist</p>
+                    <p class="team-description">David transforms complex data into actionable insights using machine learning and advanced analytics. He has worked on predictive models for financial services, healthcare, and e-commerce industries.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Data Visualization</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Olivia Parker" class="team-image">
+                <div class="team-content">
+                    <span class="team-role">UX/UI Design</span>
+                    <h3 class="team-name">Olivia Parker</h3>
+                    <p class="team-position">Lead Designer</p>
+                    <p class="team-description">Olivia creates intuitive and beautiful user experiences that drive engagement and satisfaction. With a background in psychology and design, she ensures our solutions are both functional and delightful to use.</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">UI/UX Design</span>
+                        <span class="skill-tag">Prototyping</span>
+                        <span class="skill-tag">User Research</span>
+                    </div>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Values Section -->
+        <div class="values-section">
+            <h2 class="section-title">Our Team Values</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">The principles that guide our work and collaboration</p>
+            
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="value-title">Innovation</h3>
+                    <p>We continuously explore new technologies and approaches to solve complex challenges and deliver cutting-edge solutions.</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="value-title">Collaboration</h3>
+                    <p>We believe in the power of teamwork and open communication to achieve outstanding results for our clients.</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="value-title">Excellence</h3>
+                    <p>We maintain the highest standards in everything we do, from code quality to client communication.</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="value-title">Passion</h3>
+                    <p>Our team is driven by genuine passion for technology and a commitment to making a positive impact.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Join Team CTA -->
+        <div class="join-team">
+            <h2 class="join-title">Join Our Growing Team</h2>
+            <p class="join-description">Are you passionate about technology and innovation? We're always looking for talented individuals to join our team and help shape the future of digital solutions.</p>
+            
+            <a href="careers.html" class="btn">
+                <i class="fas fa-briefcase"></i> View Open Positions
+            </a>
+            <a href="contact.html" class="btn btn-secondary">
+                <i class="fas fa-envelope"></i> Submit Your Resume
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>TechFlow Solutions</h3>
+                <p>Innovative technology partner for digital transformation and software excellence across Africa.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="team.html">Our Team</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Software Development</a></li>
+                    <li><a href="#">Cloud Solutions</a></li>
+                    <li><a href="#">Cybersecurity</a></li>
+                    <li><a href="#">Data Analytics</a></li>
+                    <li><a href="#">IT Consulting</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                    <li><i class="fas fa-phone"></i> +254 700 000 000</li>
+                    <li><i class="fas fa-envelope"></i> lilbeelogics@gmail.com/li>
+                    <li><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2026 TechFlow Solutions. All rights reserved. | Innovation Through Technology</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('mobileToggle').querySelector('i').classList.add('fa-bars');
+                document.getElementById('mobileToggle').querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Team card hover effect enhancement
+        document.querySelectorAll('.team-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
