@@ -6,6 +6,7 @@
     <title>Website Hosting Services | LilBee Logics</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <style>
         /* ===== ROOT VARIABLES ===== */
         :root {
@@ -1150,6 +1151,355 @@
                         <span>LOGICS</span>
                     </div>
                 </a>
+
+
+
+
+
+
+
+                <div class="status-message">
+  <div class="status-header">
+    <span class="status-icon">⚠️</span>
+    <h1>Service Status Alert</h1>
+  </div>
+  
+  <div class="message-container">
+    <p class="message-line">
+      <span class="highlight">Dear user</span>, we are 
+      <span class="badge down">not able</span> to offer hosting services right now.
+    </p>
+    
+    <p class="message-line">
+      Our systems are <span class="badge critical">currently down</span> but we are
+      <span class="badge working">working tirelessly</span> to resolve the issue.
+    </p>
+    
+    <div class="countdown-container">
+      <div class="countdown-header">
+        <i class="fas fa-clock"></i>
+        <span>Time elapsed since outage began:</span>
+      </div>
+      <div class="countdown-display">
+        <div class="time-unit">
+          <span id="hours" class="time-value">15</span>
+          <span class="time-label">Hours</span>
+        </div>
+        <div class="time-separator">:</div>
+        <div class="time-unit">
+          <span id="minutes" class="time-value">20</span>
+          <span class="time-label">Minutes</span>
+        </div>
+        <div class="time-separator">:</div>
+        <div class="time-unit">
+          <span id="seconds" class="time-value">00</span>
+          <span class="time-label">Seconds</span>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <p class="progress-text">
+        Resolution progress: <span id="progress-text">25%</span>
+      </p>
+    </div>
+    
+    <p class="message-line contact-line">
+      If this takes longer than expected, 
+      <span class="highlight contact">feel free to reach out</span> 
+      <i class="fas fa-external-link-alt"></i>
+    </p>
+  </div>
+</div>
+
+<style>
+.status-message {
+  background: linear-gradient(135deg, #fff8f8 0%, #fff 100%);
+  border-left: 6px solid #ff6b6b;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.15);
+  max-width: 700px;
+  margin: 20px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.status-icon {
+  font-size: 28px;
+  margin-right: 15px;
+  animation: pulse 2s infinite;
+}
+
+.status-header h1 {
+  color: #333;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.message-line {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 18px 0;
+  color: #444;
+}
+
+.highlight {
+  font-weight: 700;
+  color: #2d3436;
+  position: relative;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #74b9ff, #0984e3);
+  transform: scaleX(0);
+  transform-origin: right;
+  animation: highlightExpand 1s 0.5s forwards;
+}
+
+.contact-line {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px dashed #ddd;
+}
+
+.highlight.contact {
+  color: #0984e3;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.highlight.contact:hover {
+  color: #074a8f;
+  text-shadow: 0 0 8px rgba(9, 132, 227, 0.2);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 5px;
+  animation: badgeAppear 0.8s ease-out;
+}
+
+.badge.down {
+  background-color: #ff7675;
+  color: white;
+  animation-delay: 0.2s;
+}
+
+.badge.critical {
+  background-color: #d63031;
+  color: white;
+  animation-delay: 0.4s;
+}
+
+.badge.working {
+  background-color: #00b894;
+  color: white;
+  animation-delay: 0.6s;
+}
+
+.countdown-container {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 22px;
+  margin: 25px 0;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  animation: slideUp 0.8s 0.7s both;
+}
+
+.countdown-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  color: #555;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.countdown-header i {
+  color: #ff6b6b;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.countdown-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  min-width: 90px;
+  margin: 0 5px;
+  transition: transform 0.3s;
+}
+
+.time-unit:hover {
+  transform: translateY(-5px);
+}
+
+.time-value {
+  font-size: 42px;
+  font-weight: 800;
+  color: #2d3436;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.time-label {
+  font-size: 14px;
+  color: #636e72;
+  margin-top: 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.time-separator {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ff6b6b;
+  margin: 0 10px;
+  padding-bottom: 20px;
+}
+
+.progress-container {
+  height: 10px;
+  background: #e9ecef;
+  border-radius: 5px;
+  margin: 25px 0 15px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 25%;
+  background: linear-gradient(90deg, #ff7675, #ff6b6b, #fd79a8);
+  border-radius: 5px;
+  animation: progressMove 2.5s infinite alternate, expandWidth 8s forwards;
+}
+
+.progress-text {
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+  font-weight: 600;
+}
+
+#progress-text {
+  color: #ff6b6b;
+  font-weight: 800;
+}
+
+.fas {
+  margin-left: 8px;
+  font-size: 16px;
+  color: #0984e3;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes badgeAppear {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes highlightExpand {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes progressMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes expandWidth {
+  0% { width: 25%; }
+  100% { width: 85%; }
+}
+</style>
+
+<script>
+// Start the countdown timer
+let startTime = Date.now();
+
+function updateCountdown() {
+  const now = Date.now();
+  const elapsed = now - startTime;
+  
+  // Calculate hours, minutes, seconds
+  const hours = Math.floor(elapsed / (1000 * 60 * 60));
+  const minutes = Math.floor((elapsed % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((elapsed % (1000 * 60)) / 1000);
+  
+  // Update display with leading zeros
+  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  
+  // Update progress percentage (simulated progress)
+  const progressPercentage = Math.min(25 + Math.floor(elapsed / 10000), 85);
+  document.getElementById('progress-text').textContent = `${progressPercentage}%`;
+  
+  // Update progress bar width
+  document.getElementById('progress-bar').style.width = `${progressPercentage}%`;
+}
+
+// Update countdown every second
+setInterval(updateCountdown, 1000);
+
+// Initialize immediately
+updateCountdown();
+
+// Add click event to contact link
+document.querySelector('.highlight.contact').addEventListener('click', function() {
+  alert('Contact support at: lilbeelogics@gmail.com or call +254-117-234-064');
+});
+</script>
+
                 
                 <ul class="nav-links">
                     <li><a href="home.html">Home</a></li>
